@@ -1,0 +1,19 @@
+aid: cdisc
+url: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/apis.yml
+apis:
+- aid: cdisc:cdisc-api
+  name: CDISC Clinical Data Standards API
+  tags:
+  - Pharma
+  - Clinical Trials
+  - SDTM
+  - ODM
+  - XML
+  image: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/image.png
+  humanURL: https://www.cdisc.org/
+  baseURL: https://ctms.pharma-internal.example.com/api
+  properties:
+  - url: https://www.cdisc.org/
+    type: Documentation
+  description: >-
+    CDISC (Clinical Data Interchange Standards Consortium) defines data standards for clinical trial submissions including SDTM, ADaM, and ODM XML formats. CTMS APIs implementing CDISC standards enable access to study enrollment data, adverse event summaries, and regulatory submission metadata.
