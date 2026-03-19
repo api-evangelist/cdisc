@@ -1,0 +1,75 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "cdisc": "https://library.cdisc.org/api/",
+    "schema": "https://schema.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Dataset": {
+      "@id": "cdisc:Dataset",
+      "@type": "schema:Dataset"
+    },
+    "Variable": {
+      "@id": "cdisc:Variable"
+    },
+    "Standard": {
+      "@id": "cdisc:Standard",
+      "@type": "schema:CreativeWork"
+    },
+    "BiomedicalConcept": {
+      "@id": "cdisc:BiomedicalConcept",
+      "@type": "schema:MedicalConcept"
+    },
+
+    "name": "schema:name",
+    "label": "rdfs:label",
+    "description": "schema:description",
+    "version": "schema:version",
+    "effectiveDate": {
+      "@id": "schema:datePublished",
+      "@type": "xsd:date"
+    },
+    "dataType": "schema:DataType",
+    "core": {
+      "@id": "cdisc:coreRequirement"
+    },
+    "role": {
+      "@id": "schema:roleName"
+    },
+    "variables": {
+      "@id": "cdisc:hasVariable",
+      "@container": "@set"
+    },
+    "datasetClass": {
+      "@id": "cdisc:observationClass"
+    },
+    "codelistSubmissionValues": {
+      "@id": "cdisc:codelistValue",
+      "@container": "@set"
+    },
+    "conceptId": {
+      "@id": "cdisc:conceptIdentifier"
+    },
+    "definition": "skos:definition",
+    "dataElements": {
+      "@id": "cdisc:hasDataElement",
+      "@container": "@set"
+    },
+    "length": {
+      "@id": "schema:maxValue",
+      "@type": "xsd:integer"
+    },
+    "registrationStatus": {
+      "@id": "schema:creativeWorkStatus"
+    },
+    "purpose": {
+      "@id": "schema:purpose"
+    },
+    "keys": {
+      "@id": "cdisc:keyVariable",
+      "@container": "@set"
+    }
+  }
+}

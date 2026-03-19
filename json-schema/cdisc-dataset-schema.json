@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://library.cdisc.org/api/schemas/dataset",
+  "title": "CDISC Dataset (Domain)",
+  "description": "Schema representing a CDISC SDTM or ADaM dataset domain specification including all variables.",
+  "type": "object",
+  "required": ["name", "label"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Dataset/domain abbreviation (e.g., AE, CM, DM)",
+      "pattern": "^[A-Z]{2,4}$",
+      "examples": ["AE", "CM", "DM", "EX", "LB"]
+    },
+    "label": {
+      "type": "string",
+      "description": "Human-readable label for the dataset",
+      "examples": ["Adverse Events", "Concomitant/Prior Medications", "Demographics"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the dataset purpose and content"
+    },
+    "datasetClass": {
+      "type": "string",
+      "description": "SDTM general observation class",
+      "enum": ["Events", "Findings", "Interventions", "Special Purpose", "Relationship", "Trial Design"]
+    },
+    "structure": {
+      "type": "string",
+      "description": "Dataset structure (one record per subject, one record per visit, etc.)"
+    },
+    "purpose": {
+      "type": "string",
+      "description": "Dataset purpose: Tabulation or Analysis",
+      "enum": ["Tabulation", "Analysis"]
+    },
+    "keys": {
+      "type": "array",
+      "description": "Key variables that uniquely identify a record",
+      "items": {
+        "type": "string"
+      },
+      "examples": [["STUDYID", "USUBJID", "AESEQ"]]
+    },
+    "variables": {
+      "type": "array",
+      "description": "List of variables (columns) in the dataset",
+      "items": {
+        "$ref": "#/$defs/Variable"
+      }
+    },
+    "_links": {
+      "type": "object",
+      "description": "HAL hypermedia links",
+      "properties": {
+        "self": {
+          "$ref": "#/$defs/Link"
+        },
+        "parentClass": {
+          "$ref": "#/$defs/Link"
+        },
+        "parentProduct": {
+          "$ref": "#/$defs/Link"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Variable": {
+      "type": "object",
+      "required": ["name", "label", "dataType", "core"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Variable name (e.g., AETERM)",
+          "pattern": "^[A-Z][A-Z0-9]{1,7}$"
+        },
+        "label": {
+          "type": "string",
+          "description": "Variable label (40 char max)",
+          "maxLength": 40
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed variable description"
+        },
+        "dataType": {
+          "type": "string",
+          "description": "SAS data type",
+          "enum": ["Char", "Num", "date", "datetime", "partialDate", "partialDatetime", "time", "partialTime", "integer", "float", "text", "uri"]
+        },
+        "length": {
+          "type": "integer",
+          "description": "Maximum length for character variables",
+          "minimum": 1
+        },
+        "significantDigits": {
+          "type": "integer",
+          "description": "Number of significant digits for numeric variables"
+        },
+        "format": {
+          "type": "string",
+          "description": "SAS format for display",
+          "examples": ["DATE9.", "TIME5.", "DATETIME19."]
+        },
+        "role": {
+          "type": "string",
+          "description": "Variable role within the SDTM general observation class",
+          "enum": [
+            "Identifier",
+            "Topic",
+            "Record Qualifier",
+            "Result Qualifier",
+            "Synonym Qualifier",
+            "Variable Qualifier",
+            "Timing",
+            "Rule",
+            "Grouping Qualifier"
+          ]
+        },
+        "core": {
+          "type": "string",
+          "description": "Variable core status indicating requirement level",
+          "enum": ["Required", "Expected", "Permissible", "Conditionally Required", "Conditionally Expected"]
+        },
+        "codelistSubmissionValues": {
+          "type": "array",
+          "description": "Applicable CDISC controlled terminology codelist submission values",
+          "items": {
+            "type": "string"
+          }
+        },
+        "valueList": {
+          "type": "array",
+          "description": "Enumerated list of allowed values",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ordinal": {
+          "type": "integer",
+          "description": "Variable ordering position within the dataset"
+        },
+        "simpleDatatype": {
+          "type": "string",
+          "description": "Simplified datatype",
+          "enum": ["text", "integer", "float", "date", "datetime", "time"]
+        }
+      }
+    },
+    "Link": {
+      "type": "object",
+      "properties": {
+        "href": {
+          "type": "string",
+          "format": "uri"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,587 @@
+openapi: 3.1.0
+info:
+  title: CDISC Library API
+  description: >-
+    The CDISC Library API is a REST API that delivers CDISC standards metadata to software
+    applications that automate standards-based processes. It uses linked data to provide access
+    to SDTM, ADaM, and other clinical data standards. Responses are available in JSON, XML, ODM,
+    CSV, and Excel formats. Access requires a CDISC Library account and an API key obtained from
+    the CDISC Library API Management (APIM) Developer Portal.
+  version: 1.0.0
+  contact:
+    name: CDISC Library Support
+    url: https://jira.cdisc.org/servicedesk/customer/portal/2
+  license:
+    name: CDISC License
+    url: https://www.cdisc.org/cdisc-library
+servers:
+  - url: https://library.cdisc.org/api
+    description: CDISC Library Production API
+  - url: https://library.cdisc.org/api/cosmos/v2
+    description: CDISC Biomedical Concepts API v2
+security:
+  - apiKey: []
+tags:
+  - name: Products
+    description: CDISC standards product catalog
+  - name: SDTM
+    description: Study Data Tabulation Model standards
+  - name: ADaM
+    description: Analysis Data Model standards
+  - name: CDASH
+    description: Clinical Data Acquisition Standards Harmonization
+  - name: Biomedical Concepts
+    description: CDISC Biomedical Concepts (COSMOS)
+  - name: Terminology
+    description: CDISC controlled terminology
+paths:
+  /mdr/products:
+    get:
+      operationId: listProducts
+      summary: List all CDISC standards products
+      description: >-
+        Returns the complete CDISC standards product catalog, including SDTM, ADaM, CDASH,
+        DEFINE-XML, and other standards metadata products.
+      tags:
+        - Products
+      parameters:
+        - name: Accept
+          in: header
+          description: Response format (application/json, application/xml, text/csv)
+          schema:
+            type: string
+            default: application/json
+      responses:
+        '200':
+          description: Successful product catalog response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCatalog'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /mdr/sdtm:
+    get:
+      operationId: listSdtmVersions
+      summary: List all SDTM standard versions
+      description: Returns all published versions of the SDTM (Study Data Tabulation Model) standard.
+      tags:
+        - SDTM
+      responses:
+        '200':
+          description: List of SDTM versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /mdr/sdtm/{version}:
+    get:
+      operationId: getSdtmVersion
+      summary: Get SDTM standard by version
+      description: Returns the SDTM standard metadata for a specific version (e.g., 3-3, 3-4).
+      tags:
+        - SDTM
+      parameters:
+        - name: version
+          in: path
+          required: true
+          description: SDTM version string (e.g., 3-3, 3-4, 2-0)
+          schema:
+            type: string
+            example: '3-3'
+      responses:
+        '200':
+          description: SDTM standard metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /mdr/sdtm/{version}/classes:
+    get:
+      operationId: listSdtmClasses
+      summary: List SDTM domain classes for a version
+      description: Returns all domain classes (Events, Findings, Interventions, etc.) for the specified SDTM version.
+      tags:
+        - SDTM
+      parameters:
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+            example: '3-3'
+      responses:
+        '200':
+          description: List of SDTM domain classes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassList'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /mdr/sdtm/{version}/datasets:
+    get:
+      operationId: listSdtmDatasets
+      summary: List SDTM datasets (domains) for a version
+      description: Returns all SDTM domains for the specified version, such as AE, CM, DM, EX.
+      tags:
+        - SDTM
+      parameters:
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+            example: '3-3'
+      responses:
+        '200':
+          description: List of SDTM domains
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetList'
+  /mdr/sdtm/{version}/datasets/{dataset}:
+    get:
+      operationId: getSdtmDataset
+      summary: Get SDTM dataset (domain) specification
+      description: Returns the full specification for a single SDTM domain including all variables.
+      tags:
+        - SDTM
+      parameters:
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+            example: '3-3'
+        - name: dataset
+          in: path
+          required: true
+          description: SDTM domain abbreviation (e.g., AE, CM, DM)
+          schema:
+            type: string
+            example: AE
+      responses:
+        '200':
+          description: SDTM domain specification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /mdr/adam:
+    get:
+      operationId: listAdamVersions
+      summary: List all ADaM standard versions
+      description: Returns all published versions of the ADaM (Analysis Data Model) standard.
+      tags:
+        - ADaM
+      responses:
+        '200':
+          description: List of ADaM versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionList'
+  /mdr/adam/{version}:
+    get:
+      operationId: getAdamVersion
+      summary: Get ADaM standard by version
+      description: Returns the ADaM standard metadata for a specific version.
+      tags:
+        - ADaM
+      parameters:
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+            example: '1-1'
+      responses:
+        '200':
+          description: ADaM standard metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard'
+  /mdr/cdash:
+    get:
+      operationId: listCdashVersions
+      summary: List all CDASH standard versions
+      description: Returns all published versions of the CDASH standard.
+      tags:
+        - CDASH
+      responses:
+        '200':
+          description: List of CDASH versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionList'
+  /cosmos/v2/bc:
+    get:
+      operationId: listBiomedicalConcepts
+      summary: List CDISC Biomedical Concepts
+      description: Returns the CDISC COSMOS Biomedical Concept catalog. Supports pagination and filtering.
+      tags:
+        - Biomedical Concepts
+      parameters:
+        - name: packageDate
+          in: query
+          description: Filter BCs by package release date (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            default: 100
+            maximum: 500
+      responses:
+        '200':
+          description: List of Biomedical Concepts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BiomedicalConceptList'
+  /cosmos/v2/bc/{conceptId}:
+    get:
+      operationId: getBiomedicalConcept
+      summary: Get a specific Biomedical Concept
+      description: Returns the full definition of a CDISC COSMOS Biomedical Concept including data elements and value sets.
+      tags:
+        - Biomedical Concepts
+      parameters:
+        - name: conceptId
+          in: path
+          required: true
+          description: Biomedical Concept identifier
+          schema:
+            type: string
+            example: C49488
+      responses:
+        '200':
+          description: Biomedical Concept definition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BiomedicalConcept'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /mdr/ct:
+    get:
+      operationId: listTerminologyPackages
+      summary: List CDISC controlled terminology packages
+      description: Returns all published CDISC controlled terminology (CT) packages.
+      tags:
+        - Terminology
+      responses:
+        '200':
+          description: List of terminology packages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TerminologyPackageList'
+  /mdr/ct/{packageDate}/codelists:
+    get:
+      operationId: listCodelists
+      summary: List codelists in a terminology package
+      description: Returns all codelists in the specified CDISC controlled terminology package.
+      tags:
+        - Terminology
+      parameters:
+        - name: packageDate
+          in: path
+          required: true
+          description: Terminology package date (e.g., 2023-12-15)
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: List of codelists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CodelistSummaryList'
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: api-key
+      description: API key obtained from CDISC Library API Management Developer Portal at https://api.developer.library.cdisc.org/
+  schemas:
+    ProductCatalog:
+      type: object
+      properties:
+        _links:
+          type: object
+          description: Hypermedia links following HAL specification
+        _embedded:
+          type: object
+          properties:
+            products:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductSummary'
+    ProductSummary:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Study Data Tabulation Model (SDTM)
+        label:
+          type: string
+          example: SDTM
+        href:
+          type: string
+          format: uri
+          example: /mdr/sdtm
+        type:
+          type: string
+          example: Foundational
+    VersionList:
+      type: object
+      properties:
+        _links:
+          type: object
+        _embedded:
+          type: object
+          properties:
+            versions:
+              type: array
+              items:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  href:
+                    type: string
+                    format: uri
+                  effectiveDate:
+                    type: string
+                    format: date
+    Standard:
+      type: object
+      properties:
+        name:
+          type: string
+        label:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        registrationStatus:
+          type: string
+          enum: [Final, Provisional, Draft]
+        _links:
+          type: object
+    ClassList:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            classes:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Events
+                  label:
+                    type: string
+                  href:
+                    type: string
+                    format: uri
+    DatasetList:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            datasets:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: AE
+                  label:
+                    type: string
+                    example: Adverse Events
+                  href:
+                    type: string
+                    format: uri
+    Dataset:
+      type: object
+      properties:
+        name:
+          type: string
+          example: AE
+        label:
+          type: string
+          example: Adverse Events
+        description:
+          type: string
+        datasetClass:
+          type: string
+          example: Events
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/Variable'
+    Variable:
+      type: object
+      properties:
+        name:
+          type: string
+          example: AETERM
+        label:
+          type: string
+          example: Reported Term for the Adverse Event
+        dataType:
+          type: string
+          enum: [Char, Num, date, datetime, partialDate, partialDatetime]
+        length:
+          type: integer
+        codelistSubmissionValues:
+          type: array
+          items:
+            type: string
+        role:
+          type: string
+          enum: [Identifier, Topic, Record Qualifier, Result Qualifier, Synonym Qualifier, Variable Qualifier, Timing, Rule]
+        core:
+          type: string
+          enum: [Required, Expected, Permissible, Conditionally Required]
+    BiomedicalConceptList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BiomedicalConceptSummary'
+        meta:
+          type: object
+          properties:
+            total:
+              type: integer
+            page:
+              type: integer
+            pageSize:
+              type: integer
+    BiomedicalConceptSummary:
+      type: object
+      properties:
+        conceptId:
+          type: string
+          example: C49488
+        name:
+          type: string
+        definition:
+          type: string
+    BiomedicalConcept:
+      type: object
+      properties:
+        conceptId:
+          type: string
+        name:
+          type: string
+        definition:
+          type: string
+        dataElements:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              dataType:
+                type: string
+              codeList:
+                type: string
+    TerminologyPackageList:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            packages:
+              type: array
+              items:
+                type: object
+                properties:
+                  label:
+                    type: string
+                  effectiveDate:
+                    type: string
+                    format: date
+                  href:
+                    type: string
+    CodelistSummaryList:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            codelists:
+              type: array
+              items:
+                type: object
+                properties:
+                  conceptId:
+                    type: string
+                  name:
+                    type: string
+                  href:
+                    type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        statusCode:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: API key does not have access to the requested resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
