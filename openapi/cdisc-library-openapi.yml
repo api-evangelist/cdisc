@@ -22,16 +22,16 @@ servers:
 security:
   - apiKey: []
 tags:
+  - name: ADaM
+    description: Analysis Data Model standards
+  - name: Biomedical Concepts
+    description: CDISC Biomedical Concepts (COSMOS)
+  - name: CDASH
+    description: Clinical Data Acquisition Standards Harmonization
   - name: Products
     description: CDISC standards product catalog
   - name: SDTM
     description: Study Data Tabulation Model standards
-  - name: ADaM
-    description: Analysis Data Model standards
-  - name: CDASH
-    description: Clinical Data Acquisition Standards Harmonization
-  - name: Biomedical Concepts
-    description: CDISC Biomedical Concepts (COSMOS)
   - name: Terminology
     description: CDISC controlled terminology
 paths:

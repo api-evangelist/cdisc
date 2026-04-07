@@ -1,19 +1,17 @@
 aid: cdisc
-url: 
-  https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/apis.yml
 apis:
   - aid: cdisc:cdisc-library-api
     name: CDISC Library API
     tags:
-      - Pharma
-      - Clinical Trials
-      - SDTM
       - ADaM
-      - ODM
+      - Clinical Trials
       - Metadata
+      - ODM
+      - Pharma
+      - SDTM
       - Standards
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/image.png
+    image: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/image.png
     humanURL: https://www.cdisc.org/cdisc-library
     baseURL: https://library.cdisc.org/api
     properties:
@@ -33,8 +31,7 @@ apis:
         type: Support
       - url: https://library.cdisc.org/browser
         type: Explorer
-      - url: 
-          https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/openapi/cdisc-library-openapi.yml
+      - url: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/openapi/cdisc-library-openapi.yml
         type: OpenAPI
     description: >-
       The CDISC Library API is a REST API that delivers CDISC standards metadata to
@@ -46,13 +43,12 @@ apis:
   - aid: cdisc:cdisc-core-api
     name: CDISC CORE (Checks and Rules Engine) API
     tags:
-      - Pharma
       - Clinical Trials
       - Conformance
+      - Pharma
       - Rules
       - Validation
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/image.png
+    image: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/image.png
     humanURL: https://www.cdisc.org/core
     baseURL: https://library.cdisc.org/api
     properties:
@@ -65,14 +61,11 @@ apis:
 common:
   - url: https://www.cdisc.org/
     type: Website
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/openapi/cdisc-library-openapi.yml
+  - url: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/openapi/cdisc-library-openapi.yml
     type: OpenAPI
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/json-schema/cdisc-dataset-schema.json
+  - url: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/json-schema/cdisc-dataset-schema.json
     type: JSONSchema
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/json-ld/cdisc-context.jsonld
+  - url: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/json-ld/cdisc-context.jsonld
     type: JSONLDContext
   - url: https://www.cdisc.org/cdisc-library
     type: Portal
