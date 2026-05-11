@@ -81,6 +81,44 @@ common:
     type: ChangeLog
   - url: https://www.cdisc.org/cdisc-library/api-account-request
     type: SignUp
+  - type: Integrations
+    url: https://www.cdisc.org/partners
+integrations:
+  - name: Collaborate
+  - name: Sponsor
+  - name: Support 360
+  - name: Critical Path Institute
+  - name: DIA logo, Drug Information Association
+  - name: Digital Medicine Society
+  - name: The Infectious Diseases Data Observatory
+  - name: International Organization for Standardization
+  - name: Joint Initiative Council
+  - name: Mapi Research Trust
+  - name: Medical Device Innovation Consortium
+  - name: Observational Health Data Sciences and Informatics
+  - name: PharmaSug
+  - name: PHUSE
+  - name: REDCap logo, Research Electronic Data Capture
+  - name: Society for Clinical Data Management
+  - name: SNOMED International
+  - name: TransCelerate BioPharma Inc.
+  - name: Vulcan HL7 FHIR
+  - name: CLYMB Clinical
+  - name: Data for Knowledge
+  - name: DNAnexus logo.
+  - name: Lindus Health
+  - name: SGS
+  - name: Verisian
+  - name: Food and Drug Administration
+  - name: Ministry of Health, Labour and Welfare
+  - name: NCI Enterprise Vocabulary Services
+  - name: National Institute on Aging
+  - name: National Library of Medicine
+  - name: Pharmaceuticals and Medical Devices Agency
+  - name: ICH M11
+  - name: CDISC
+  - name: CDISC pattern
+  - name: Charity Navigator Four-Star Rating
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com
