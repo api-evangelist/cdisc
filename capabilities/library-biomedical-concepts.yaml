@@ -1,0 +1,133 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CDISC Library API — Biomedical Concepts
+  description: 'CDISC Library API — Biomedical Concepts. 2 operations. Lead operation: List CDISC Biomedical Concepts. Self-contained
+    Naftiko capability covering one Cdisc business surface.'
+  tags:
+  - Cdisc
+  - Biomedical Concepts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CDISC_API_KEY: CDISC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: library-biomedical-concepts
+    baseUri: https://library.cdisc.org/api
+    description: CDISC Library API — Biomedical Concepts business capability. Self-contained, no shared references.
+    resources:
+    - name: cosmos-v2-bc
+      path: /cosmos/v2/bc
+      operations:
+      - name: listbiomedicalconcepts
+        method: GET
+        description: List CDISC Biomedical Concepts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: packageDate
+          in: query
+          type: string
+          description: Filter BCs by package release date (YYYY-MM-DD)
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+    - name: cosmos-v2-bc-conceptId
+      path: /cosmos/v2/bc/{conceptId}
+      operations:
+      - name: getbiomedicalconcept
+        method: GET
+        description: Get a specific Biomedical Concept
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: conceptId
+          in: path
+          type: string
+          description: Biomedical Concept identifier
+          required: true
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{env.CDISC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: library-biomedical-concepts-rest
+    port: 8080
+    description: REST adapter for CDISC Library API — Biomedical Concepts. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/cosmos/v2/bc
+      name: cosmos-v2-bc
+      description: REST surface for cosmos-v2-bc.
+      operations:
+      - method: GET
+        name: listbiomedicalconcepts
+        description: List CDISC Biomedical Concepts
+        call: library-biomedical-concepts.listbiomedicalconcepts
+        with:
+          packageDate: rest.packageDate
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cosmos/v2/bc/{conceptid}
+      name: cosmos-v2-bc-conceptid
+      description: REST surface for cosmos-v2-bc-conceptId.
+      operations:
+      - method: GET
+        name: getbiomedicalconcept
+        description: Get a specific Biomedical Concept
+        call: library-biomedical-concepts.getbiomedicalconcept
+        with:
+          conceptId: rest.conceptId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: library-biomedical-concepts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CDISC Library API — Biomedical Concepts. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-cdisc-biomedical-concepts
+      description: List CDISC Biomedical Concepts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: library-biomedical-concepts.listbiomedicalconcepts
+      with:
+        packageDate: tools.packageDate
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-specific-biomedical-concept
+      description: Get a specific Biomedical Concept
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: library-biomedical-concepts.getbiomedicalconcept
+      with:
+        conceptId: tools.conceptId
+      outputParameters:
+      - type: object
+        mapping: $.

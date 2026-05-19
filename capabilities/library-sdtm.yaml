@@ -1,0 +1,244 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CDISC Library API — SDTM
+  description: 'CDISC Library API — SDTM. 5 operations. Lead operation: List all SDTM standard versions. Self-contained Naftiko
+    capability covering one Cdisc business surface.'
+  tags:
+  - Cdisc
+  - SDTM
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CDISC_API_KEY: CDISC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: library-sdtm
+    baseUri: https://library.cdisc.org/api
+    description: CDISC Library API — SDTM business capability. Self-contained, no shared references.
+    resources:
+    - name: mdr-sdtm
+      path: /mdr/sdtm
+      operations:
+      - name: listsdtmversions
+        method: GET
+        description: List all SDTM standard versions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: mdr-sdtm-version
+      path: /mdr/sdtm/{version}
+      operations:
+      - name: getsdtmversion
+        method: GET
+        description: Get SDTM standard by version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: version
+          in: path
+          type: string
+          description: SDTM version string (e.g., 3-3, 3-4, 2-0)
+          required: true
+    - name: mdr-sdtm-version-classes
+      path: /mdr/sdtm/{version}/classes
+      operations:
+      - name: listsdtmclasses
+        method: GET
+        description: List SDTM domain classes for a version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: version
+          in: path
+          type: string
+          required: true
+    - name: mdr-sdtm-version-datasets
+      path: /mdr/sdtm/{version}/datasets
+      operations:
+      - name: listsdtmdatasets
+        method: GET
+        description: List SDTM datasets (domains) for a version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: version
+          in: path
+          type: string
+          required: true
+    - name: mdr-sdtm-version-datasets-dataset
+      path: /mdr/sdtm/{version}/datasets/{dataset}
+      operations:
+      - name: getsdtmdataset
+        method: GET
+        description: Get SDTM dataset (domain) specification
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: version
+          in: path
+          type: string
+          required: true
+        - name: dataset
+          in: path
+          type: string
+          description: SDTM domain abbreviation (e.g., AE, CM, DM)
+          required: true
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{env.CDISC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: library-sdtm-rest
+    port: 8080
+    description: REST adapter for CDISC Library API — SDTM. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/mdr/sdtm
+      name: mdr-sdtm
+      description: REST surface for mdr-sdtm.
+      operations:
+      - method: GET
+        name: listsdtmversions
+        description: List all SDTM standard versions
+        call: library-sdtm.listsdtmversions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/mdr/sdtm/{version}
+      name: mdr-sdtm-version
+      description: REST surface for mdr-sdtm-version.
+      operations:
+      - method: GET
+        name: getsdtmversion
+        description: Get SDTM standard by version
+        call: library-sdtm.getsdtmversion
+        with:
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/mdr/sdtm/{version}/classes
+      name: mdr-sdtm-version-classes
+      description: REST surface for mdr-sdtm-version-classes.
+      operations:
+      - method: GET
+        name: listsdtmclasses
+        description: List SDTM domain classes for a version
+        call: library-sdtm.listsdtmclasses
+        with:
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/mdr/sdtm/{version}/datasets
+      name: mdr-sdtm-version-datasets
+      description: REST surface for mdr-sdtm-version-datasets.
+      operations:
+      - method: GET
+        name: listsdtmdatasets
+        description: List SDTM datasets (domains) for a version
+        call: library-sdtm.listsdtmdatasets
+        with:
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/mdr/sdtm/{version}/datasets/{dataset}
+      name: mdr-sdtm-version-datasets-dataset
+      description: REST surface for mdr-sdtm-version-datasets-dataset.
+      operations:
+      - method: GET
+        name: getsdtmdataset
+        description: Get SDTM dataset (domain) specification
+        call: library-sdtm.getsdtmdataset
+        with:
+          version: rest.version
+          dataset: rest.dataset
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: library-sdtm-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CDISC Library API — SDTM. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-all-sdtm-standard-versions
+      description: List all SDTM standard versions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: library-sdtm.listsdtmversions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-sdtm-standard-version
+      description: Get SDTM standard by version
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: library-sdtm.getsdtmversion
+      with:
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-sdtm-domain-classes-version
+      description: List SDTM domain classes for a version
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: library-sdtm.listsdtmclasses
+      with:
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-sdtm-datasets-domains-version
+      description: List SDTM datasets (domains) for a version
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: library-sdtm.listsdtmdatasets
+      with:
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-sdtm-dataset-domain-specification
+      description: Get SDTM dataset (domain) specification
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: library-sdtm.getsdtmdataset
+      with:
+        version: tools.version
+        dataset: tools.dataset
+      outputParameters:
+      - type: object
+        mapping: $.

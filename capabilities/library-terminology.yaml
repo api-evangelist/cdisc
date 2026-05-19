@@ -1,0 +1,114 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CDISC Library API — Terminology
+  description: 'CDISC Library API — Terminology. 2 operations. Lead operation: List CDISC controlled terminology packages.
+    Self-contained Naftiko capability covering one Cdisc business surface.'
+  tags:
+  - Cdisc
+  - Terminology
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CDISC_API_KEY: CDISC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: library-terminology
+    baseUri: https://library.cdisc.org/api
+    description: CDISC Library API — Terminology business capability. Self-contained, no shared references.
+    resources:
+    - name: mdr-ct
+      path: /mdr/ct
+      operations:
+      - name: listterminologypackages
+        method: GET
+        description: List CDISC controlled terminology packages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: mdr-ct-packageDate-codelists
+      path: /mdr/ct/{packageDate}/codelists
+      operations:
+      - name: listcodelists
+        method: GET
+        description: List codelists in a terminology package
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: packageDate
+          in: path
+          type: string
+          description: Terminology package date (e.g., 2023-12-15)
+          required: true
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{env.CDISC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: library-terminology-rest
+    port: 8080
+    description: REST adapter for CDISC Library API — Terminology. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/mdr/ct
+      name: mdr-ct
+      description: REST surface for mdr-ct.
+      operations:
+      - method: GET
+        name: listterminologypackages
+        description: List CDISC controlled terminology packages
+        call: library-terminology.listterminologypackages
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/mdr/ct/{packagedate}/codelists
+      name: mdr-ct-packagedate-codelists
+      description: REST surface for mdr-ct-packageDate-codelists.
+      operations:
+      - method: GET
+        name: listcodelists
+        description: List codelists in a terminology package
+        call: library-terminology.listcodelists
+        with:
+          packageDate: rest.packageDate
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: library-terminology-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CDISC Library API — Terminology. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-cdisc-controlled-terminology-packages
+      description: List CDISC controlled terminology packages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: library-terminology.listterminologypackages
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-codelists-terminology-package
+      description: List codelists in a terminology package
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: library-terminology.listcodelists
+      with:
+        packageDate: tools.packageDate
+      outputParameters:
+      - type: object
+        mapping: $.

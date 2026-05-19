@@ -1,0 +1,113 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CDISC Library API — ADaM
+  description: 'CDISC Library API — ADaM. 2 operations. Lead operation: List all ADaM standard versions. Self-contained Naftiko
+    capability covering one Cdisc business surface.'
+  tags:
+  - Cdisc
+  - ADaM
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CDISC_API_KEY: CDISC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: library-adam
+    baseUri: https://library.cdisc.org/api
+    description: CDISC Library API — ADaM business capability. Self-contained, no shared references.
+    resources:
+    - name: mdr-adam
+      path: /mdr/adam
+      operations:
+      - name: listadamversions
+        method: GET
+        description: List all ADaM standard versions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: mdr-adam-version
+      path: /mdr/adam/{version}
+      operations:
+      - name: getadamversion
+        method: GET
+        description: Get ADaM standard by version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: version
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{env.CDISC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: library-adam-rest
+    port: 8080
+    description: REST adapter for CDISC Library API — ADaM. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/mdr/adam
+      name: mdr-adam
+      description: REST surface for mdr-adam.
+      operations:
+      - method: GET
+        name: listadamversions
+        description: List all ADaM standard versions
+        call: library-adam.listadamversions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/mdr/adam/{version}
+      name: mdr-adam-version
+      description: REST surface for mdr-adam-version.
+      operations:
+      - method: GET
+        name: getadamversion
+        description: Get ADaM standard by version
+        call: library-adam.getadamversion
+        with:
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: library-adam-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CDISC Library API — ADaM. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-all-adam-standard-versions
+      description: List all ADaM standard versions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: library-adam.listadamversions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-adam-standard-version
+      description: Get ADaM standard by version
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: library-adam.getadamversion
+      with:
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
