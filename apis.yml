@@ -82,7 +82,7 @@ common:
   - url: https://wiki.cdisc.org/display/LIBSUPRT/Release+Notes
     type: ChangeLog
   - url: https://www.cdisc.org/cdisc-library/api-account-request
-    type: SignUp
+    type: Signup
   - type: Integrations
     url: https://www.cdisc.org/partners
 integrations:
