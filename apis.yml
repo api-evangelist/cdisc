@@ -57,6 +57,10 @@ apis:
       conformance rules. It enables automated validation of SDTM, ADaM, and other study data artifacts against published
       CDISC standards.
 common:
+  - type: DomainSecurity
+    url: security/cdisc-domain-security.yml
+  - type: Authentication
+    url: authentication/cdisc-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/cdisc-org
   - type: LinkedIn
@@ -85,6 +89,8 @@ common:
     type: Signup
   - type: Integrations
     url: https://www.cdisc.org/partners
+  - url: https://www.cdisc.org/news/whats-new
+    type: Blog
 integrations:
   - name: Collaborate
   - name: Sponsor

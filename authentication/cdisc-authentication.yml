@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/cdisc-library-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: api-key
+  description: API key obtained from CDISC Library API Management Developer Portal at https://api.developer.library.cdisc.org/
+  sources:
+  - openapi/cdisc-library-openapi.yml
