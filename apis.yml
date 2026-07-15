@@ -57,6 +57,8 @@ apis:
       conformance rules. It enables automated validation of SDTM, ADaM, and other study data artifacts against published
       CDISC standards.
 common:
+  - type: AgenticAccess
+    url: agentic-access/cdisc-agentic-access.yml
   - type: DomainSecurity
     url: security/cdisc-domain-security.yml
   - type: Authentication
