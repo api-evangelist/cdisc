@@ -1,0 +1,107 @@
+openapi: 3.1.0
+info:
+  title: CDISC Library ADaM Products API
+  description: The CDISC Library API is a REST API that delivers CDISC standards metadata to software applications that automate standards-based processes. It uses linked data to provide access to SDTM, ADaM, and other clinical data standards. Responses are available in JSON, XML, ODM, CSV, and Excel formats. Access requires a CDISC Library account and an API key obtained from the CDISC Library API Management (APIM) Developer Portal.
+  version: 1.0.0
+  contact:
+    name: CDISC Library Support
+    url: https://jira.cdisc.org/servicedesk/customer/portal/2
+  license:
+    name: CDISC License
+    url: https://www.cdisc.org/cdisc-library
+servers:
+- url: https://library.cdisc.org/api
+  description: CDISC Library Production API
+- url: https://library.cdisc.org/api/cosmos/v2
+  description: CDISC Biomedical Concepts API v2
+security:
+- apiKey: []
+tags:
+- name: Products
+  description: CDISC standards product catalog
+paths:
+  /mdr/products:
+    get:
+      operationId: listProducts
+      summary: List all CDISC standards products
+      description: Returns the complete CDISC standards product catalog, including SDTM, ADaM, CDASH, DEFINE-XML, and other standards metadata products.
+      tags:
+      - Products
+      parameters:
+      - name: Accept
+        in: header
+        description: Response format (application/json, application/xml, text/csv)
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '200':
+          description: Successful product catalog response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCatalog'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  responses:
+    Forbidden:
+      description: API key does not have access to the requested resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    ProductSummary:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Study Data Tabulation Model (SDTM)
+        label:
+          type: string
+          example: SDTM
+        href:
+          type: string
+          format: uri
+          example: /mdr/sdtm
+        type:
+          type: string
+          example: Foundational
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        statusCode:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+    ProductCatalog:
+      type: object
+      properties:
+        _links:
+          type: object
+          description: Hypermedia links following HAL specification
+        _embedded:
+          type: object
+          properties:
+            products:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductSummary'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: api-key
+      description: API key obtained from CDISC Library API Management Developer Portal at https://api.developer.library.cdisc.org/
