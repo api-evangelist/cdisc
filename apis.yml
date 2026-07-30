@@ -1,61 +1,194 @@
 aid: cdisc
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cdisc.png
 url: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/apis.yml
 apis:
-  - aid: cdisc:cdisc-library-api
-    name: CDISC Library API
-    tags:
-      - ADaM
-      - Clinical Trials
-      - Metadata
-      - ODM
-      - Pharma
-      - SDTM
-      - Standards
-    image: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/image.png
-    humanURL: https://www.cdisc.org/cdisc-library
-    baseURL: https://library.cdisc.org/api
-    properties:
-      - url: https://www.cdisc.org/cdisc-library/api-documentation
-        type: Documentation
-      - url: https://api.developer.library.cdisc.org/api-details
-        type: Reference
-      - url: https://www.cdisc.org/cdisc-library/getting-started
-        type: GettingStarted
-      - url: https://api.developer.library.cdisc.org/
-        type: Portal
-      - url: https://wiki.cdisc.org/display/LIBSUPRT/How-to+articles
-        type: KnowledgeBase
-      - url: https://wiki.cdisc.org/display/LIBSUPRT/Release+Notes
-        type: ChangeLog
-      - url: https://jira.cdisc.org/servicedesk/customer/portal/2
-        type: Support
-      - url: https://library.cdisc.org/browser
-        type: Explorer
-      - url: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/openapi/cdisc-library-openapi.yml
-        type: OpenAPI
-    description: >-
-      The CDISC Library API is a REST API that delivers CDISC standards metadata to software applications that automate
-      standards-based processes. It uses linked data to provide access to SDTM, ADaM, and other clinical data standards.
-      Responses are available in JSON, XML, ODM, CSV, and Excel formats. Access requires a CDISC Library account and an
-      API key obtained from the CDISC Library API Management (APIM) Developer Portal.
-  - aid: cdisc:cdisc-core-api
-    name: CDISC CORE (Checks and Rules Engine) API
-    tags:
-      - Clinical Trials
-      - Conformance
-      - Pharma
-      - Rules
-      - Validation
-    image: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/image.png
-    humanURL: https://www.cdisc.org/core
-    baseURL: https://library.cdisc.org/api
-    properties:
-      - url: https://www.cdisc.org/core
-        type: Documentation
-    description: >-
-      CDISC CORE (Checks and Rules Engine) is an open-source rules engine for validating clinical data against CDISC
-      conformance rules. It enables automated validation of SDTM, ADaM, and other study data artifacts against published
-      CDISC standards.
+- aid: cdisc:cdisc-core-api
+  name: CDISC CORE (Checks and Rules Engine) API
+  tags:
+  - Clinical Trials
+  - Conformance
+  - Pharma
+  - Rules
+  - Validation
+  image: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/image.png
+  humanURL: https://www.cdisc.org/core
+  baseURL: https://library.cdisc.org/api
+  properties:
+  - url: https://www.cdisc.org/core
+    type: Documentation
+  description: >-
+    CDISC CORE (Checks and Rules Engine) is an open-source rules engine for validating clinical data against
+    CDISC conformance rules. It enables automated validation of SDTM, ADaM, and other study data artifacts
+    against published CDISC standards.
+- aid: cdisc:cdisc-adam-api
+  name: cdisc ADaM API
+  description: Analysis Data Model standards
+  humanURL: https://www.cdisc.org/cdisc-library
+  baseURL: https://library.cdisc.org/api
+  tags:
+  - ADaM
+  properties:
+  - type: OpenAPI
+    url: openapi/cdisc-adam-api-openapi.yml
+  - type: Documentation
+    url: https://www.cdisc.org/cdisc-library/api-documentation
+  - type: Reference
+    url: https://api.developer.library.cdisc.org/api-details
+  - type: GettingStarted
+    url: https://www.cdisc.org/cdisc-library/getting-started
+  - type: Portal
+    url: https://api.developer.library.cdisc.org/
+  - type: KnowledgeBase
+    url: https://wiki.cdisc.org/display/LIBSUPRT/How-to+articles
+  - type: ChangeLog
+    url: https://wiki.cdisc.org/display/LIBSUPRT/Release+Notes
+  - type: Support
+    url: https://jira.cdisc.org/servicedesk/customer/portal/2
+  - type: Explorer
+    url: https://library.cdisc.org/browser
+- aid: cdisc:cdisc-biomedical-concepts-api
+  name: cdisc Biomedical Concepts API
+  description: CDISC Biomedical Concepts (COSMOS)
+  humanURL: https://www.cdisc.org/cdisc-library
+  baseURL: https://library.cdisc.org/api
+  tags:
+  - Biomedical Concepts
+  properties:
+  - type: OpenAPI
+    url: openapi/cdisc-biomedical-concepts-api-openapi.yml
+  - type: Documentation
+    url: https://www.cdisc.org/cdisc-library/api-documentation
+  - type: Reference
+    url: https://api.developer.library.cdisc.org/api-details
+  - type: GettingStarted
+    url: https://www.cdisc.org/cdisc-library/getting-started
+  - type: Portal
+    url: https://api.developer.library.cdisc.org/
+  - type: KnowledgeBase
+    url: https://wiki.cdisc.org/display/LIBSUPRT/How-to+articles
+  - type: ChangeLog
+    url: https://wiki.cdisc.org/display/LIBSUPRT/Release+Notes
+  - type: Support
+    url: https://jira.cdisc.org/servicedesk/customer/portal/2
+  - type: Explorer
+    url: https://library.cdisc.org/browser
+- aid: cdisc:cdisc-cdash-api
+  name: cdisc CDASH API
+  description: Clinical Data Acquisition Standards Harmonization
+  humanURL: https://www.cdisc.org/cdisc-library
+  baseURL: https://library.cdisc.org/api
+  tags:
+  - CDASH
+  properties:
+  - type: OpenAPI
+    url: openapi/cdisc-cdash-api-openapi.yml
+  - type: Documentation
+    url: https://www.cdisc.org/cdisc-library/api-documentation
+  - type: Reference
+    url: https://api.developer.library.cdisc.org/api-details
+  - type: GettingStarted
+    url: https://www.cdisc.org/cdisc-library/getting-started
+  - type: Portal
+    url: https://api.developer.library.cdisc.org/
+  - type: KnowledgeBase
+    url: https://wiki.cdisc.org/display/LIBSUPRT/How-to+articles
+  - type: ChangeLog
+    url: https://wiki.cdisc.org/display/LIBSUPRT/Release+Notes
+  - type: Support
+    url: https://jira.cdisc.org/servicedesk/customer/portal/2
+  - type: Explorer
+    url: https://library.cdisc.org/browser
+- aid: cdisc:cdisc-products-api
+  name: cdisc Products API
+  description: CDISC standards product catalog
+  humanURL: https://www.cdisc.org/cdisc-library
+  baseURL: https://library.cdisc.org/api
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/cdisc-products-api-openapi.yml
+  - type: Documentation
+    url: https://www.cdisc.org/cdisc-library/api-documentation
+  - type: Reference
+    url: https://api.developer.library.cdisc.org/api-details
+  - type: GettingStarted
+    url: https://www.cdisc.org/cdisc-library/getting-started
+  - type: Portal
+    url: https://api.developer.library.cdisc.org/
+  - type: KnowledgeBase
+    url: https://wiki.cdisc.org/display/LIBSUPRT/How-to+articles
+  - type: ChangeLog
+    url: https://wiki.cdisc.org/display/LIBSUPRT/Release+Notes
+  - type: Support
+    url: https://jira.cdisc.org/servicedesk/customer/portal/2
+  - type: Explorer
+    url: https://library.cdisc.org/browser
+- aid: cdisc:cdisc-sdtm-api
+  name: cdisc SDTM API
+  description: Study Data Tabulation Model standards
+  humanURL: https://www.cdisc.org/cdisc-library
+  baseURL: https://library.cdisc.org/api
+  tags:
+  - SDTM
+  properties:
+  - type: OpenAPI
+    url: openapi/cdisc-sdtm-api-openapi.yml
+  - type: Documentation
+    url: https://www.cdisc.org/cdisc-library/api-documentation
+  - type: Reference
+    url: https://api.developer.library.cdisc.org/api-details
+  - type: GettingStarted
+    url: https://www.cdisc.org/cdisc-library/getting-started
+  - type: Portal
+    url: https://api.developer.library.cdisc.org/
+  - type: KnowledgeBase
+    url: https://wiki.cdisc.org/display/LIBSUPRT/How-to+articles
+  - type: ChangeLog
+    url: https://wiki.cdisc.org/display/LIBSUPRT/Release+Notes
+  - type: Support
+    url: https://jira.cdisc.org/servicedesk/customer/portal/2
+  - type: Explorer
+    url: https://library.cdisc.org/browser
+- aid: cdisc:cdisc-terminology-api
+  name: cdisc Terminology API
+  description: CDISC controlled terminology
+  humanURL: https://www.cdisc.org/cdisc-library
+  baseURL: https://library.cdisc.org/api
+  tags:
+  - Terminology
+  properties:
+  - type: OpenAPI
+    url: openapi/cdisc-terminology-api-openapi.yml
+  - type: Documentation
+    url: https://www.cdisc.org/cdisc-library/api-documentation
+  - type: Reference
+    url: https://api.developer.library.cdisc.org/api-details
+  - type: GettingStarted
+    url: https://www.cdisc.org/cdisc-library/getting-started
+  - type: Portal
+    url: https://api.developer.library.cdisc.org/
+  - type: KnowledgeBase
+    url: https://wiki.cdisc.org/display/LIBSUPRT/How-to+articles
+  - type: ChangeLog
+    url: https://wiki.cdisc.org/display/LIBSUPRT/Release+Notes
+  - type: Support
+    url: https://jira.cdisc.org/servicedesk/customer/portal/2
+  - type: Explorer
+    url: https://library.cdisc.org/browser
 common:
   - type: AgenticAccess
     url: agentic-access/cdisc-agentic-access.yml
