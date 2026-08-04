@@ -3,9 +3,12 @@
   "feeds": [
     {
       "source": "https://www.cdisc.org/news/whats-new",
-      "error": "HTTPError"
+      "feed_url": "https://www.cdisc.org/news/whats-new",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "fetched": "2026-07-11T11:50:51Z",
+  "fetched": "2026-08-01T15:49:00Z",
   "post_count": 6
 }

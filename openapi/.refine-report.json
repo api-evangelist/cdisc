@@ -1,0 +1,24 @@
+{
+  "provider": "cdisc",
+  "sources": [
+    "cdisc-adam-api-openapi.yml",
+    "cdisc-biomedical-concepts-api-openapi.yml",
+    "cdisc-cdash-api-openapi.yml",
+    "cdisc-products-api-openapi.yml",
+    "cdisc-sdtm-api-openapi.yml",
+    "cdisc-terminology-api-openapi.yml"
+  ],
+  "outputs": [
+    "cdisc-adam-api-openapi.yml",
+    "cdisc-biomedical-concepts-api-openapi.yml",
+    "cdisc-cdash-api-openapi.yml",
+    "cdisc-products-api-openapi.yml",
+    "cdisc-sdtm-api-openapi.yml",
+    "cdisc-terminology-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
