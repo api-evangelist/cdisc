@@ -1,0 +1,129 @@
+{
+  "item": [
+    {
+      "id": "9ad9a10f-1f47-47f8-9d72-62bde3f0d375",
+      "name": "CDASH",
+      "description": {
+        "content": "Clinical Data Acquisition Standards Harmonization",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8919b6c8-254c-4c59-aa40-2cb52fa1f863",
+          "name": "List all CDASH standard versions",
+          "request": {
+            "name": "List all CDASH standard versions",
+            "description": {
+              "content": "Returns all published versions of the CDASH standard.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mdr",
+                "cdash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9cc5d3c4-452b-4043-a5f0-8dfd354e255f",
+              "name": "List of CDASH versions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "cdash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {},\n  \"_embedded\": {\n    \"versions\": [\n      {\n        \"version\": \"string\",\n        \"href\": \"https://dgCAnRWWjTFYyD.hzhrcIxn7ivuUkssXmvS.uJ57.sp8VvS7C7owKbenVxeJQTozS.x9BrivCZ4t\",\n        \"effectiveDate\": \"2013-05-16\"\n      },\n      {\n        \"version\": \"string\",\n        \"href\": \"http://nWjLPviWvqzJByZOYjQScTvlpUXOPrs.mksuKJe7bqiha\",\n        \"effectiveDate\": \"1962-09-09\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://library.cdisc.org/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b6dd223d-50f4-42b7-80b3-0b526293a505",
+    "name": "CDISC Library ADaM CDASH API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The CDISC Library API is a REST API that delivers CDISC standards metadata to software applications that automate standards-based processes. It uses linked data to provide access to SDTM, ADaM, and other clinical data standards. Responses are available in JSON, XML, ODM, CSV, and Excel formats. Access requires a CDISC Library account and an API key obtained from the CDISC Library API Management (APIM) Developer Portal.\n\nContact Support:\n Name: CDISC Library Support",
+      "type": "text/plain"
+    }
+  }
+}

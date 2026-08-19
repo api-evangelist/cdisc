@@ -1,0 +1,229 @@
+{
+  "item": [
+    {
+      "id": "fdcadc1a-2e74-4de3-9f86-f5050595c145",
+      "name": "Terminology",
+      "description": {
+        "content": "CDISC controlled terminology",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f8501acf-70ac-4e59-b824-cde23570b88e",
+          "name": "List CDISC controlled terminology packages",
+          "request": {
+            "name": "List CDISC controlled terminology packages",
+            "description": {
+              "content": "Returns all published CDISC controlled terminology (CT) packages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mdr",
+                "ct"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b64eeb1f-99cc-47eb-be6e-7c0c61bff1f8",
+              "name": "List of terminology packages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "ct"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"packages\": [\n      {\n        \"label\": \"string\",\n        \"effectiveDate\": \"1982-08-28\",\n        \"href\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"effectiveDate\": \"1956-08-16\",\n        \"href\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e93b44b-2c0e-4796-b904-8657a5285433",
+          "name": "List codelists in a terminology package",
+          "request": {
+            "name": "List codelists in a terminology package",
+            "description": {
+              "content": "Returns all codelists in the specified CDISC controlled terminology package.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mdr",
+                "ct",
+                ":packageDate",
+                "codelists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "packageDate",
+                  "description": "(Required) Terminology package date (e.g., 2023-12-15)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06b87424-df73-45d3-8cb1-da933360ba0f",
+              "name": "List of codelists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "ct",
+                    ":packageDate",
+                    "codelists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "packageDate",
+                      "description": "(Required) Terminology package date (e.g., 2023-12-15)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"codelists\": [\n      {\n        \"conceptId\": \"string\",\n        \"name\": \"string\",\n        \"href\": \"string\"\n      },\n      {\n        \"conceptId\": \"string\",\n        \"name\": \"string\",\n        \"href\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://library.cdisc.org/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c026ab26-7cbe-47cc-a73f-1c26be7c96b4",
+    "name": "CDISC Library ADaM Terminology API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The CDISC Library API is a REST API that delivers CDISC standards metadata to software applications that automate standards-based processes. It uses linked data to provide access to SDTM, ADaM, and other clinical data standards. Responses are available in JSON, XML, ODM, CSV, and Excel formats. Access requires a CDISC Library account and an API key obtained from the CDISC Library API Management (APIM) Developer Portal.\n\nContact Support:\n Name: CDISC Library Support",
+      "type": "text/plain"
+    }
+  }
+}

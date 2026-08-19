@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CDISC Library ADaM SDTM API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-key",
+      "value": "{{api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SDTM",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all SDTM standard versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://library.cdisc.org/api/mdr/sdtm"
+          },
+          "docs": "Returns all published versions of the SDTM (Study Data Tabulation Model) standard."
+        },
+        {
+          "info": {
+            "name": "Get SDTM standard by version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://library.cdisc.org/api/mdr/sdtm/:version",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "SDTM version string (e.g., 3-3, 3-4, 2-0)"
+              }
+            ]
+          },
+          "docs": "Returns the SDTM standard metadata for a specific version (e.g., 3-3, 3-4)."
+        },
+        {
+          "info": {
+            "name": "List SDTM domain classes for a version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://library.cdisc.org/api/mdr/sdtm/:version/classes",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns all domain classes (Events, Findings, Interventions, etc.) for the specified SDTM version."
+        },
+        {
+          "info": {
+            "name": "List SDTM datasets (domains) for a version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://library.cdisc.org/api/mdr/sdtm/:version/datasets",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns all SDTM domains for the specified version, such as AE, CM, DM, EX."
+        },
+        {
+          "info": {
+            "name": "Get SDTM dataset (domain) specification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://library.cdisc.org/api/mdr/sdtm/:version/datasets/:dataset",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "SDTM domain abbreviation (e.g., AE, CM, DM)"
+              }
+            ]
+          },
+          "docs": "Returns the full specification for a single SDTM domain including all variables."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

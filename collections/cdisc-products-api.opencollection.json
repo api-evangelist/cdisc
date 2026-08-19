@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CDISC Library ADaM Products API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-key",
+      "value": "{{api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all CDISC standards products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://library.cdisc.org/api/mdr/products",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Returns the complete CDISC standards product catalog, including SDTM, ADaM, CDASH, DEFINE-XML, and other standards metadata products."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

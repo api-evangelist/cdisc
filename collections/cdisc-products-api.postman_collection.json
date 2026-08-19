@@ -1,0 +1,235 @@
+{
+  "item": [
+    {
+      "id": "29c60633-d470-4f7b-a5b8-5ac21587fffe",
+      "name": "Products",
+      "description": {
+        "content": "CDISC standards product catalog",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f689cfe7-d640-43e1-b1dc-1ad45a978608",
+          "name": "List all CDISC standards products",
+          "request": {
+            "name": "List all CDISC standards products",
+            "description": {
+              "content": "Returns the complete CDISC standards product catalog, including SDTM, ADaM, CDASH, DEFINE-XML, and other standards metadata products.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mdr",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2eeb2bc4-f2a9-4bec-905d-8cc67a16864e",
+              "name": "Successful product catalog response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response format (application/json, application/xml, text/csv)",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {},\n  \"_embedded\": {\n    \"products\": [\n      {\n        \"name\": \"Study Data Tabulation Model (SDTM)\",\n        \"label\": \"SDTM\",\n        \"href\": \"https://GWVkedxjkuexVIDxN.qcurVQuLzU8S9.tAtXiw8U.Z\",\n        \"type\": \"Foundational\"\n      },\n      {\n        \"name\": \"Study Data Tabulation Model (SDTM)\",\n        \"label\": \"SDTM\",\n        \"href\": \"http://z.hlco9sY7mFBxAPj-IU1NTKZQca,fQh5ETXuZyInpvMHREzmvGkz4O2YYi+\",\n        \"type\": \"Foundational\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3741f2d-abf1-4d47-8b79-39bfcfcea761",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response format (application/json, application/xml, text/csv)",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 8621,\n  \"timestamp\": \"2025-02-20T22:25:52.158Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73adbc4a-cecc-44a8-9b74-3815a10f9ccd",
+              "name": "API key does not have access to the requested resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response format (application/json, application/xml, text/csv)",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 8621,\n  \"timestamp\": \"2025-02-20T22:25:52.158Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://library.cdisc.org/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d27ae3dd-b0c2-4bcc-bdfb-ee09593c2f3d",
+    "name": "CDISC Library ADaM Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The CDISC Library API is a REST API that delivers CDISC standards metadata to software applications that automate standards-based processes. It uses linked data to provide access to SDTM, ADaM, and other clinical data standards. Responses are available in JSON, XML, ODM, CSV, and Excel formats. Access requires a CDISC Library account and an API key obtained from the CDISC Library API Management (APIM) Developer Portal.\n\nContact Support:\n Name: CDISC Library Support",
+      "type": "text/plain"
+    }
+  }
+}

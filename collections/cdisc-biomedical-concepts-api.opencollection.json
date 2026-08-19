@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CDISC Library ADaM Biomedical Concepts API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-key",
+      "value": "{{api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Biomedical Concepts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List CDISC Biomedical Concepts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://library.cdisc.org/api/cosmos/v2/bc",
+            "params": [
+              {
+                "name": "packageDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter BCs by package release date (YYYY-MM-DD)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the CDISC COSMOS Biomedical Concept catalog. Supports pagination and filtering."
+        },
+        {
+          "info": {
+            "name": "Get a specific Biomedical Concept",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://library.cdisc.org/api/cosmos/v2/bc/:conceptId",
+            "params": [
+              {
+                "name": "conceptId",
+                "value": "",
+                "type": "path",
+                "description": "Biomedical Concept identifier"
+              }
+            ]
+          },
+          "docs": "Returns the full definition of a CDISC COSMOS Biomedical Concept including data elements and value sets."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

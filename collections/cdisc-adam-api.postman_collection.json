@@ -1,0 +1,227 @@
+{
+  "item": [
+    {
+      "id": "24ecc332-ac29-4285-9101-3f73b13aa061",
+      "name": "ADaM",
+      "description": {
+        "content": "Analysis Data Model standards",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "76a460bf-6e61-44a9-b406-0c3637e6c6a0",
+          "name": "List all ADaM standard versions",
+          "request": {
+            "name": "List all ADaM standard versions",
+            "description": {
+              "content": "Returns all published versions of the ADaM (Analysis Data Model) standard.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mdr",
+                "adam"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e350594-6030-475e-af3f-7d19643b0d95",
+              "name": "List of ADaM versions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "adam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {},\n  \"_embedded\": {\n    \"versions\": [\n      {\n        \"version\": \"string\",\n        \"href\": \"http://MsIfJfSlGgoBTCCZCciOwwbNGjq.nhlkWfKL\",\n        \"effectiveDate\": \"1986-01-02\"\n      },\n      {\n        \"version\": \"string\",\n        \"href\": \"https://NsrGoMhDWuUOMeaT.btwz6lXkXn7hLL+EfbjyWyfKr7brS\",\n        \"effectiveDate\": \"2014-09-28\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b3d5629-ea97-4bcc-b025-2642926befb4",
+          "name": "Get ADaM standard by version",
+          "request": {
+            "name": "Get ADaM standard by version",
+            "description": {
+              "content": "Returns the ADaM standard metadata for a specific version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mdr",
+                "adam",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af81de45-cafc-4393-a756-826c70f7cdfc",
+              "name": "ADaM standard metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "adam",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"label\": \"string\",\n  \"description\": \"string\",\n  \"version\": \"string\",\n  \"effectiveDate\": \"1990-08-09\",\n  \"registrationStatus\": \"Provisional\",\n  \"_links\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://library.cdisc.org/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2e6d3113-2271-4fe3-a9e9-20951b46baf2",
+    "name": "CDISC Library ADaM API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The CDISC Library API is a REST API that delivers CDISC standards metadata to software applications that automate standards-based processes. It uses linked data to provide access to SDTM, ADaM, and other clinical data standards. Responses are available in JSON, XML, ODM, CSV, and Excel formats. Access requires a CDISC Library account and an API key obtained from the CDISC Library API Management (APIM) Developer Portal.\n\nContact Support:\n Name: CDISC Library Support",
+      "type": "text/plain"
+    }
+  }
+}

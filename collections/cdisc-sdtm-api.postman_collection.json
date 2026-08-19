@@ -1,0 +1,756 @@
+{
+  "item": [
+    {
+      "id": "6bbeb701-c696-43af-b6c6-30738661316b",
+      "name": "SDTM",
+      "description": {
+        "content": "Study Data Tabulation Model standards",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e3ecca55-75c3-43ed-844b-a859fd185f82",
+          "name": "List all SDTM standard versions",
+          "request": {
+            "name": "List all SDTM standard versions",
+            "description": {
+              "content": "Returns all published versions of the SDTM (Study Data Tabulation Model) standard.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mdr",
+                "sdtm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "420221f9-d83d-4b17-8215-62eb7dba5d45",
+              "name": "List of SDTM versions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "sdtm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {},\n  \"_embedded\": {\n    \"versions\": [\n      {\n        \"version\": \"string\",\n        \"href\": \"https://TeBgJWeWlJlbsuNsLj.bpuny,TD3GCzdlhXRbba.DZGgXxhPwfiY7BQZCl\",\n        \"effectiveDate\": \"2008-06-02\"\n      },\n      {\n        \"version\": \"string\",\n        \"href\": \"https://YgAbJFVYNsxItZzr.oxQjc.yoORrMwBCuRw3jHXv5CVTOH2hMqT0\",\n        \"effectiveDate\": \"1960-12-07\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3a99a67-d12f-4fcd-91c7-36c905aa890d",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "sdtm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 3925,\n  \"timestamp\": \"1975-12-12T13:03:10.530Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86f9168c-e011-492a-b50a-502ecd74e49e",
+          "name": "Get SDTM standard by version",
+          "request": {
+            "name": "Get SDTM standard by version",
+            "description": {
+              "content": "Returns the SDTM standard metadata for a specific version (e.g., 3-3, 3-4).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mdr",
+                "sdtm",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) SDTM version string (e.g., 3-3, 3-4, 2-0)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9faeb2e-df2a-49a7-8792-e91fa51ff421",
+              "name": "SDTM standard metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "sdtm",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) SDTM version string (e.g., 3-3, 3-4, 2-0)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"label\": \"string\",\n  \"description\": \"string\",\n  \"version\": \"string\",\n  \"effectiveDate\": \"1974-10-06\",\n  \"registrationStatus\": \"Draft\",\n  \"_links\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2cf961a2-b431-4c00-93f7-0c0ef8fe09a1",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "sdtm",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) SDTM version string (e.g., 3-3, 3-4, 2-0)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 3925,\n  \"timestamp\": \"1975-12-12T13:03:10.530Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9de6c5b5-d0b5-4c9e-a13c-70c02a667c13",
+          "name": "List SDTM domain classes for a version",
+          "request": {
+            "name": "List SDTM domain classes for a version",
+            "description": {
+              "content": "Returns all domain classes (Events, Findings, Interventions, etc.) for the specified SDTM version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mdr",
+                "sdtm",
+                ":version",
+                "classes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba70dcd2-51a3-46e1-9eb6-f2d1d3b49450",
+              "name": "List of SDTM domain classes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "sdtm",
+                    ":version",
+                    "classes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"classes\": [\n      {\n        \"name\": \"Events\",\n        \"label\": \"string\",\n        \"href\": \"http://nTpmECeHECiWvoYwO.suvVbWYwhvDSNtp6i9tAzCMg1Z3\"\n      },\n      {\n        \"name\": \"Events\",\n        \"label\": \"string\",\n        \"href\": \"http://QDTwXT.ifwj722BwehgH-OSOMbpV1k0JEGmw\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d7f992e-2590-4ce5-947d-bc2d611d8883",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "sdtm",
+                    ":version",
+                    "classes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 3925,\n  \"timestamp\": \"1975-12-12T13:03:10.530Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f39c30e7-3ae6-4302-8eaa-9b9c208cbb39",
+          "name": "List SDTM datasets (domains) for a version",
+          "request": {
+            "name": "List SDTM datasets (domains) for a version",
+            "description": {
+              "content": "Returns all SDTM domains for the specified version, such as AE, CM, DM, EX.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mdr",
+                "sdtm",
+                ":version",
+                "datasets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ac08522-2fbe-4d59-949e-4786478d4090",
+              "name": "List of SDTM domains",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "sdtm",
+                    ":version",
+                    "datasets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"datasets\": [\n      {\n        \"name\": \"AE\",\n        \"label\": \"Adverse Events\",\n        \"href\": \"https://GwqogfNHOLyWgVgt.ykagxEgo,mbVJRgkB-dELmF.QfYb\"\n      },\n      {\n        \"name\": \"AE\",\n        \"label\": \"Adverse Events\",\n        \"href\": \"https://oPc.afzdnIuozqeplWg\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09c15167-50a7-4e44-b3bc-9c922c4c4385",
+          "name": "Get SDTM dataset (domain) specification",
+          "request": {
+            "name": "Get SDTM dataset (domain) specification",
+            "description": {
+              "content": "Returns the full specification for a single SDTM domain including all variables.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mdr",
+                "sdtm",
+                ":version",
+                "datasets",
+                ":dataset"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset",
+                  "description": "(Required) SDTM domain abbreviation (e.g., AE, CM, DM)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "960ddbd9-6417-47ae-9777-487b15489f72",
+              "name": "SDTM domain specification",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "sdtm",
+                    ":version",
+                    "datasets",
+                    ":dataset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset",
+                      "description": "(Required) SDTM domain abbreviation (e.g., AE, CM, DM)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"AE\",\n  \"label\": \"Adverse Events\",\n  \"description\": \"string\",\n  \"datasetClass\": \"Events\",\n  \"variables\": [\n    {\n      \"name\": \"AETERM\",\n      \"label\": \"Reported Term for the Adverse Event\",\n      \"dataType\": \"Char\",\n      \"length\": 636,\n      \"codelistSubmissionValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"role\": \"Identifier\",\n      \"core\": \"Required\"\n    },\n    {\n      \"name\": \"AETERM\",\n      \"label\": \"Reported Term for the Adverse Event\",\n      \"dataType\": \"Char\",\n      \"length\": 5412,\n      \"codelistSubmissionValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"role\": \"Result Qualifier\",\n      \"core\": \"Conditionally Required\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b291caf3-f4fe-40a7-8aae-a61b23c42e1a",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mdr",
+                    "sdtm",
+                    ":version",
+                    "datasets",
+                    ":dataset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset",
+                      "description": "(Required) SDTM domain abbreviation (e.g., AE, CM, DM)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 3925,\n  \"timestamp\": \"1975-12-12T13:03:10.530Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://library.cdisc.org/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a76324a6-9b0b-4935-905f-d5b31ef6ebed",
+    "name": "CDISC Library ADaM SDTM API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The CDISC Library API is a REST API that delivers CDISC standards metadata to software applications that automate standards-based processes. It uses linked data to provide access to SDTM, ADaM, and other clinical data standards. Responses are available in JSON, XML, ODM, CSV, and Excel formats. Access requires a CDISC Library account and an API key obtained from the CDISC Library API Management (APIM) Developer Portal.\n\nContact Support:\n Name: CDISC Library Support",
+      "type": "text/plain"
+    }
+  }
+}
