@@ -118,6 +118,8 @@ apis:
   humanURL: https://www.cdisc.org/cdisc-library
   baseURL: https://library.cdisc.org/api
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
