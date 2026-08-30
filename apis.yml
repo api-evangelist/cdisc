@@ -36,7 +36,6 @@ apis:
   - Pharma
   - Rules
   - Validation
-  image: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/image.png
   humanURL: https://www.cdisc.org/core
   baseURL: https://library.cdisc.org/api
   properties:
