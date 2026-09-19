@@ -43,6 +43,17 @@ apis:
   properties:
   - url: https://www.cdisc.org/core
     type: Documentation
+  - type: CLI
+    url: cli/cdisc-cli.yml
+  - type: SourceCode
+    url: https://github.com/cdisc-org/cdisc-rules-engine
+  - type: Packages
+    url: https://pypi.org/project/cdisc-rules-engine/
+  - type: ChangeLog
+    url: https://github.com/cdisc-org/cdisc-rules-engine/releases
+  - type: Documentation
+    name: CORE documentation site
+    url: https://cdisc-org.github.io/cdisc-rules-engine
   description: >-
     CDISC CORE (Checks and Rules Engine) is an open-source rules engine for validating clinical data against
     CDISC conformance rules. It enables automated validation of SDTM, ADaM, and other study data artifacts
@@ -57,6 +68,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/cdisc-adam-api-openapi.yml
+  - type: Overlay
+    url: overlays/cdisc-adam-api-overlay.yaml
   - type: Documentation
     url: https://www.cdisc.org/cdisc-library/api-documentation
   - type: Reference
@@ -83,6 +96,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/cdisc-biomedical-concepts-api-openapi.yml
+  - type: Overlay
+    url: overlays/cdisc-biomedical-concepts-api-overlay.yaml
   - type: Documentation
     url: https://www.cdisc.org/cdisc-library/api-documentation
   - type: Reference
@@ -109,6 +124,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/cdisc-cdash-api-openapi.yml
+  - type: Overlay
+    url: overlays/cdisc-cdash-api-overlay.yaml
   - type: Documentation
     url: https://www.cdisc.org/cdisc-library/api-documentation
   - type: Reference
@@ -137,6 +154,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/cdisc-products-api-openapi.yml
+  - type: Overlay
+    url: overlays/cdisc-products-api-overlay.yaml
   - type: Documentation
     url: https://www.cdisc.org/cdisc-library/api-documentation
   - type: Reference
@@ -163,6 +182,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/cdisc-sdtm-api-openapi.yml
+  - type: Overlay
+    url: overlays/cdisc-sdtm-api-overlay.yaml
   - type: Documentation
     url: https://www.cdisc.org/cdisc-library/api-documentation
   - type: Reference
@@ -189,6 +210,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/cdisc-terminology-api-openapi.yml
+  - type: Overlay
+    url: overlays/cdisc-terminology-api-overlay.yaml
   - type: Documentation
     url: https://www.cdisc.org/cdisc-library/api-documentation
   - type: Reference
@@ -205,6 +228,83 @@ apis:
     url: https://jira.cdisc.org/servicedesk/customer/portal/2
   - type: Explorer
     url: https://library.cdisc.org/browser
+- aid: cdisc:cdisc-analysis-results-api
+  name: CDISC Analysis Results Standard (ARS) API
+  description: >-
+    The Analysis Results Standard surface of the CDISC Library API — 17 read operations that expose published
+    ARS packages and their reporting events: planned analyses, analysis sets, data subsets, groupings,
+    statistical methods and their operations, outputs, displays and categorizations. Served from the same
+    production host and behind the same api-key as the rest of the CDISC Library.
+  humanURL: https://www.cdisc.org/standards/foundational/analysis-results-standards
+  baseURL: https://library.cdisc.org/api
+  tags:
+  - Analysis Results
+  - Clinical Trials
+  - Standards
+  properties:
+  - type: OpenAPI
+    url: openapi/cdisc-ars-api-openapi.yml
+  - type: Overlay
+    url: overlays/cdisc-ars-api-overlay.yaml
+  - type: OpenAPI
+    name: OpenAPI (CDISC-published, GitHub)
+    url: https://raw.githubusercontent.com/cdisc-org/analysis-results-standard-api/main/openapi/ars.yaml
+  - type: Documentation
+    url: https://www.cdisc.org/standards/foundational/analysis-results-standards
+  - type: SourceCode
+    url: https://github.com/cdisc-org/analysis-results-standard-api
+  - type: Portal
+    url: https://api.developer.library.cdisc.org/
+  - type: Support
+    url: https://jira.cdisc.org/servicedesk/customer/portal/2
+- aid: cdisc:cdisc-dataset-json-api
+  name: CDISC Dataset-JSON API (standard specification)
+  description: >-
+    CDISC-authored OpenAPI 3.1 specification for the Dataset-JSON API — studies, snapshots, datasets (including
+    an NDJSON streaming representation and an $export operation) and Define-XML documents. This is a SPECIFICATION
+    CDISC publishes for implementers to host, not a service CDISC operates: the contract declares no servers and
+    CDISC runs no endpoint for it, which is why no baseURL is recorded.
+  humanURL: https://www.cdisc.org/standards/data-exchange/dataset-json
+  tags:
+  - Dataset-JSON
+  - Data Exchange
+  - Standards
+  properties:
+  - type: OpenAPI
+    url: openapi/cdisc-dataset-json-api-openapi.json
+  - type: Overlay
+    url: overlays/cdisc-dataset-json-api-overlay.yaml
+  - type: OpenAPI
+    name: OpenAPI (CDISC-published, GitHub)
+    url: https://raw.githubusercontent.com/cdisc-org/DataExchange-DatasetJson-API/main/openapi/dataset-json-api-1-0.json
+  - type: Documentation
+    url: https://www.cdisc.org/standards/data-exchange/dataset-json
+  - type: SourceCode
+    url: https://github.com/cdisc-org/DataExchange-DatasetJson-API
+- aid: cdisc:cdisc-usdm-api
+  name: CDISC USDM (DDF) Study Definitions API
+  description: >-
+    CDISC-published OpenAPI for the USDM (Unified Study Definitions Model) study-definitions interface from the
+    Digital Data Flow programme — create, update, read and version a study definition and search study designs.
+    The repository describes it as a DDF emulation: a reference contract and implementation for the community
+    rather than a CDISC-operated production service, so no baseURL is recorded.
+  humanURL: https://github.com/cdisc-org/usdm_api
+  tags:
+  - USDM
+  - Digital Data Flow
+  - Standards
+  properties:
+  - type: OpenAPI
+    url: openapi/cdisc-usdm-api-openapi.yml
+  - type: Overlay
+    url: overlays/cdisc-usdm-api-overlay.yaml
+  - type: OpenAPI
+    name: OpenAPI (CDISC-published, GitHub)
+    url: https://raw.githubusercontent.com/cdisc-org/usdm_api/main/docs/USDM_API.yaml
+  - type: SourceCode
+    url: https://github.com/cdisc-org/usdm_api
+  - type: Documentation
+    url: https://www.cdisc.org/ddf
 common:
   - type: AgenticAccess
     url: agentic-access/cdisc-agentic-access.yml
@@ -218,8 +318,6 @@ common:
     url: https://www.linkedin.com/company/cdisc
   - url: https://www.cdisc.org/
     type: Website
-  - url: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/openapi/cdisc-library-openapi.yml
-    type: OpenAPI
   - url: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/json-schema/cdisc-dataset-schema.json
     type: JSONSchema
   - url: https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/json-ld/cdisc-context.jsonld
@@ -242,6 +340,44 @@ common:
     url: https://www.cdisc.org/partners
   - url: https://www.cdisc.org/news/whats-new
     type: Blog
+  - type: Packages
+    url: packages/cdisc-packages.yml
+  - type: SDKs
+    url: packages/cdisc-packages.yml
+  - type: CLI
+    url: cli/cdisc-cli.yml
+  - type: Conventions
+    url: conventions/cdisc-conventions.yml
+  - type: ErrorCatalog
+    url: errors/cdisc-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/cdisc-lifecycle.yml
+  - type: StatusPage
+    url: https://cdisc.statuspage.io
+  - type: ChangeLog
+    url: changelog/cdisc-changelog.yml
+  - type: Conformance
+    url: conformance/cdisc-conformance.yml
+  - type: DataModel
+    url: data-model/cdisc-data-model.yml
+  - type: LLMsTxt
+    url: llms/cdisc-llms.txt
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Plans
+    url: plans/cdisc-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/cdisc-rate-limits.yml
+  - type: FinOps
+    url: finops/cdisc-finops.yml
+  - type: Rules
+    url: rules/cdisc-jsonschema-spectral-rules.yml
+  - type: Roadmap
+    url: https://www.cdisc.org/cdisc-roadmap
+  - type: TermsOfService
+    url: https://www.cdisc.org/terms-and-conditions
+  - type: PrivacyPolicy
+    url: https://www.cdisc.org/privacy-policy
 integrations:
   - name: Collaborate
   - name: Sponsor
@@ -281,8 +417,24 @@ integrations:
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com
-modified: '2026-05-19'
+tags:
+- Clinical Trials
+- Standards
+- Life Sciences
+- Pharma
+- Healthcare
+- Metadata
+- Controlled Terminology
+- Data Exchange
+- Non-Profit
+created: '2026-04-07'
+modified: '2026-09-17'
 description: >-
   CDISC Library uses linked data and a REST API to deliver CDISC standards metadata to software applications that
   automate standards-based processes. CDISC Library provides access to new relationships between standards as well as a
   substantially increased number of versioned CDISC standards and controlled terminology packages.
+x-enrichment:
+  date: '2026-09-17'
+  status: enriched
+  artifacts_added: 28
+  pass: local-v3
