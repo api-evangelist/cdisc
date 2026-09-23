@@ -1,0 +1,107 @@
+generated: '2026-09-17'
+method: derived
+source: >-
+  openapi/ contracts in this repo; GitHub search for CDISC MCP servers (api.github.com/search/repositories,
+  probed 2026-09-17); no CDISC-published MCP server found
+status: candidate
+description: >-
+  CDISC publishes no MCP server. This is a DERIVED candidate tool list — what an MCP server over the CDISC
+  Library API would expose — built by binding one tool per published OpenAPI operation. Nothing here is served
+  by CDISC and no endpoint is asserted.
+deployment:
+  mode: none
+  auth: api-key
+  verified: derived
+  note: >-
+    No hosted endpoint and no CDISC-published stdio package exist. Several community MCP servers wrap the
+    CDISC Library API (Cicatriiz/cdisc-library-mcp-server, i-akiya/Shiranui, allensrj/CDISC_Library_MCP and
+    others found on GitHub 2026-09-17); none is published by cdisc-org, so none is recorded as a CDISC surface.
+    Any server, community or otherwise, requires the caller to supply their own CDISC Library api-key.
+tools:
+  - name: list_products
+    description: List the CDISC standards products available in the CDISC Library.
+    rest: listProducts
+    method: GET
+    path: /mdr/products
+  - name: list_sdtm_versions
+    description: List published SDTM standard versions.
+    rest: listSdtmVersions
+    method: GET
+    path: /mdr/sdtm
+  - name: get_sdtm_version
+    description: Get a published SDTM standard version.
+    rest: getSdtmVersion
+    method: GET
+    path: /mdr/sdtm/{version}
+  - name: list_sdtm_classes
+    description: List the classes in an SDTM version.
+    rest: listSdtmClasses
+    method: GET
+    path: /mdr/sdtm/{version}/classes
+  - name: list_sdtm_datasets
+    description: List the datasets (domains) in an SDTM version.
+    rest: listSdtmDatasets
+    method: GET
+    path: /mdr/sdtm/{version}/datasets
+  - name: get_sdtm_dataset
+    description: Get a single SDTM dataset (domain) definition with its variables.
+    rest: getSdtmDataset
+    method: GET
+    path: /mdr/sdtm/{version}/datasets/{dataset}
+  - name: list_adam_versions
+    description: List published ADaM standard versions.
+    rest: listAdamVersions
+    method: GET
+    path: /mdr/adam
+  - name: get_adam_version
+    description: Get a published ADaM standard version.
+    rest: getAdamVersion
+    method: GET
+    path: /mdr/adam/{version}
+  - name: list_cdash_versions
+    description: List published CDASH standard versions.
+    rest: listCdashVersions
+    method: GET
+    path: /mdr/cdash
+  - name: list_terminology_packages
+    description: List published CDISC Controlled Terminology packages by date.
+    rest: listTerminologyPackages
+    method: GET
+    path: /mdr/ct
+  - name: list_codelists
+    description: List the codelists in a controlled-terminology package.
+    rest: listCodelists
+    method: GET
+    path: /mdr/ct/{packageDate}/codelists
+  - name: list_biomedical_concepts
+    description: List CDISC Biomedical Concepts (COSMoS).
+    rest: listBiomedicalConcepts
+    method: GET
+    path: /cosmos/v2/bc
+  - name: get_biomedical_concept
+    description: Get a single Biomedical Concept by identifier.
+    rest: getBiomedicalConcept
+    method: GET
+    path: /cosmos/v2/bc/{conceptId}
+  - name: list_ars_packages
+    description: List published Analysis Results Standard packages.
+    rest: api.products.ars.get_packages
+    method: GET
+    path: /mdr/ars/packages
+  - name: list_ars_reporting_events
+    description: List the reporting events in an ARS package.
+    rest: api.products.ars.get_package_reportingevents
+    method: GET
+    path: /mdr/ars/packages/{package}/reportingevents
+  - name: get_ars_reporting_event
+    description: Get a single ARS reporting event with its analyses, methods, outputs and categorizations.
+    rest: api.products.ars.get_package_reportingevent
+    method: GET
+    path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}
+coverage:
+  operations_total: 30
+  tools_derived: 16
+  note: >-
+    16 tools cover the 13 CDISC Library operations plus the three top-level Analysis Results entry points; the
+    remaining 14 ARS operations are deep child resources reached by following _links from a reporting event and
+    would be noise as separate tools.

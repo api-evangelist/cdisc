@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: CDISC Library ADaM SDTM API
+  title: CDISC Library SDTM API
   description: The CDISC Library API is a REST API that delivers CDISC standards metadata to software applications that automate standards-based processes. It uses linked data to provide access to SDTM, ADaM, and other clinical data standards. Responses are available in JSON, XML, ODM, CSV, and Excel formats. Access requires a CDISC Library account and an API key obtained from the CDISC Library API Management (APIM) Developer Portal.
   version: 1.0.0
   contact:
@@ -136,6 +136,45 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ClassList:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            classes:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Events
+                  label:
+                    type: string
+                  href:
+                    type: string
+                    format: uri
+    DatasetList:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            datasets:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: AE
+                  label:
+                    type: string
+                    example: Adverse Events
+                  href:
+                    type: string
+                    format: uri
     Dataset:
       type: object
       properties:
@@ -196,45 +235,6 @@ components:
           - Expected
           - Permissible
           - Conditionally Required
-    DatasetList:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            datasets:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: AE
-                  label:
-                    type: string
-                    example: Adverse Events
-                  href:
-                    type: string
-                    format: uri
-    ClassList:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            classes:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Events
-                  label:
-                    type: string
-                  href:
-                    type: string
-                    format: uri
     VersionList:
       type: object
       properties:

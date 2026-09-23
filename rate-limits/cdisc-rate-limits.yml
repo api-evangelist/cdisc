@@ -3,90 +3,46 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: cdisc
 providerId: cdisc
+generated: '2026-09-17'
+method: probed
+source: >-
+  live unauthenticated request to https://library.cdisc.org/api/mdr/products (401, headers captured
+  2026-09-17); https://www.cdisc.org/cdisc-library/api-documentation ;
+  https://wiki.cdisc.org/display/LIBSUPRT/How-to+articles (403, Cloudflare bot challenge)
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+modified: '2026-09-17'
 tags:
   - Rate Limiting
   - Quotas
   - Throttling
-description: Machine-readable rate limit definitions for the cdisc API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
+limit_count: 0
+description: >-
+  No rate limit is published for the CDISC Library API, and none is signalled at runtime. A live request to
+  https://library.cdisc.org/api/mdr/products returned 401 with Date, Content-Type, Content-Length, Connection,
+  Request-Context and WWW-Authenticate — and no RateLimit-*, X-RateLimit-* or Retry-After header. The API
+  documentation page carries no limits; the CDISC Library knowledge base, where an operational limit would most
+  likely be stated, is behind a Cloudflare bot challenge and could not be read by a machine. The gateway is
+  Azure API Management, which CAN enforce per-subscription quotas, so an undocumented limit may well exist —
+  this records that a consumer has no published way to know it.
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  observed: []
+  documented: []
 responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - CDISC Library API
-      - CDISC CORE (Checks and Rules Engine) API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - CDISC Library API
-      - CDISC CORE (Checks and Rules Engine) API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - CDISC Library API
-      - CDISC CORE (Checks and Rules Engine) API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - CDISC Library API
-      - CDISC CORE (Checks and Rules Engine) API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - CDISC Library API
-      - CDISC CORE (Checks and Rules Engine) API
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers:
-  - name: Kin Lane
-    email: kin@apievangelist.com
+  throttled: null
+  note: 429 is not declared in any published CDISC contract.
+limits: []
+observation:
+  url: https://library.cdisc.org/api/mdr/products
+  status: 401
+  probed: '2026-09-17'
+  response_headers_seen:
+    - Date
+    - Content-Type
+    - Content-Length
+    - Connection
+    - Request-Context
+    - WWW-Authenticate
+note: >-
+  This file replaces a 2026-05-04 bulk-sweep scaffold that asserted three tiers of limits (10 rpm free burst
+  20, and a monthly quota) and a full X-RateLimit-* header set. CDISC publishes none of that. The invented
+  values are removed rather than kept alongside the finding.

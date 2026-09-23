@@ -1,0 +1,142 @@
+generated: '2026-09-17'
+method: derived
+source: >-
+  openapi/_original/cdisc-library-openapi.yml (components.schemas), openapi/cdisc-ars-api-openapi.yml,
+  openapi/cdisc-biomedical-concepts-api-openapi.yml
+description: >-
+  Entity-relationship graph of the CDISC Library metadata repository, derived from the published schemas and
+  the path hierarchy. The model is hypermedia: every collection carries _links / _embedded, and traversal is by
+  following links rather than by joining foreign keys. Identifiers are names and dates (SDTM version "1-4",
+  CT package date "2023-12-15", conceptId), not opaque surrogate ids — a standards registry, not a transactional
+  database.
+entities:
+  - name: ProductCatalog
+    description: Root catalog of the standards products CDISC publishes.
+    schema: ProductCatalog
+    operations: [listProducts]
+    relationships:
+      - has_many: ProductSummary
+        via: _embedded
+  - name: ProductSummary
+    description: One published standards product (SDTM, SDTMIG, ADaM, CDASH, SENDIG, CT, ARS, ...).
+    schema: ProductSummary
+    fields: [name, label, href, type]
+    relationships:
+      - has_many: Standard
+        via: href
+  - name: Standard
+    description: A versioned, dated release of a standard, with a registration status.
+    schema: Standard
+    fields: [name, label, description, version, effectiveDate, registrationStatus]
+    operations: [listSdtmVersions, getSdtmVersion, listAdamVersions, getAdamVersion, listCdashVersions]
+    relationships:
+      - has_many: Class
+        via: /mdr/{product}/{version}/classes
+      - has_many: Dataset
+        via: /mdr/{product}/{version}/datasets
+  - name: Class
+    description: A dataset class within a standard version (Events, Interventions, Findings, Special Purpose).
+    schema: ClassList
+    operations: [listSdtmClasses]
+    relationships:
+      - has_many: Dataset
+        via: _embedded
+  - name: Dataset
+    description: A domain/dataset definition within a standard version.
+    schema: Dataset
+    fields: [name, label, description, datasetClass, variables]
+    operations: [listSdtmDatasets, getSdtmDataset]
+    relationships:
+      - belongs_to: Class
+        via: datasetClass
+      - has_many: Variable
+        via: variables
+  - name: Variable
+    description: A single variable in a dataset, with its data type, role, core status and codelist binding.
+    schema: Variable
+    fields: [name, label, dataType, length, codelistSubmissionValues, role, core]
+    relationships:
+      - belongs_to: Dataset
+        via: variables
+      - has_many: Codelist
+        via: codelistSubmissionValues
+        note: The join from a variable to controlled terminology — the single most useful edge in this model.
+  - name: TerminologyPackage
+    description: A dated release of CDISC Controlled Terminology.
+    schema: TerminologyPackageList
+    operations: [listTerminologyPackages]
+    relationships:
+      - has_many: Codelist
+        via: /mdr/ct/{packageDate}/codelists
+  - name: Codelist
+    description: A controlled-terminology codelist and its submission values.
+    schema: CodelistSummaryList
+    operations: [listCodelists]
+    relationships:
+      - belongs_to: TerminologyPackage
+        via: packageDate
+  - name: BiomedicalConcept
+    description: A COSMoS biomedical concept and its data elements.
+    schema: BiomedicalConcept
+    fields: [conceptId, name, definition, dataElements]
+    operations: [listBiomedicalConcepts, getBiomedicalConcept]
+  - name: ARSPackage
+    description: A published Analysis Results Standard package.
+    schema: arsPackages
+    operations: [api.products.ars.get_packages]
+    relationships:
+      - has_many: ReportingEvent
+        via: /mdr/ars/packages/{package}/reportingevents
+  - name: ReportingEvent
+    description: >-
+      The root ARS object — the planned analyses and outputs for a reporting event, linking analysis sets,
+      data subsets, groupings, methods, analyses, outputs and categorizations.
+    schema: arsReportingEvent
+    operations: [api.products.ars.get_package_reportingevents, api.products.ars.get_package_reportingevent]
+    relationships:
+      - has_many: Analysis
+        via: analyses
+      - has_many: AnalysisMethod
+        via: methods
+      - has_many: Output
+        via: outputs
+      - has_many: AnalysisSet
+        via: analysissets
+      - has_many: DataSubset
+        via: datasubsets
+      - has_many: AnalysisGrouping
+        via: analysisgroupings
+      - has_many: Categorization
+        via: categorizations
+  - name: Analysis
+    schema: arsAnalysisRef
+    relationships:
+      - belongs_to: ReportingEvent
+      - has_many: DataGrouping
+        via: datagroupings
+      - has_one: AnalysisMethod
+        via: methodId
+  - name: AnalysisMethod
+    schema: arsAnalysisMethodRef
+    relationships:
+      - has_many: Operation
+        via: operations
+  - name: Output
+    schema: arsReportingEvent
+    relationships:
+      - has_many: Display
+        via: displays
+  - name: Error
+    description: The error envelope (see errors/cdisc-problem-types.yml).
+    schema: Error
+    fields: [message, statusCode, timestamp]
+identifier_scheme:
+  style: natural-keys
+  examples:
+    - 'SDTM version: 1-4 (hyphenated, not dotted)'
+    - 'CT package: a release date, e.g. 2023-12-15'
+    - 'Biomedical Concept: conceptId (e.g. C49676)'
+    - 'ARS: package + reportingevent names'
+  note: >-
+    NCI C-codes appear as biomedical-concept and codelist identifiers, tying the CDISC model to the NCI
+    Enterprise Vocabulary Services thesaurus.

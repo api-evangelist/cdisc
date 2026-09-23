@@ -1,12 +1,7 @@
 {
   "provider": "cdisc",
   "sources": [
-    "cdisc-adam-api-openapi.yml",
-    "cdisc-biomedical-concepts-api-openapi.yml",
-    "cdisc-cdash-api-openapi.yml",
-    "cdisc-products-api-openapi.yml",
-    "cdisc-sdtm-api-openapi.yml",
-    "cdisc-terminology-api-openapi.yml"
+    "_original/cdisc-library-openapi.yml"
   ],
   "outputs": [
     "cdisc-adam-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cdisc-library-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "cdisc-adam-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cdisc-biomedical-concepts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cdisc-cdash-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cdisc-products-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cdisc-sdtm-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cdisc-terminology-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

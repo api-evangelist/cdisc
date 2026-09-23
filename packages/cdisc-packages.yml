@@ -1,0 +1,75 @@
+generated: '2026-09-17'
+method: searched
+source: https://pypi.org/project/cdisc-library-client/ ; https://pypi.org/project/cdisc-rules-engine/ ; https://github.com/cdisc-org
+description: >-
+  First-party CDISC client libraries and open-source engines. CDISC publishes its software through the
+  cdisc-org GitHub organization and PyPI; there is no first-party JavaScript, Java, .NET, Go, Ruby or Rust
+  client for the CDISC Library API. Registry metadata read unauthenticated from pypi.org/pypi/<pkg>/json
+  and hub.docker.com on 2026-09-17.
+packages:
+  - name: cdisc-library-client
+    registry: pypi
+    language: python
+    official: true
+    url: https://pypi.org/project/cdisc-library-client/
+    repository: https://github.com/cdisc-org/cdisc-library-client
+    version: 0.1.6
+    published: '2024-12-09'
+    covers:
+      - CDISC Library API
+    install: pip install cdisc-library-client
+    note: >-
+      The only first-party SDK for the CDISC Library API. Its latest release (0.1.6, 2024-12-09) predates the
+      CDISC Library content and rule packages published since — an abandonment signal recorded as data, not a
+      judgement. Wraps SDTM/SDTMIG/SENDIG/ADaM/CDASH/CDASHIG standards, controlled-terminology packages and
+      codelist terms, the rules catalogs, and the Biomedical Concepts (COSMoS) packages.
+  - name: cdisc-rules-engine
+    registry: pypi
+    language: python
+    official: true
+    url: https://pypi.org/project/cdisc-rules-engine/
+    repository: https://github.com/cdisc-org/cdisc-rules-engine
+    version: 0.17.1
+    published: '2026-08-31'
+    covers:
+      - CDISC CORE (Checks and Rules Engine)
+    install: pip install cdisc-rules-engine
+    note: >-
+      CDISC CORE — the open-source conformance rules engine. Consumes the CDISC Library API (rules catalogs and
+      standards metadata) with an API key and validates SDTM/SEND/ADaM/CDASH/TIG datasets locally. Also the
+      distribution behind the CLI recorded in cli/cdisc-cli.yml.
+  - name: cdiscdocker/cdisc-rules-engine
+    registry: docker
+    language: python
+    official: true
+    url: https://hub.docker.com/r/cdiscdocker/cdisc-rules-engine
+    repository: https://github.com/cdisc-org/cdisc-rules-engine
+    version: null
+    published: null
+    note: >-
+      Container distribution of CORE, advertised from the cdisc-rules-engine README badge. Version and publish
+      date not recorded here — the Docker Hub tag list was not probed in this pass, so these read as unchecked
+      rather than absent.
+absent:
+  - registry: npm
+    checked: '2026-09-17'
+    note: No first-party CDISC package found (the npm package `dataset-json` is published by an unrelated maintainer).
+  - registry: maven
+    checked: '2026-09-17'
+    note: No first-party CDISC artifact located; the Java work in cdisc-org (clib-GenerateOdmforCdash, usdm-dictionary-generator) is source-only.
+  - registry: nuget
+    checked: '2026-09-17'
+  - registry: rubygems
+    checked: '2026-09-17'
+  - registry: crates.io
+    checked: '2026-09-17'
+  - registry: pkg.go.dev
+    checked: '2026-09-17'
+third_party_noted:
+  - name: odmlib
+    registry: pypi
+    url: https://pypi.org/project/odmlib/
+    official: false
+    version: 0.2.1
+    published: '2026-08-27'
+    note: Community Python library for CDISC ODM documents (maintainer swhume), not published by cdisc-org.

@@ -1,0 +1,81 @@
+generated: '2026-09-17'
+method: probed
+source: live HTTPS probes of every host in apis.yml and every OpenAPI servers[] host, 2026-09-17
+description: >-
+  Probe record for the standard discovery documents across every CDISC host. Nothing is served: cdisc.org and
+  library.cdisc.org (Drupal) return a 404 HTML page for every path, and the Azure API Management developer
+  portal at api.developer.library.cdisc.org answers 200 with the same 3,846-byte single-page-app shell for
+  any /.well-known/* path — an SPA catch-all, not a document. No WellKnown or SecurityTxt pointer is emitted
+  from this file; it records an absence, and an absence is not a surface.
+hosts:
+  - host: www.cdisc.org
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: library.cdisc.org
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: api.developer.library.cdisc.org
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 200
+        note: SPA shell (text/html, 3846 bytes, identical to the portal index) — not a document; counted as a miss.
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        note: SPA shell (text/html, 3846 bytes) — not a document; counted as a miss.
+      - path: /.well-known/api-catalog
+        status: 200
+        note: SPA shell (text/html, 3846 bytes) — not a document; counted as a miss.
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: wiki.cdisc.org
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+summary:
+  documents_served: 0
+  soft_200_spa_shells: 3
+  pointer_emitted: false

@@ -1,0 +1,88 @@
+generated: '2026-09-17'
+method: derived
+source: >-
+  openapi/cdisc-ars-api-openapi.yml, openapi/_original/cdisc-library-openapi.yml,
+  live 401 response from https://library.cdisc.org/api/mdr/products (probed 2026-09-17)
+format: azure-apim-error
+rfc9457: false
+description: >-
+  Error catalog for the CDISC Library API. The API is fronted by Azure API Management, which returns a flat
+  JSON envelope { "statusCode": <int>, "message": <string> }; the CDISC Analysis Results contract declares the
+  same shape as `defaultErrorResponse`. Not RFC 9457 problem+json — there is no type/title/detail/instance.
+envelope:
+  media_type: application/json
+  fields:
+    - name: statusCode
+      type: integer
+      description: HTTP status code, repeated in the body.
+    - name: message
+      type: string
+      description: Human-readable explanation. Not a stable machine-readable code.
+  stable_error_codes: false
+  note: >-
+    There is no enumerated error-code registry. A consumer must branch on the HTTP status; the message string
+    is prose and is not documented as stable.
+problem_types:
+  - status: 400
+    name: Bad Request
+    description: Malformed request or an invalid path/query parameter value.
+    declared_in:
+      - openapi/cdisc-ars-api-openapi.yml
+    remediation: Check the package, version or date segment against the list endpoint for that standard.
+  - status: 401
+    name: Unauthorized
+    description: >-
+      Missing or invalid API key. Observed live — body
+      '{ "statusCode": 401, "message": "Access denied due to missing subscription key. Make sure to include
+      subscription key when making requests to an API." }' with
+      WWW-Authenticate: AzureApiManagementKey realm="https://api.library.cdisc.org/api", name="api-key", type="header".
+    declared_in:
+      - openapi/cdisc-ars-api-openapi.yml
+      - openapi/cdisc-sdtm-api-openapi.yml
+      - openapi/cdisc-products-api-openapi.yml
+    remediation: Send the `api-key` header with a key issued from https://api.developer.library.cdisc.org/.
+    evidence: https://library.cdisc.org/api/mdr/products
+  - status: 403
+    name: Forbidden
+    description: The API key is valid but does not have access to the requested resource or product.
+    declared_in:
+      - openapi/cdisc-ars-api-openapi.yml
+      - openapi/cdisc-products-api-openapi.yml
+    remediation: Request access to the product/standard on the developer portal; membership tier governs some packages.
+  - status: 404
+    name: Not Found
+    description: Requested standard version, package, codelist, dataset or biomedical concept does not exist.
+    declared_in:
+      - openapi/cdisc-ars-api-openapi.yml
+      - openapi/cdisc-sdtm-api-openapi.yml
+      - openapi/cdisc-biomedical-concepts-api-openapi.yml
+    remediation: List the parent collection first and use the identifier it returns.
+  - status: 405
+    name: Method Not Allowed
+    description: A non-GET method against a read-only resource.
+    declared_in:
+      - openapi/cdisc-ars-api-openapi.yml
+  - status: 406
+    name: Not Acceptable
+    description: Requested representation (Accept header) is not available for this resource.
+    declared_in:
+      - openapi/cdisc-ars-api-openapi.yml
+  - status: 500
+    name: Internal Server Error
+    declared_in:
+      - openapi/cdisc-ars-api-openapi.yml
+    remediation: Retry with backoff; check https://cdisc.statuspage.io for an open incident.
+  - status: 503
+    name: Service Unavailable
+    declared_in:
+      - openapi/cdisc-ars-api-openapi.yml
+    remediation: Retry with backoff; check https://cdisc.statuspage.io.
+  - status: 504
+    name: Gateway Timeout
+    declared_in:
+      - openapi/cdisc-ars-api-openapi.yml
+    remediation: Retry the request; large package retrievals can be slow.
+gaps:
+  - No RFC 9457 application/problem+json representation.
+  - No enumerated, documented error-code registry keyed to remediation.
+  - 429 is not declared anywhere in the published contracts even though the gateway is Azure APIM.

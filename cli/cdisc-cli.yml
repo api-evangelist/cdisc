@@ -1,0 +1,62 @@
+generated: '2026-09-17'
+method: searched
+source: >-
+  https://github.com/cdisc-org/cdisc-rules-engine ,
+  https://raw.githubusercontent.com/cdisc-org/cdisc-rules-engine/main/docs/cli-reference.md ,
+  https://cdisc-org.github.io/cdisc-rules-engine
+name: CDISC CORE
+description: >-
+  CDISC CORE (Checks and Rules Engine) is CDISC's first-party, open-source command-line conformance validator.
+  It reads rules and standards metadata from the CDISC Library API with an API key, caches them locally, and
+  validates SDTM / SEND / ADaM / CDASH / TIG datasets against the published CORE rules. It is the only CDISC
+  command-line surface; there is no CLI for the Library API itself.
+repository: https://github.com/cdisc-org/cdisc-rules-engine
+documentation: https://cdisc-org.github.io/cdisc-rules-engine
+cli_reference: https://github.com/cdisc-org/cdisc-rules-engine/blob/main/docs/cli-reference.md
+version: 0.17.1
+released: '2026-08-31'
+install:
+  - method: pypi
+    command: pip install cdisc-rules-engine
+    url: https://pypi.org/project/cdisc-rules-engine/
+  - method: executable
+    command: ./core (Linux/macOS) or .\core.exe (Windows)
+    note: Pre-built binaries are published on the GitHub releases page.
+  - method: docker
+    command: docker pull cdiscdocker/cdisc-rules-engine
+    url: https://hub.docker.com/r/cdiscdocker/cdisc-rules-engine
+  - method: source
+    command: python core.py
+invocation: python core.py <command>
+commands:
+  - name: validate
+    description: Run conformance validation of a dataset directory or file against a CDISC standard and version.
+    key_flags:
+      - '-s, --standard  (e.g. sdtmig, tig) — required'
+      - '-v, --version   (e.g. 3-4) — required'
+      - '-ss, --substandard  (SDTM | SEND | ADaM | CDASH) — required for TIG'
+      - '-d, --data / -dp, --dataset-path / -dxp, --define-xml-path'
+      - '-r, --rules / -er, --exclude-rules / -lr, --local-rules (CORE rule IDs, e.g. CORE-000001)'
+      - '-ct, --controlled-terminology-package'
+      - '--whodrug / --meddra / --loinc / --medrt / --unii / --snomed-version / --snomed-url / --snomed-edition'
+      - '-o, --output  and  -of, --output-format (JSON | XLSX | CSV)'
+      - '-ps, --pool-size, -ca, --cache, -l, --log-level, -p, --progress'
+  - name: update-cache
+    description: Refresh the local cache of standards metadata and rules from the CDISC Library API (also used to upload a custom standard).
+  - name: list-rules
+    description: List the CORE rules available for a standard and version.
+  - name: list-rule-sets
+    description: List the standards and versions for which rule sets are cached.
+  - name: list-ct
+    description: List the controlled-terminology packages available in the local cache.
+note: >-
+  The command set is transcribed verbatim from the published CLI reference (its five top-level command
+  headings: validate, update-cache, list-rules, list-rule-sets, list-ct). Only `validate` has its full flag
+  surface recorded above — it is the command an integrator actually runs. The reference also documents
+  environment-variable equivalents for most flags, custom rules/standards loading, and Dask-based large
+  dataset processing.
+run_statuses:
+  - SUCCESS
+  - SKIPPED
+  - ISSUE REPORTED
+  - EXECUTION ERROR

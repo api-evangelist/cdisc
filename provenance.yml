@@ -7,7 +7,13 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   authentication/cdisc-authentication.yml:
-    method: derived
+    method: searched
+    evidence: declared in the artifact
+  changelog/cdisc-changelog.yml:
+    method: searched
+    evidence: declared in the artifact
+  cli/cdisc-cli.yml:
+    method: searched
     evidence: declared in the artifact
   collections/cdisc-adam-api.opencollection.json:
     method: derived
@@ -51,6 +57,18 @@ artifacts:
   collections/cdisc-terminology-api.postman_collection.json:
     method: derived
     evidence: openapi/cdisc-terminology-api
+  conformance/cdisc-conformance.yml:
+    method: derived
+    evidence: declared in the artifact
+  conventions/cdisc-conventions.yml:
+    method: derived
+    evidence: declared in the artifact
+  data-model/cdisc-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/cdisc-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   finops/cdisc-finops.yml:
     method: generated
     evidence: declared in the artifact
@@ -60,88 +78,7 @@ artifacts:
   json-schema/cdisc-dataset-schema.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-23T094130.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-23T182523.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-26T223651.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-27T083119.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-27T190208.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T115055.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T170848.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T172558.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T192327.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T200725.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T133250.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T151044.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T162206.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T202106.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T163141.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T163302.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T171935.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-03T113057.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-03T161012.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-04T083143.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-05T153418.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-06T210741.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-07T135032.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T093022.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T111628.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-11T211707.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-12T193225.yml:
+  kin/checks-2026-09-16T225339.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-17T064519.yml:
@@ -207,33 +144,225 @@ artifacts:
   kin/score-2026-08-28T221322.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-29T213958.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-29T230545.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-30T203505.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-30T220315.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-31T223420.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T063623.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T210448.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T222808.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-02T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-02T224043.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-03T161828.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-03T174231.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T062714.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T212454.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T224856.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T055819.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T072335.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T144739.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T195450.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T211839.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T011047.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T224210.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T200636.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T213054.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T214843.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T232836.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T204815.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T222408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T062655.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T080032.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T204651.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T221936.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-13T214537.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T064754.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T210656.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T225847.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T211329.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T230249.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T210549.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T225339.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  lifecycle/cdisc-lifecycle.yml:
+    method: searched
+    evidence: declared in the artifact
+  llms/cdisc-llms.txt:
+    method: generated
+    evidence: carries an API Evangelist house phrase
+  mcp/cdisc-mcp.yml:
+    method: derived
+    evidence: declared in the artifact
+  openapi/_original/cdisc-library-openapi.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
   openapi/cdisc-adam-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/cdisc-ars-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
   openapi/cdisc-biomedical-concepts-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/cdisc-cdash-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/cdisc-dataset-json-api-openapi.json:
     method: unknown
     evidence: no authorship recorded
   openapi/cdisc-products-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/cdisc-sdtm-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/cdisc-terminology-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/cdisc-usdm-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
-  plans/cdisc-plans-pricing.yml:
+  overlays/cdisc-adam-api-overlay.yaml:
     method: generated
+    evidence: declared in the artifact
+  overlays/cdisc-ars-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/cdisc-biomedical-concepts-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/cdisc-cdash-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/cdisc-dataset-json-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/cdisc-products-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/cdisc-sdtm-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/cdisc-terminology-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/cdisc-usdm-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  packages/cdisc-packages.yml:
+    method: searched
+    evidence: declared in the artifact
+  plans/cdisc-plans-pricing.yml:
+    method: searched
     evidence: declared in the artifact
   rate-limits/cdisc-rate-limits.yml:
-    method: generated
-    evidence: declared in the artifact
+    method: unknown
+    evidence: no authorship recorded
   rules/cdisc-jsonschema-spectral-rules.yml:
     method: generated
     evidence: declared in the artifact
+  sandbox/cdisc-sandbox.yml:
+    method: searched
+    evidence: declared in the artifact
   security/cdisc-domain-security.yml:
+    method: unknown
+    evidence: no authorship recorded
+  skills/_index.yml:
+    method: generated
+    evidence: declared in the artifact
+  skills/cdisc-read-analysis-results.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/cdisc-resolve-variable-terminology.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/cdisc-validate-with-core.md:
+    method: generated
+    evidence: declared in the artifact
+  well-known/cdisc-well-known.yml:
     method: unknown
     evidence: no authorship recorded

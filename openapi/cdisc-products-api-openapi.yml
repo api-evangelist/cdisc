@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: CDISC Library ADaM Products API
+  title: CDISC Library Products API
   description: The CDISC Library API is a REST API that delivers CDISC standards metadata to software applications that automate standards-based processes. It uses linked data to provide access to SDTM, ADaM, and other clinical data standards. Responses are available in JSON, XML, ODM, CSV, and Excel formats. Access requires a CDISC Library account and an API key obtained from the CDISC Library API Management (APIM) Developer Portal.
   version: 1.0.0
   contact:
@@ -60,6 +60,16 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        statusCode:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
     ProductSummary:
       type: object
       properties:
@@ -76,16 +86,6 @@ components:
         type:
           type: string
           example: Foundational
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        statusCode:
-          type: integer
-        timestamp:
-          type: string
-          format: date-time
     ProductCatalog:
       type: object
       properties:

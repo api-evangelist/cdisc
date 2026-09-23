@@ -1,0 +1,38 @@
+generated: '2026-09-17'
+method: searched
+source: >-
+  https://api.developer.library.cdisc.org/ (200, redirects anonymous visitors to /signin),
+  https://library.cdisc.org/browser (200), https://www.cdisc.org/cdisc-library/getting-started
+description: >-
+  CDISC publishes no sandbox: there is no test environment, no test key prefix, no fixture data and no
+  time-simulation tooling for the CDISC Library API. What exists is an interactive console inside the Azure API
+  Management developer portal, and it is account-gated — an anonymous visitor is redirected to /signin, so it
+  cannot be used to evaluate the API before approval. Recorded for completeness; no Sandbox pointer is emitted,
+  because a console you cannot reach without an approved account is not a sandbox.
+sandbox_environment:
+  exists: false
+test_keys:
+  published: false
+  note: >-
+    There is no test/live key distinction. The same `api-key` addresses production data, which is the only
+    environment CDISC operates.
+console:
+  url: https://api.developer.library.cdisc.org/api-details
+  type: azure-apim-try-it
+  gated: true
+  status: 200
+  probed: '2026-09-17'
+  note: Azure APIM's built-in "Try it" console. Requires an approved CDISC Library account and a subscription key.
+explorer:
+  url: https://library.cdisc.org/browser
+  name: CDISC Library Data Standards Browser
+  status: 200
+  probed: '2026-09-17'
+  note: >-
+    A JavaScript single-page app for browsing the same standards metadata the API serves. It is a human
+    browsing surface, not an API console — no request is composed and no key is exercised.
+fixtures:
+  published: false
+  note: >-
+    The nearest equivalent is the CORE open-rules test data at github.com/cdisc-org/cdisc-open-rules, which
+    ships rules plus test datasets for the offline rules engine rather than for the hosted API.

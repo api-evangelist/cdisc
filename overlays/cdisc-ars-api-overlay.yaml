@@ -1,0 +1,51 @@
+# generated: '2026-09-17'
+# method: generated
+# source: openapi/cdisc-ars-api-openapi.yml
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements — CDISC Analysis Results Standard (ARS)
+  version: 1.0.0
+extends: cdisc-ars-api-openapi.yml
+x-provenance:
+  generated: '2026-09-17'
+  method: generated
+  source: openapi/cdisc-ars-api-openapi.yml
+  note: Non-destructive enhancement of the CDISC contract. The original spec is never mutated; this overlay
+    records the metadata API Evangelist adds for discovery and agent use.
+actions:
+- target: $.info
+  update:
+    x-api-evangelist:
+      provider: cdisc
+      providerName: CDISC
+      profile: https://apis.io/providers/cdisc/
+      accessModel: account-gated; api-key header issued from https://api.developer.library.cdisc.org/
+      readOnly: true
+      domainStandards:
+      - SDTM
+      - ADaM
+      - CDASH
+      - CDISC Controlled Terminology
+      - ARS
+      - Dataset-JSON
+      - USDM
+      - ODM/Define-XML
+      statusPage: https://cdisc.statuspage.io
+      errorEnvelope: azure-apim { statusCode, message } — not RFC 9457
+      rateLimits: none published (see rate-limits/cdisc-rate-limits.yml)
+- target: $.info
+  update:
+    contact:
+      name: CDISC Library Support
+      url: https://jira.cdisc.org/servicedesk/customer/portal/2
+- target: $.paths.*.*
+  update:
+    x-agentic-access:
+      action-class: connected
+      consequence: read
+      subject: optional
+      token:
+        max-ttl: 3600
+      audit: none
+  description: Every published CDISC operation is a read; the recommended agentic-access contract is uniform.
+    See agentic-access/cdisc-agentic-access.yml.

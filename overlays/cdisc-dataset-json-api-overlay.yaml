@@ -1,0 +1,42 @@
+# generated: '2026-09-17'
+# method: generated
+# source: openapi/cdisc-dataset-json-api-openapi.json
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements — Dataset-JSON
+  version: 1.0.0
+  x-note: This contract is a CDISC-authored SPECIFICATION for implementers, not a CDISC-hosted service,
+    and it declares write operations. No blanket read-only agentic-access action is applied.
+extends: cdisc-dataset-json-api-openapi.json
+x-provenance:
+  generated: '2026-09-17'
+  method: generated
+  source: openapi/cdisc-dataset-json-api-openapi.json
+  note: Non-destructive enhancement of the CDISC contract. The original spec is never mutated; this overlay
+    records the metadata API Evangelist adds for discovery and agent use.
+actions:
+- target: $.info
+  update:
+    x-api-evangelist:
+      provider: cdisc
+      providerName: CDISC
+      profile: https://apis.io/providers/cdisc/
+      accessModel: account-gated; api-key header issued from https://api.developer.library.cdisc.org/
+      readOnly: true
+      domainStandards:
+      - SDTM
+      - ADaM
+      - CDASH
+      - CDISC Controlled Terminology
+      - ARS
+      - Dataset-JSON
+      - USDM
+      - ODM/Define-XML
+      statusPage: https://cdisc.statuspage.io
+      errorEnvelope: azure-apim { statusCode, message } — not RFC 9457
+      rateLimits: none published (see rate-limits/cdisc-rate-limits.yml)
+- target: $.info
+  update:
+    contact:
+      name: CDISC Library Support
+      url: https://jira.cdisc.org/servicedesk/customer/portal/2

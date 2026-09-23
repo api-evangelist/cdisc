@@ -1,17 +1,553 @@
-generated: '2026-07-15'
+generated: '2026-09-17'
 method: generated
-source: openapi/cdisc-library-openapi.yml
+source: openapi/cdisc-adam-api-openapi.yml, openapi/cdisc-ars-api-openapi.yml, openapi/cdisc-biomedical-concepts-api-openapi.yml,
+  openapi/cdisc-cdash-api-openapi.yml, openapi/cdisc-dataset-json-api-openapi.json, openapi/cdisc-products-api-openapi.yml,
+  openapi/cdisc-sdtm-api-openapi.yml, openapi/cdisc-terminology-api-openapi.yml, openapi/cdisc-usdm-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 13
+  operations: 59
   by_action_class:
-    connected: 13
+    connected: 45
+    acting: 14
   by_consequence:
-    read: 13
+    read: 45
+    write: 14
   human_in_the_loop_required: 0
 operations:
+- path: /mdr/adam
+  method: get
+  operationId: listAdamVersions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/adam/{version}
+  method: get
+  operationId: getAdamVersion
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages
+  method: get
+  operationId: api.products.ars.get_packages
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents
+  method: get
+  operationId: api.products.ars.get_package_reportingevents
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}
+  method: get
+  operationId: api.products.ars.get_package_reportingevent
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}/analysissets/{analysisset}
+  method: get
+  operationId: api.products.ars.get_package_reportingevent_analysisset
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}/datasubsets/{datasubset}
+  method: get
+  operationId: api.products.ars.get_package_reportingevent_datasubset
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}/analysisgroupings/{analysisgrouping}
+  method: get
+  operationId: api.products.ars.get_package_reportingevent_analysisgrouping
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}/analysisgroupings/{analysisgrouping}/analysisgroups/{analysisgroup}
+  method: get
+  operationId: api.products.ars.get_package_reportingevent_analysisgrouping_analysisgrou
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}/methods/{method}
+  method: get
+  operationId: api.products.ars.get_package_reportingevent_method
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}/methods/{method}/operations/{operation}
+  method: get
+  operationId: api.products.ars.get_package_reportingevent_method_operation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}/methods/{method}/operations/{operation}/refoprels/{refoprel}
+  method: get
+  operationId: api.products.ars.get_package_reportingevent_method_operation_refoprel
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}/analyses/{analysis}
+  method: get
+  operationId: api.products.ars.get_package_reportingevent_analysis
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}/analyses/{analysis}/datagroupings/{datagrouping}
+  method: get
+  operationId: api.products.ars.get_package_reportingevent_analysis_datagrouping
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}/analyses/{analysis}/datagroupings/{datagrouping}/datagroups/{datagroup}
+  method: get
+  operationId: api.products.ars.get_package_reportingevent_analysis_datagrouping_datagroup
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}/outputs/{output}
+  method: get
+  operationId: api.products.ars.get_package_reportingevent_output
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}/outputs/{output}/displays/{display}
+  method: get
+  operationId: api.products.ars.get_package_reportingevent_output_display
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}/categorizations/{categorization}
+  method: get
+  operationId: api.products.ars.get_package_reportingevent_categorization
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/ars/packages/{package}/reportingevents/{reportingevent}/categorizations/{categorization}/categories/{category}
+  method: get
+  operationId: api.products.ars.get_package_reportingevent_categorization_category
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /cosmos/v2/bc
+  method: get
+  operationId: listBiomedicalConcepts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /cosmos/v2/bc/{conceptId}
+  method: get
+  operationId: getBiomedicalConcept
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /mdr/cdash
+  method: get
+  operationId: listCdashVersions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /about
+  method: get
+  operationId: about_about_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /studies
+  method: get
+  operationId: studies_studies_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /studies
+  method: post
+  operationId: add_study_studies_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /studies/{studyOID}
+  method: get
+  operationId: study_studies__studyOID__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /studies/{studyOID}
+  method: put
+  operationId: update_study_studies__studyOID__put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /studies/{studyOID}
+  method: delete
+  operationId: delete_study_studies__studyOID__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /studies/{studyOID}/snapshots
+  method: post
+  operationId: add_snapshot_studies__studyOID__snapshots_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /studies/{studyOID}/snapshots
+  method: get
+  operationId: snapshots_studies__studyOID__snapshots_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /studies/{studyOID}/snapshots/{snapshotID}
+  method: get
+  operationId: snapshot_studies__studyOID__snapshots__snapshotID__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /studies/{studyOID}/snapshots/{snapshotID}
+  method: delete
+  operationId: delete_snapshot_studies__studyOID__snapshots__snapshotID__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /studies/{studyOID}/snapshots/{snapshotID}/datasets/{datasetOID}
+  method: get
+  operationId: dataset_studies__studyOID__snapshots__snapshotID__datasets__datasetOID__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /studies/{studyOID}/datasets
+  method: get
+  operationId: datasets_studies__studyOID__datasets_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /studies/{studyOID}/datasets
+  method: post
+  operationId: post_dataset_studies__studyOID__datasets_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /studies/{studyOID}/datasets/{datasetOID}
+  method: get
+  operationId: dataset_studies__studyOID__datasets__datasetOID__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /studies/{studyOID}/datasets/{datasetOID}
+  method: put
+  operationId: update_dataset_studies__studyOID__datasets__datasetOID__put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /studies/{studyOID}/datasets/{datasetOID}
+  method: patch
+  operationId: append_dataset_studies__studyOID__datasets__datasetOID__patch
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /studies/{studyOID}/datasets/{datasetOID}
+  method: delete
+  operationId: delete_dataset_studies__studyOID__datasets__datasetOID__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /studies/{studyOID}/datasets/{datasetOID}/$export
+  method: get
+  operationId: export_dataset_studies__studyOID__datasets__datasetOID___export_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /studies/{studyOID}/datasets/{datasetOID}/ndjson
+  method: get
+  operationId: download_dataset_stream_studies__studyOID__datasets__datasetOID__ndjson_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /studies/{studyOID}/defines
+  method: post
+  operationId: add_define_studies__studyOID__defines_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /studies/{studyOID}/defines
+  method: get
+  operationId: defines_studies__studyOID__defines_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /studies/{studyOID}/defines/{label}
+  method: get
+  operationId: define_studies__studyOID__defines__label__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /studies/{studyOID}/defines/{label}
+  method: put
+  operationId: update_define_studies__studyOID__defines__label__put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /studies/{studyOID}/defines/{label}
+  method: delete
+  operationId: delete_define_studies__studyOID__defines__label__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /mdr/products
   method: get
   operationId: listProducts
@@ -72,56 +608,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /mdr/adam
-  method: get
-  operationId: listAdamVersions
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /mdr/adam/{version}
-  method: get
-  operationId: getAdamVersion
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /mdr/cdash
-  method: get
-  operationId: listCdashVersions
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /cosmos/v2/bc
-  method: get
-  operationId: listBiomedicalConcepts
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /cosmos/v2/bc/{conceptId}
-  method: get
-  operationId: getBiomedicalConcept
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /mdr/ct
   method: get
   operationId: listTerminologyPackages
@@ -135,6 +621,68 @@ operations:
 - path: /mdr/ct/{packageDate}/codelists
   method: get
   operationId: listCodelists
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/studyDefinitions
+  method: post
+  operationId: create_study_v3_studyDefinitions_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v3/studyDefinitions/{studyId}
+  method: put
+  operationId: update_study_v3_studyDefinitions__studyId__put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v3/studyDefinitions/{studyId}
+  method: get
+  operationId: read_full_study_v3_studyDefinitions__studyId__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/studyDefinitions/{studyId}/history
+  method: get
+  operationId: read_study_history_v3_studyDefinitions__studyId__history_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/studyDesigns
+  method: get
+  operationId: search_study_design_v3_studyDesigns_get
   x-agentic-access:
     action-class: connected
     consequence: read

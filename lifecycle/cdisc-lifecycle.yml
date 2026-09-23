@@ -1,0 +1,49 @@
+generated: '2026-09-17'
+method: searched
+source: >-
+  https://cdisc.statuspage.io (probed 200), https://cdisc.statuspage.io/api/v2/summary.json (probed 200),
+  https://wiki.cdisc.org/display/LIBSUPRT/Release+Notes (Cloudflare bot challenge, 403 to our crawler),
+  https://www.cdisc.org/standards-timeline, openapi/ contracts in this repo
+description: >-
+  Versioning, status and change posture for the CDISC Library API and the standards it serves.
+status_page:
+  url: https://cdisc.statuspage.io
+  provider: Atlassian Statuspage
+  machine_readable: https://cdisc.statuspage.io/api/v2/summary.json
+  status: 200
+  probed: '2026-09-17'
+  note: >-
+    Found in the cdisc.org footer ("CDISC Status"), not linked from the API documentation page. Statuspage
+    exposes the standard unauthenticated JSON API (summary.json, status.json, incidents.json), so an agent can
+    read component health without scraping.
+versioning:
+  interface_version: unversioned
+  content_versioning: >-
+    Versioning is of the STANDARD, not the interface. /mdr/sdtm/{version}, /mdr/adam/{version},
+    /mdr/cdash, /mdr/ct/{packageDate}/codelists and /mdr/ars/packages/{package} each address a published,
+    dated package that never changes once released.
+  breaking_change_policy: not-published
+release_notes:
+  url: https://wiki.cdisc.org/display/LIBSUPRT/Release+Notes
+  status: 403
+  note: >-
+    The CDISC Library Support knowledge base is served behind a Cloudflare bot challenge
+    (cf-mitigated: challenge) — a human browser reaches it, our crawler does not. Treated as live-but-unreadable
+    by machines, not as dead.
+  see: changelog/cdisc-changelog.yml
+deprecation:
+  policy_published: false
+  sunset_header: not-observed
+  deprecation_header: not-observed
+  deprecated_operations: []
+  note: >-
+    No deprecation or sunset policy was found on any public CDISC surface, and no operation in any published
+    contract carries `deprecated: true`. Superseded standards versions remain addressable at their own path
+    rather than being retired, which is why no Deprecation pointer is emitted.
+sla:
+  published: false
+  note: No service-level commitment is published for the CDISC Library API on a public page.
+support:
+  service_desk: https://jira.cdisc.org/servicedesk/customer/portal/2
+  knowledge_base: https://wiki.cdisc.org/display/LIBSUPRT/How-to+articles
+  note: Both are Atlassian surfaces behind the same Cloudflare bot challenge; reachable by a browser.

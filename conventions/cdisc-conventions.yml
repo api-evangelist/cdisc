@@ -1,0 +1,96 @@
+generated: '2026-09-17'
+method: derived
+source: >-
+  openapi/cdisc-library-openapi.yml (via openapi/_original/), openapi/cdisc-ars-api-openapi.yml,
+  live 401 probe of https://library.cdisc.org/api/mdr/products, https://www.cdisc.org/cdisc-library/api-documentation
+description: >-
+  Cross-cutting runtime semantics for the CDISC Library API — the hosted CDISC surface behind
+  https://library.cdisc.org/api, fronted by Azure API Management. The surface is entirely read-only (every
+  published operation across the Library, SDTM, ADaM, CDASH, Terminology, Biomedical Concepts and Analysis
+  Results contracts is a GET), which decides most of the blocks below.
+authentication:
+  style: api-key-header
+  header: api-key
+  note: >-
+    Confirmed live: an unauthenticated GET to https://library.cdisc.org/api/mdr/products returns 401 with
+    `WWW-Authenticate: AzureApiManagementKey realm="https://api.library.cdisc.org/api", name="api-key",
+    type="header"`. Keys are issued from the Azure APIM developer portal at
+    https://api.developer.library.cdisc.org/ after a CDISC Library account is approved.
+  see: authentication/cdisc-authentication.yml
+versioning:
+  style: content-versioned-resources
+  note: >-
+    The API itself is unversioned in the path; versioning is carried by the STANDARD, not the interface —
+    /mdr/sdtm/{version}, /mdr/adam/{version}, /mdr/ct/{packageDate}/codelists and /mdr/ars/packages/{package}
+    each address a dated or numbered published package. A consumer pins a standards version, not an API version.
+  examples:
+    - /mdr/sdtm/1-4
+    - /mdr/ct/2023-12-15/codelists
+pagination:
+  style: none-documented
+  note: >-
+    No pagination parameters appear in any published CDISC contract; list endpoints return the full collection
+    of packages/versions, which are small, closed sets. Recorded as absent, not as a gap to fill.
+expansion:
+  style: hypermedia-links
+  note: >-
+    Responses are linked-data shaped: collections carry a _links object whose members reference the child
+    resources (arsPackagesLinks, arsReportingEventsLinks and siblings in the ARS contract). Traversal is by
+    following _links rather than by an expand parameter.
+content_negotiation:
+  formats:
+    - application/json
+    - application/xml
+    - text/csv
+    - application/vnd.ms-excel
+    - ODM-XML
+  note: >-
+    The CDISC Library API states it returns standards metadata in JSON, XML, ODM, CSV and Excel; format is
+    selected with the Accept header. Source: info.description of the harvested CDISC Library OpenAPI.
+request_tracing:
+  header: Request-Context
+  note: >-
+    Observed on the live 401 response (`Request-Context: appId=cid-v1:...`) — an Azure Application Insights
+    correlation header, not a documented consumer-facing request id. No x-request-id is documented.
+error_envelope:
+  shape: azure-apim
+  fields:
+    - statusCode
+    - message
+  example: '{ "statusCode": 401, "message": "Access denied due to missing subscription key..." }'
+  rfc9457: false
+  see: errors/cdisc-problem-types.yml
+rate_limit_signaling:
+  documented: false
+  headers_observed: []
+  note: >-
+    No RateLimit-*/X-RateLimit-* headers were returned on the live 401, and no published limit was found on
+    the public documentation surface (the CDISC Library Knowledge Base on wiki.cdisc.org is behind a Cloudflare
+    bot challenge). See rate-limits/cdisc-rate-limits.yml.
+idempotency:
+  coverage: na
+  mechanism: none
+  note: >-
+    N/A rather than none: the hosted CDISC Library API publishes no mutating operation — all 30 published
+    operations across the six Library contracts plus the 17 Analysis Results operations are GETs. There is
+    nothing to replay-protect. (The Dataset-JSON API specification CDISC publishes for implementers at
+    github.com/cdisc-org/DataExchange-DatasetJson-API does define POST/PUT/PATCH/DELETE, but CDISC hosts no
+    server for it — the standard does not define an idempotency key either.)
+dry_run_mode:
+  supported: na
+  note: Read-only surface; there is no action to rehearse.
+reversibility:
+  applicable: na
+  grade: na
+  write_surfaces: []
+  note: >-
+    N/A — the hosted CDISC Library API has no write surface, so no reversal operation can exist and none is
+    documented. Recorded honestly as `na` so it leaves the denominator rather than scoring zero. For the
+    Dataset-JSON API specification (implementer-hosted, not CDISC-hosted) the deletes are hard deletes with no
+    documented restore path and no stated window; that contract is not a CDISC-operated surface and is not
+    graded here.
+cross_references:
+  errors: errors/cdisc-problem-types.yml
+  lifecycle: lifecycle/cdisc-lifecycle.yml
+  authentication: authentication/cdisc-authentication.yml
+  rate_limits: rate-limits/cdisc-rate-limits.yml

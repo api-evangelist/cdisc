@@ -1,0 +1,65 @@
+generated: '2026-09-17'
+method: searched
+source: >-
+  https://wiki.cdisc.org/display/LIBSUPRT/Release+Notes (403, Cloudflare bot challenge),
+  https://api.github.com/repos/cdisc-org/cdisc-rules-engine/releases (200),
+  https://www.cdisc.org/news/whats-new (200)
+description: >-
+  CDISC publishes change information in three separate places, and only one of them is machine-readable to an
+  unauthenticated client. The CDISC Library API's own release notes live in the Atlassian knowledge base, which
+  is served behind a Cloudflare bot challenge; the dated, structured change history that IS readable belongs to
+  the open-source CORE rules engine on GitHub.
+scheme: per-surface
+surfaces:
+  - name: CDISC Library API release notes
+    url: https://wiki.cdisc.org/display/LIBSUPRT/Release+Notes
+    machine_readable: false
+    status: 403
+    probed: '2026-09-17'
+    note: >-
+      Cloudflare challenge (cf-mitigated: challenge) — reachable in a browser, not by a crawler or an agent.
+      This is the authoritative changelog for the API itself and it is the one an integrator most needs.
+  - name: What's New
+    url: https://www.cdisc.org/news/whats-new
+    machine_readable: false
+    status: 200
+    probed: '2026-09-17'
+    note: Organisation news and standards announcements, not an API changelog.
+  - name: CDISC CORE (cdisc-rules-engine) releases
+    url: https://github.com/cdisc-org/cdisc-rules-engine/releases
+    machine_readable: true
+    feed: https://api.github.com/repos/cdisc-org/cdisc-rules-engine/releases
+    status: 200
+    probed: '2026-09-17'
+current_version:
+  surface: CDISC CORE (cdisc-rules-engine)
+  version: 0.17.1
+  date: '2026-08-31'
+entries:
+  - version: v0.17.1
+    date: '2026-08-31'
+    surface: cdisc-rules-engine
+  - version: v0.17.0
+    date: '2026-08-28'
+    surface: cdisc-rules-engine
+  - version: v0.16.0
+    date: '2026-05-01'
+    surface: cdisc-rules-engine
+  - version: v0.15
+    date: '2026-02-24'
+    surface: cdisc-rules-engine
+  - version: v0.14.2
+    date: '2026-01-08'
+    surface: cdisc-rules-engine
+  - version: v0.14.1
+    date: '2025-12-18'
+    surface: cdisc-rules-engine
+  - version: v0.14.0
+    date: '2025-12-08'
+    surface: cdisc-rules-engine
+  - version: v0.13.0
+    date: '2025-10-24'
+    surface: cdisc-rules-engine
+note: >-
+  Release titles and dates are read verbatim from the GitHub Releases API. Per-release highlights are not
+  transcribed here — the release bodies are long and change often; follow the feed URL for the detail.

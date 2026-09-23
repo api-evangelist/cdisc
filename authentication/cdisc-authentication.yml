@@ -1,16 +1,53 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/cdisc-library-openapi.yml
+generated: '2026-09-17'
+method: searched
+source: >-
+  live 401 from https://library.cdisc.org/api/mdr/products (probed 2026-09-17);
+  https://www.cdisc.org/cdisc-library/getting-started ; https://api.developer.library.cdisc.org/ ;
+  openapi/_original/cdisc-library-openapi.yml ; openapi/cdisc-ars-api-openapi.yml
 summary:
   types:
-  - apiKey
+    - apiKey
   api_key_in:
-  - header
+    - header
+  oauth2: false
+  oidc: false
+  mtls: false
 schemes:
-- name: apiKey
-  type: apiKey
-  in: header
-  parameter: api-key
-  description: API key obtained from CDISC Library API Management Developer Portal at https://api.developer.library.cdisc.org/
-  sources:
-  - openapi/cdisc-library-openapi.yml
+  - name: apiKey
+    type: apiKey
+    in: header
+    parameter: api-key
+    description: >-
+      Single-factor API key ("subscription key" in Azure API Management terms) sent on every request as the
+      `api-key` header. Declared identically in every published CDISC contract.
+    sources:
+      - openapi/_original/cdisc-library-openapi.yml
+      - openapi/cdisc-ars-api-openapi.yml
+      - openapi/cdisc-sdtm-api-openapi.yml
+live_evidence:
+  url: https://library.cdisc.org/api/mdr/products
+  status: 401
+  probed: '2026-09-17'
+  www_authenticate: 'AzureApiManagementKey realm="https://api.library.cdisc.org/api", name="api-key", type="header"'
+  body: '{ "statusCode": 401, "message": "Access denied due to missing subscription key. Make sure to include subscription key when making requests to an API." }'
+onboarding:
+  steps:
+    - Request a CDISC Library account at https://www.cdisc.org/cdisc-library/api-account-request (the page is
+      access-controlled and returned 403 to an anonymous crawler on 2026-09-17; it renders a CDISC sign-in/sign-up form).
+    - Complete Microsoft Azure AD B2C email verification for the CDISC Library account (documented step-by-step
+      on https://www.cdisc.org/cdisc-library/getting-started).
+    - Sign in to the Azure API Management developer portal at https://api.developer.library.cdisc.org/ and
+      subscribe to the product; the portal issues primary and secondary keys.
+  eligibility: CDISC member organisations and open-source developers (per the license block of the CDISC contracts).
+  self_serve: false
+  note: >-
+    Key issuance is gated behind an approved account, not an instant signup. The developer portal itself
+    redirects anonymous visitors to /signin.
+rotation:
+  supported: true
+  note: >-
+    Azure API Management issues primary and secondary subscription keys per product and supports regeneration
+    from the developer portal — a platform capability, not a documented CDISC policy.
+scopes:
+  present: false
+  note: No OAuth scopes exist; entitlement is per-product subscription, granted by membership level.

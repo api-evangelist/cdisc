@@ -1,0 +1,113 @@
+generated: '2026-09-17'
+method: derived
+source: >-
+  openapi/_original/cdisc-library-openapi.yml, openapi/cdisc-ars-api-openapi.yml,
+  openapi/cdisc-dataset-json-api-openapi.json, openapi/cdisc-usdm-api-openapi.yml,
+  live probes of https://library.cdisc.org/api (401) and https://www.cdisc.org/ pages
+description: >-
+  Cross-cutting and domain-standard conformance for CDISC. The unusual fact here is that CDISC is the
+  standards body for its own market: the contract does not merely SPEAK a clinical-research data standard,
+  it SERVES the standard's published metadata. The domain-standard signature is therefore read straight off
+  the paths and schema names of the CDISC Library contracts, not from a marketing claim.
+conformance:
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      components.securitySchemes declares only { type: apiKey, in: header, name: api-key } in every published
+      CDISC contract; the live 401 returns WWW-Authenticate: AzureApiManagementKey, not Bearer.
+  - id: oidc
+    conforms: false
+    evidence: No openid-configuration is served on any CDISC host (well-known/cdisc-well-known.yml).
+  - id: rfc9457
+    conforms: false
+    evidence: >-
+      Errors use the flat Azure APIM envelope { statusCode, message } (components.schemas.defaultErrorResponse
+      in openapi/cdisc-ars-api-openapi.yml), not application/problem+json.
+  - id: pagination
+    conforms: false
+    evidence: No pagination parameters are declared on any list operation in any published CDISC contract.
+  - id: idempotency
+    conforms: na
+    evidence: Read-only hosted surface — every published operation is a GET; see conventions/cdisc-conventions.yml.
+  - id: json-schema
+    conforms: true
+    evidence: >-
+      CDISC publishes JSON Schema for its data-exchange standards — resources/schema/dataset.schema.json and
+      dataset-ndjson-schema.json in github.com/cdisc-org/cdisc-rules-engine, and
+      profiles/Define-XML/define-xml.schema.json in github.com/cdisc-org/DataExchange-DDS.
+  - id: linked-data
+    conforms: true
+    evidence: >-
+      The CDISC Library is a linked-data metadata repository; collection responses carry _links objects
+      (arsPackagesLinks, arsReportingEventsLinks in openapi/cdisc-ars-api-openapi.yml) and the repo carries
+      json-ld/cdisc-context.jsonld.
+domain_standards:
+  - id: cdisc-sdtm
+    name: SDTM / SDTMIG (Study Data Tabulation Model)
+    conforms: true
+    role: publisher
+    evidence: 'openapi/cdisc-sdtm-api-openapi.yml paths /mdr/sdtm, /mdr/sdtm/{version}/classes, /mdr/sdtm/{version}/datasets'
+    note: >-
+      SDTM is the FDA- and PMDA-required submission format for clinical study tabulation data; the API serves
+      its authoritative machine-readable metadata.
+  - id: cdisc-adam
+    name: ADaM (Analysis Data Model)
+    conforms: true
+    role: publisher
+    evidence: 'openapi/cdisc-adam-api-openapi.yml paths /mdr/adam, /mdr/adam/{version}'
+  - id: cdisc-cdash
+    name: CDASH (Clinical Data Acquisition Standards Harmonization)
+    conforms: true
+    role: publisher
+    evidence: 'openapi/cdisc-cdash-api-openapi.yml path /mdr/cdash'
+  - id: cdisc-controlled-terminology
+    name: CDISC Controlled Terminology
+    conforms: true
+    role: publisher
+    evidence: 'openapi/cdisc-terminology-api-openapi.yml paths /mdr/ct, /mdr/ct/{packageDate}/codelists'
+    note: Published jointly with NCI Enterprise Vocabulary Services (NCI EVS).
+  - id: cdisc-ars
+    name: Analysis Results Standard (ARS)
+    conforms: true
+    role: publisher
+    evidence: 'openapi/cdisc-ars-api-openapi.yml — 17 operations under /mdr/ars/packages, components.schemas.ars*'
+  - id: cdisc-biomedical-concepts
+    name: CDISC Biomedical Concepts (COSMoS)
+    conforms: true
+    role: publisher
+    evidence: 'openapi/cdisc-biomedical-concepts-api-openapi.yml paths /cosmos/v2/bc, /cosmos/v2/bc/{conceptId}'
+  - id: cdisc-dataset-json
+    name: Dataset-JSON
+    conforms: true
+    role: publisher
+    evidence: >-
+      openapi/cdisc-dataset-json-api-openapi.json — the CDISC-authored OpenAPI 3.1 for the Dataset-JSON API
+      (github.com/cdisc-org/DataExchange-DatasetJson-API), including the /studies/{studyOID}/datasets/{datasetOID}/ndjson
+      streaming representation.
+  - id: cdisc-usdm
+    name: USDM (Unified Study Definitions Model, DDF)
+    conforms: true
+    role: publisher
+    evidence: 'openapi/cdisc-usdm-api-openapi.yml paths /v3/studyDefinitions, /v3/studyDesigns (github.com/cdisc-org/usdm_api)'
+  - id: cdisc-odm
+    name: ODM / Define-XML
+    conforms: true
+    role: publisher
+    evidence: >-
+      github.com/cdisc-org/DataExchange-ODM and DataExchange-DDS (profiles/Define-XML/define-xml.schema.json);
+      the CDISC Library API states ODM-XML among its response representations.
+  - id: hl7-fhir
+    name: HL7 FHIR
+    conforms: partial
+    role: mapping
+    evidence: >-
+      CDISC publishes FHIR-CDISC mappings and co-chairs the Vulcan HL7 FHIR accelerator
+      (https://www.cdisc.org/standards/real-world-data/fhir-cdisc, listed as a partner in apis.yml), but no
+      published CDISC contract exposes a FHIR endpoint — the mapping is documentation, not a served interface.
+certifications:
+  published: []
+  note: >-
+    No SOC 2, ISO 27001, HIPAA or FedRAMP attestation is published on any public CDISC page; trust.cdisc.org
+    does not resolve and /security 404s (probed 2026-09-17). No Compliance pointer is emitted. CDISC does
+    operate certification programs of its own — CORE Certification and ODM Certification — but those certify
+    OTHER organizations' software against CDISC standards; they are not attestations about CDISC's own service.
