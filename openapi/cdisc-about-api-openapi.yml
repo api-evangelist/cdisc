@@ -1,0 +1,71 @@
+openapi: 3.2.0
+info:
+  title: Dataset-JSON About API
+  description: CDISC Dataset-JSON Standard API
+  license:
+    name: MIT
+    url: https://opensource.org/license/mit/
+  version: '1.0'
+tags:
+- name: About
+paths:
+  /about:
+    get:
+      summary: Get About the API
+      operationId: about_about_get
+      responses:
+        '200':
+          description: About the API
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/About'
+      tags:
+      - About
+components:
+  schemas:
+    Link:
+      properties:
+        name:
+          type: string
+          title: Name
+        href:
+          type: string
+          title: Href
+      type: object
+      required:
+      - name
+      - href
+      title: Link
+      description: 'API links to related content '
+    About:
+      properties:
+        lastUpdated:
+          type: string
+          format: date-time
+          title: Lastupdated
+        author:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Author
+        repo:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Repo
+        links:
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+          title: Links
+      type: object
+      required:
+      - lastUpdated
+      - author
+      - repo
+      - links
+      title: About
+      description: 'about the API '

@@ -136,25 +136,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ClassList:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            classes:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Events
-                  label:
-                    type: string
-                  href:
-                    type: string
-                    format: uri
     DatasetList:
       type: object
       properties:
@@ -172,6 +153,57 @@ components:
                   label:
                     type: string
                     example: Adverse Events
+                  href:
+                    type: string
+                    format: uri
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        statusCode:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+    Standard:
+      type: object
+      properties:
+        name:
+          type: string
+        label:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        registrationStatus:
+          type: string
+          enum:
+          - Final
+          - Provisional
+          - Draft
+        _links:
+          type: object
+    ClassList:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            classes:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Events
+                  label:
+                    type: string
                   href:
                     type: string
                     format: uri
@@ -193,6 +225,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Variable'
+    VersionList:
+      type: object
+      properties:
+        _links:
+          type: object
+        _embedded:
+          type: object
+          properties:
+            versions:
+              type: array
+              items:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  href:
+                    type: string
+                    format: uri
+                  effectiveDate:
+                    type: string
+                    format: date
     Variable:
       type: object
       properties:
@@ -235,59 +288,6 @@ components:
           - Expected
           - Permissible
           - Conditionally Required
-    VersionList:
-      type: object
-      properties:
-        _links:
-          type: object
-        _embedded:
-          type: object
-          properties:
-            versions:
-              type: array
-              items:
-                type: object
-                properties:
-                  version:
-                    type: string
-                  href:
-                    type: string
-                    format: uri
-                  effectiveDate:
-                    type: string
-                    format: date
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        statusCode:
-          type: integer
-        timestamp:
-          type: string
-          format: date-time
-    Standard:
-      type: object
-      properties:
-        name:
-          type: string
-        label:
-          type: string
-        description:
-          type: string
-        version:
-          type: string
-        effectiveDate:
-          type: string
-          format: date
-        registrationStatus:
-          type: string
-          enum:
-          - Final
-          - Provisional
-          - Draft
-        _links:
-          type: object
   responses:
     NotFound:
       description: Requested resource not found

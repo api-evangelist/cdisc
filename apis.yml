@@ -2,15 +2,22 @@ name: Cdisc
 aid: cdisc
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - cdisc-org/analysis-results-standard-api
+    - cdisc-org/cdisc-rules-engine
+    - cdisc-org/dataexchange-datasetjson-api
+    - cdisc-org/usdm_api
+  open_source: unknown
   commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 specificationVersion: '0.23'
 accessModel:
@@ -228,27 +235,16 @@ apis:
     url: https://jira.cdisc.org/servicedesk/customer/portal/2
   - type: Explorer
     url: https://library.cdisc.org/browser
-- aid: cdisc:cdisc-analysis-results-api
-  name: CDISC Analysis Results Standard (ARS) API
-  description: >-
-    The Analysis Results Standard surface of the CDISC Library API — 17 read operations that expose published
-    ARS packages and their reporting events: planned analyses, analysis sets, data subsets, groupings,
-    statistical methods and their operations, outputs, displays and categorizations. Served from the same
-    production host and behind the same api-key as the rest of the CDISC Library.
-  humanURL: https://www.cdisc.org/standards/foundational/analysis-results-standards
+- aid: cdisc:cdisc-about-api
+  name: Cdisc About API
+  description: The About API from Cdisc — 1 operation(s) for about.
+  humanURL: https://www.cdisc.org/core
   baseURL: https://library.cdisc.org/api
   tags:
-  - Analysis Results
-  - Clinical Trials
-  - Standards
+  - About
   properties:
   - type: OpenAPI
-    url: openapi/cdisc-ars-api-openapi.yml
-  - type: Overlay
-    url: overlays/cdisc-ars-api-overlay.yaml
-  - type: OpenAPI
-    name: OpenAPI (CDISC-published, GitHub)
-    url: https://raw.githubusercontent.com/cdisc-org/analysis-results-standard-api/main/openapi/ars.yaml
+    url: openapi/cdisc-about-api-openapi.yml
   - type: Documentation
     url: https://www.cdisc.org/standards/foundational/analysis-results-standards
   - type: SourceCode
@@ -257,55 +253,101 @@ apis:
     url: https://api.developer.library.cdisc.org/
   - type: Support
     url: https://jira.cdisc.org/servicedesk/customer/portal/2
-- aid: cdisc:cdisc-dataset-json-api
-  name: CDISC Dataset-JSON API (standard specification)
-  description: >-
-    CDISC-authored OpenAPI 3.1 specification for the Dataset-JSON API — studies, snapshots, datasets (including
-    an NDJSON streaming representation and an $export operation) and Define-XML documents. This is a SPECIFICATION
-    CDISC publishes for implementers to host, not a service CDISC operates: the contract declares no servers and
-    CDISC runs no endpoint for it, which is why no baseURL is recorded.
-  humanURL: https://www.cdisc.org/standards/data-exchange/dataset-json
-  tags:
-  - Dataset-JSON
-  - Data Exchange
-  - Standards
-  properties:
-  - type: OpenAPI
-    url: openapi/cdisc-dataset-json-api-openapi.json
-  - type: Overlay
-    url: overlays/cdisc-dataset-json-api-overlay.yaml
-  - type: OpenAPI
-    name: OpenAPI (CDISC-published, GitHub)
-    url: https://raw.githubusercontent.com/cdisc-org/DataExchange-DatasetJson-API/main/openapi/dataset-json-api-1-0.json
   - type: Documentation
     url: https://www.cdisc.org/standards/data-exchange/dataset-json
   - type: SourceCode
     url: https://github.com/cdisc-org/DataExchange-DatasetJson-API
-- aid: cdisc:cdisc-usdm-api
-  name: CDISC USDM (DDF) Study Definitions API
+  - type: SourceCode
+    url: https://github.com/cdisc-org/usdm_api
+  - type: Documentation
+    url: https://www.cdisc.org/ddf
+- aid: cdisc:cdisc-analysis-results-standards-ars-api
+  name: Cdisc Analysis Results Standards (ARS) API
   description: >-
-    CDISC-published OpenAPI for the USDM (Unified Study Definitions Model) study-definitions interface from the
-    Digital Data Flow programme — create, update, read and version a study definition and search study designs.
-    The repository describes it as a DDF emulation: a reference contract and implementation for the community
-    rather than a CDISC-operated production service, so no baseURL is recorded.
-  humanURL: https://github.com/cdisc-org/usdm_api
+    The Analysis Results Standards (ARS) API from Cdisc — 17 operation(s) for analysis results standards
+    (ars).
+  humanURL: https://www.cdisc.org/core
+  baseURL: https://library.cdisc.org/api
   tags:
-  - USDM
-  - Digital Data Flow
-  - Standards
+  - Analysis Results Standards (ARS)
   properties:
   - type: OpenAPI
-    url: openapi/cdisc-usdm-api-openapi.yml
-  - type: Overlay
-    url: overlays/cdisc-usdm-api-overlay.yaml
+    url: openapi/cdisc-analysis-results-standards-ars-api-openapi.yml
+  - type: Documentation
+    url: https://www.cdisc.org/standards/foundational/analysis-results-standards
+  - type: SourceCode
+    url: https://github.com/cdisc-org/analysis-results-standard-api
+  - type: Portal
+    url: https://api.developer.library.cdisc.org/
+  - type: Support
+    url: https://jira.cdisc.org/servicedesk/customer/portal/2
+  - type: Documentation
+    url: https://www.cdisc.org/standards/data-exchange/dataset-json
+  - type: SourceCode
+    url: https://github.com/cdisc-org/DataExchange-DatasetJson-API
+  - type: SourceCode
+    url: https://github.com/cdisc-org/usdm_api
+  - type: Documentation
+    url: https://www.cdisc.org/ddf
+- aid: cdisc:cdisc-production-api
+  name: Cdisc Production API
+  description: Routes that form the production specification.
+  humanURL: https://www.cdisc.org/core
+  baseURL: https://library.cdisc.org/api
+  tags:
+  - Production
+  properties:
   - type: OpenAPI
-    name: OpenAPI (CDISC-published, GitHub)
-    url: https://raw.githubusercontent.com/cdisc-org/usdm_api/main/docs/USDM_API.yaml
+    url: openapi/cdisc-production-api-openapi.yml
+  - type: Documentation
+    url: https://www.cdisc.org/standards/foundational/analysis-results-standards
+  - type: SourceCode
+    url: https://github.com/cdisc-org/analysis-results-standard-api
+  - type: Portal
+    url: https://api.developer.library.cdisc.org/
+  - type: Support
+    url: https://jira.cdisc.org/servicedesk/customer/portal/2
+  - type: Documentation
+    url: https://www.cdisc.org/standards/data-exchange/dataset-json
+  - type: SourceCode
+    url: https://github.com/cdisc-org/DataExchange-DatasetJson-API
+  - type: SourceCode
+    url: https://github.com/cdisc-org/usdm_api
+  - type: Documentation
+    url: https://www.cdisc.org/ddf
+- aid: cdisc:cdisc-studies-api
+  name: Cdisc Studies API
+  description: The Studies API from Cdisc — 11 operation(s) for studies.
+  humanURL: https://www.cdisc.org/core
+  baseURL: https://library.cdisc.org/api
+  tags:
+  - Studies
+  properties:
+  - type: OpenAPI
+    url: openapi/cdisc-studies-api-openapi.yml
+  - type: Documentation
+    url: https://www.cdisc.org/standards/foundational/analysis-results-standards
+  - type: SourceCode
+    url: https://github.com/cdisc-org/analysis-results-standard-api
+  - type: Portal
+    url: https://api.developer.library.cdisc.org/
+  - type: Support
+    url: https://jira.cdisc.org/servicedesk/customer/portal/2
+  - type: Documentation
+    url: https://www.cdisc.org/standards/data-exchange/dataset-json
+  - type: SourceCode
+    url: https://github.com/cdisc-org/DataExchange-DatasetJson-API
   - type: SourceCode
     url: https://github.com/cdisc-org/usdm_api
   - type: Documentation
     url: https://www.cdisc.org/ddf
 common:
+  - type: Overlay
+    url: overlays/cdisc-ars-api-overlay.yaml
+  - type: Overlay
+    url: overlays/cdisc-dataset-json-api-overlay.yaml
+  - type: Overlay
+    url: overlays/cdisc-usdm-api-overlay.yaml
   - type: AgenticAccess
     url: agentic-access/cdisc-agentic-access.yml
   - type: DomainSecurity

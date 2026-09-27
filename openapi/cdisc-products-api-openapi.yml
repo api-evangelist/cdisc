@@ -46,19 +46,6 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
-  responses:
-    Forbidden:
-      description: API key does not have access to the requested resource
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -70,6 +57,19 @@ components:
         timestamp:
           type: string
           format: date-time
+    ProductCatalog:
+      type: object
+      properties:
+        _links:
+          type: object
+          description: Hypermedia links following HAL specification
+        _embedded:
+          type: object
+          properties:
+            products:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductSummary'
     ProductSummary:
       type: object
       properties:
@@ -86,19 +86,19 @@ components:
         type:
           type: string
           example: Foundational
-    ProductCatalog:
-      type: object
-      properties:
-        _links:
-          type: object
-          description: Hypermedia links following HAL specification
-        _embedded:
-          type: object
-          properties:
-            products:
-              type: array
-              items:
-                $ref: '#/components/schemas/ProductSummary'
+  responses:
+    Forbidden:
+      description: API key does not have access to the requested resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiKey:
       type: apiKey

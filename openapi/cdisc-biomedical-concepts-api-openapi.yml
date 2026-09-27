@@ -78,22 +78,16 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    BiomedicalConceptList:
+    Error:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/BiomedicalConceptSummary'
-        meta:
-          type: object
-          properties:
-            total:
-              type: integer
-            page:
-              type: integer
-            pageSize:
-              type: integer
+        message:
+          type: string
+        statusCode:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
     BiomedicalConcept:
       type: object
       properties:
@@ -114,6 +108,22 @@ components:
                 type: string
               codeList:
                 type: string
+    BiomedicalConceptList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BiomedicalConceptSummary'
+        meta:
+          type: object
+          properties:
+            total:
+              type: integer
+            page:
+              type: integer
+            pageSize:
+              type: integer
     BiomedicalConceptSummary:
       type: object
       properties:
@@ -124,16 +134,6 @@ components:
           type: string
         definition:
           type: string
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        statusCode:
-          type: integer
-        timestamp:
-          type: string
-          format: date-time
   responses:
     NotFound:
       description: Requested resource not found

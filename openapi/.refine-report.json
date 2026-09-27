@@ -1,7 +1,10 @@
 {
   "provider": "cdisc",
   "sources": [
-    "_original/cdisc-library-openapi.yml"
+    "_original/cdisc-library-openapi.yml",
+    "cdisc-ars-api-openapi.yml",
+    "cdisc-dataset-json-api-openapi.json",
+    "cdisc-usdm-api-openapi.yml"
   ],
   "outputs": [
     "cdisc-adam-api-openapi.yml",
@@ -9,15 +12,56 @@
     "cdisc-cdash-api-openapi.yml",
     "cdisc-products-api-openapi.yml",
     "cdisc-sdtm-api-openapi.yml",
-    "cdisc-terminology-api-openapi.yml"
+    "cdisc-terminology-api-openapi.yml",
+    "cdisc-analysis-results-standards-ars-api-openapi.yml",
+    "cdisc-about-api-openapi.yml",
+    "cdisc-studies-api-openapi.yml",
+    "cdisc-production-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 3 superseded output(s) from the previous generation"
+  ],
   "errors": [],
-  "warnings": [],
+  "warnings": [
+    "cdisc-ars-api-openapi.yml: previously refined output kept for 17 operation(s) no archived document covers (e.g. /mdr/ars/packages get, /mdr/ars/packages/{package}/reportingevents get, /mdr/ars/packages/{package}/reportingevents/{reportingevent} get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "cdisc-dataset-json-api-openapi.json: previously refined output kept for 24 operation(s) no archived document covers (e.g. /about get, /studies get, /studies post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "cdisc-usdm-api-openapi.yml: previously refined output kept for 5 operation(s) no archived document covers (e.g. /v3/studyDefinitions post, /v3/studyDefinitions/{studyId} get, /v3/studyDefinitions/{studyId} put); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
+  ],
   "notes": [
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "cdisc-library-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "cdisc-ars-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "cdisc-ars-api-openapi.yml: declared missing tag: Analysis Results Standards (ARS)",
+    "cdisc-dataset-json-api-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "cdisc-dataset-json-api-openapi.json: tagged paths GET /about -> About",
+    "cdisc-dataset-json-api-openapi.json: tagged paths GET /studies -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths POST /studies -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths GET /studies/{studyOID} -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths PUT /studies/{studyOID} -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths DELETE /studies/{studyOID} -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths POST /studies/{studyOID}/snapshots -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths GET /studies/{studyOID}/snapshots -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths GET /studies/{studyOID}/snapshots/{snapshotID} -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths DELETE /studies/{studyOID}/snapshots/{snapshotID} -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths GET /studies/{studyOID}/snapshots/{snapshotID}/datasets/{datasetOID} -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths GET /studies/{studyOID}/datasets -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths POST /studies/{studyOID}/datasets -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths GET /studies/{studyOID}/datasets/{datasetOID} -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths PUT /studies/{studyOID}/datasets/{datasetOID} -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths PATCH /studies/{studyOID}/datasets/{datasetOID} -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths DELETE /studies/{studyOID}/datasets/{datasetOID} -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths GET /studies/{studyOID}/datasets/{datasetOID}/$export -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths GET /studies/{studyOID}/datasets/{datasetOID}/ndjson -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths POST /studies/{studyOID}/defines -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths GET /studies/{studyOID}/defines -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths GET /studies/{studyOID}/defines/{label} -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths PUT /studies/{studyOID}/defines/{label} -> Studies",
+    "cdisc-dataset-json-api-openapi.json: tagged paths DELETE /studies/{studyOID}/defines/{label} -> Studies",
+    "cdisc-dataset-json-api-openapi.json: declared missing tag: About",
+    "cdisc-dataset-json-api-openapi.json: declared missing tag: Studies",
+    "cdisc-usdm-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: cdisc-ars-api-openapi.yml, cdisc-dataset-json-api-openapi.json, cdisc-usdm-api-openapi.yml",
+    "apis.yml register: written (+4 apis, 11 total)"
   ],
   "skipped": [
     "cdisc-adam-api-openapi.yml: previously refined output, superseded by openapi/_original/",
