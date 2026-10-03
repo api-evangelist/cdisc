@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: CDISC Analysis Results Standard (ARS) Analysis Results…
+  title: CDISC Analysis Results Standard (ARS) Analysis Results……
   description: REST API documentation for ARS
   version: '0.1'
   contact:
@@ -653,6 +653,51 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    arsAnalysisLinks:
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/arsAnalysisRef'
+        parentReportingEvent:
+          $ref: '#/components/schemas/arsReportingEventRef'
+    arsDataGroupingFactor:
+      type: object
+      description: Analysis Results Standard Data Grouping Factor
+      properties:
+        id:
+          type: string
+          example: AnlsGrouping_06_Soc
+        label:
+          type: string
+          example: System Organ Class
+        groupingVariable:
+          type: string
+          example: AESOC
+        dataDriven:
+          type: boolean
+          example: true
+        groupings:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsDataGroupRef'
+          example: null
+        _links:
+          $ref: '#/components/schemas/arsDataGroupingFactorLinks'
+    arsDisplaySection:
+      type: object
+      properties:
+        sectionType:
+          type: string
+          enum:
+          - Title
+          - Footnote
+          - Abbreviation
+          - Legend
+          - Rowlabel Header
+        subSections:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsDisplaySubSection'
     arsAnalysisCategorizationLinks:
       type: object
       properties:
@@ -669,133 +714,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/arsReportingEventRef'
-    arsOutputDisplay:
+    arsAnalysisMethodRef:
       type: object
-      properties:
-        order:
-          type: integer
-          example: 1
-        display:
-          $ref: '#/components/schemas/arsDisplayRef'
-    arsDataSubsetLinks:
-      type: object
-      properties:
-        self:
-          $ref: '#/components/schemas/arsDataSubsetRef'
-        parentReportingEvent:
-          $ref: '#/components/schemas/arsReportingEventRef'
-    arsReferencedOperationRelationshipRef:
-      type: object
-      description: Analysis Results Standard Referenced Operation Relationship Reference
+      description: Analysis Results Standard Analysis Method Reference
       properties:
         href:
           type: string
-          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/methods/Mth01_CatVar_ByGrp/operations/Mth01_CatVar_ByGrp_1_n/refoprels/Mth01_CatVar_ByGrp_2_pct_NUM
+          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/methods/Mth01_CatVar_ByGrp
         title:
           type: string
-          example: Percent of subjects Numerator
+          example: Summary by group of a categorical variable
         type:
           type: string
-          example: Analysis Results Standards Referenced Operation Relationship
-    arsAnalysisCategory:
-      type: object
-      properties:
-        id:
-          type: string
-          example: AnCat1_Group_Safety
-        label:
-          type: string
-          example: Safety Analyses
-        subCategorizations:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsAnalysisCategorizationRef'
-        _links:
-          $ref: '#/components/schemas/arsAnalysisCategoryLinks'
-      required:
-      - id
-      - label
-    arsOutputLinks:
-      type: object
-      properties:
-        self:
-          $ref: '#/components/schemas/arsOutputRef'
-        parentReportingEvent:
-          $ref: '#/components/schemas/arsReportingEventRef'
-    arsOperationLinks:
-      type: object
-      properties:
-        self:
-          $ref: '#/components/schemas/arsOperationRef'
-        parentMethod:
-          $ref: '#/components/schemas/arsAnalysisMethodRef'
-        parentReportingEvent:
-          $ref: '#/components/schemas/arsReportingEventRef'
-    arsDataGroupingFactorLinks:
-      type: object
-      properties:
-        self:
-          $ref: '#/components/schemas/arsDataGroupingFactorRef'
-        parentAnalysis:
-          $ref: '#/components/schemas/arsAnalysisRef'
-        parentReportingEvent:
-          $ref: '#/components/schemas/arsReportingEventRef'
-    arsDisplayLinks:
-      type: object
-      properties:
-        self:
-          $ref: '#/components/schemas/arsDisplayRef'
-        parentOutput:
-          $ref: '#/components/schemas/arsOutputRef'
-        parentReportingEvent:
-          $ref: '#/components/schemas/arsReportingEventRef'
-    arsCondition:
-      type: object
-      description: Analysis Results Standard Condition
-      properties:
-        dataset:
-          type: string
-        variable:
-          type: string
-        comparator:
-          type: string
-          enum:
-          - EQ
-          - NE
-          - GT
-          - GE
-          - LT
-          - LE
-          - IN
-          - NOTIN
-        value:
-          type: array
-          items:
-            type: string
-    arsNestedList:
-      type: object
-      properties:
-        listItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsOrderedListItem'
-    arsAnalysisCategoryLinks:
-      type: object
-      properties:
-        self:
-          $ref: '#/components/schemas/arsAnalysisCategoryRef'
-        parentCategorization:
-          $ref: '#/components/schemas/arsAnalysisCategorizationRef'
-        parentReportingEvent:
-          $ref: '#/components/schemas/arsReportingEventRef'
-        analyses:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsAnalysisRef'
-        outputs:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsOutputRef'
+          example: Analysis Results Standards Analysis Method
     arsPackageRef:
       type: object
       properties:
@@ -808,146 +739,13 @@ components:
         type:
           type: string
           example: Analysis Results Standard Package
-    arsFile:
+    arsSubjectGroupingFactorLinks:
       type: object
       properties:
-        fileType:
-          type: string
-          enum:
-          - pdf
-          - rtf
-          - txt
-        location:
-          type: string
-        style:
-          type: string
-    arsAnalysisCategorization:
-      type: object
-      description: Analysis Results Standard Categorization
-      properties:
-        id:
-          type: string
-          example: AnCat1_Group
-        label:
-          type: string
-          example: Group of Analyses
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsAnalysisCategoryRef'
-        _links:
-          $ref: '#/components/schemas/arsAnalysisCategorizationLinks'
-      required:
-      - id
-      - label
-    arsListOfPlannedOutputs:
-      allOf:
-      - type: object
-        description: Analysis Results Standard List of Planned Outputs
-      - $ref: '#/components/schemas/arsNestedList'
-    arsOutput:
-      type: object
-      description: Analysis Results Standard Output
-      properties:
-        id:
-          type: string
-          example: Out14.1.1
-        version:
-          type: integer
-          example: 1
-        fileSpecifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsFile'
-        outputDisplays:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsOutputDisplay'
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsAnalysisCategoryRef'
-        _links:
-          $ref: '#/components/schemas/arsOutputLinks'
-    arsAnalysisSet:
-      allOf:
-      - type: object
-        description: Analysis Results Standard Analysis Set
-        properties:
-          id:
-            type: string
-          name:
-            type: string
-        required:
-        - id
-        - name
-      - $ref: '#/components/schemas/arsWhereClause'
-      - type: object
-        properties:
-          _links:
-            $ref: '#/components/schemas/arsAnalysisSetLinks'
-    arsWhereClause:
-      type: object
-      description: Analysis Results Standard Where Clause
-      properties:
-        level:
-          type: integer
-        order:
-          type: integer
-        condition:
-          $ref: '#/components/schemas/arsCondition'
-        compoundExpression:
-          $ref: '#/components/schemas/arsCompoundExpression'
-    arsAnalysisGroup:
-      allOf:
-      - type: object
-        description: Analysis Results Standard Analysis Group
-        properties:
-          id:
-            type: string
-          name:
-            type: string
-        required:
-        - id
-        - name
-      - $ref: '#/components/schemas/arsWhereClause'
-      - type: object
-        properties:
-          _links:
-            $ref: '#/components/schemas/arsAnalysisGroupLinks'
-    arsOperationResult:
-      type: object
-      description: Analysis Results Standard Operation Result
-      properties:
-        operation:
-          $ref: '#/components/schemas/arsOperationRef'
-        resultGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsResultGroup'
-        rawValue:
-          type: string
-          example: 16.2790697674419
-        formattedValue:
-          type: string
-          example: ( 16.3)
-    arsReportingEvents:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Analysis Results Standards 2023-10-26
-        label:
-          type: string
-          example: Analysis Results Standard Package Effective 2023-10-26
-        effectiveDate:
-          type: string
-          example: '2023-10-26'
-        version:
-          type: string
-          example: '2023-10-26'
-        _links:
-          $ref: '#/components/schemas/arsReportingEventsLinks'
+        self:
+          $ref: '#/components/schemas/arsSubjectGroupingFactorRef'
+        parentReportingEvent:
+          $ref: '#/components/schemas/arsReportingEventRef'
     arsDataSubset:
       allOf:
       - type: object
@@ -965,76 +763,142 @@ components:
         properties:
           _links:
             $ref: '#/components/schemas/arsDataSubsetLinks'
-    arsCompoundExpression:
+    arsReportingEventLinks:
       type: object
-      description: Analysis Results Standard Compound Expression
       properties:
-        logicalOperator:
-          type: string
-          enum:
-          - AND
-          - OR
-          - NOT
-        whereClauses:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsWhereClause'
-    arsAnalysis:
+        self:
+          $ref: '#/components/schemas/arsReportingEventRef'
+        parentPackage:
+          $ref: '#/components/schemas/arsPackageRef'
+    arsOperationRef:
       type: object
-      description: Analysis Results Standard Analysis
-      properties:
-        id:
-          type: string
-          example: An03.02_AgeGrp_ByTrt
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsAnalysisCategoryRef'
-        analsysisSet:
-          $ref: '#/components/schemas/arsAnalysisSetRef'
-        orderedGroupings:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsOrderedGrouping'
-        dataSubset:
-          $ref: '#/components/schemas/arsDataSubsetRef'
-        dataset:
-          type: string
-          example: ADSL
-        variable:
-          type: string
-          example: USUBJID
-        method:
-          $ref: '#/components/schemas/arsAnalysisMethodRef'
-        referenceAnalysisOperations:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsReferencedAnalysisOperation'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsOperationResult'
-        _links:
-          $ref: '#/components/schemas/arsAnalysisLinks'
-      required:
-      - id
-      - name
-      - dataset
-      - variable
-      - method
-    arsDataGroupRef:
-      type: object
-      description: Analysis Results Standard Data Group Reference
+      description: Analysis Results Standard Analysis Method Operation Reference
       properties:
         href:
           type: string
-          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/analyses/An07.09_Soc_ByTrt/datagroupings/AnlsGrouping_09_Visit/datagroups/AnlsGrouping_09_Visit_01
+          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/methods/Mth01_CatVar_ByGrp/operations/Mth01_CatVar_ByGrp_1_n
         title:
           type: string
-          example: Baseline
+          example: Count of subjects
         type:
           type: string
-          example: Analysis Results Standards Data Group
+          example: Analysis Results Standards Analysis Method Operation
+    arsOperation:
+      type: object
+      description: Analysis Results Standard Analysis Method Operation
+      properties:
+        id:
+          type: string
+          example: Mth01_CatVar_ByGrp_2_pct
+        name:
+          type: string
+          example: Percent of subjects
+        label:
+          type: string
+          example: '%'
+        referencedOperationRelationships:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsReferencedOperationRelationshipRef'
+        resultPattern:
+          type: string
+          example: ( XX.X)
+        _links:
+          $ref: '#/components/schemas/arsOperationLinks'
+    arsReferencedOperationRelationship:
+      type: object
+      description: Analysis Results Standard Referenced Operation Relationship
+      properties:
+        id:
+          type: string
+          example: Mth01_CatVar_ByGrp_2_pct_NUM
+        referencedOperationRole:
+          type: string
+          enum:
+          - NUMERATOR
+          - DEMONIATOR
+        operation:
+          $ref: '#/components/schemas/arsOperationRef'
+        analysis:
+          $ref: '#/components/schemas/arsAnalysisRef'
+        description:
+          type: string
+          example: The count operation whose result provides the numerator for calculation of the percentage. The referenced analysis should be the analysis that contains this percent operation.
+        _links:
+          $ref: '#/components/schemas/arsReferencedOperationRelationshipLinks'
+      required:
+      - id
+      - referencedOperationRole
+      - operation
+    arsOutputRef:
+      type: object
+      description: Analysis Results Standard Reference
+      properties:
+        href:
+          type: string
+          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/outputs/Out14.1.1
+        title:
+          type: string
+          example: Summary of Demographics
+        type:
+          type: string
+          example: Analysis Results Standards Output
+    arsNestedList:
+      type: object
+      properties:
+        listItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsOrderedListItem'
+    arsReportingEvents:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Analysis Results Standards 2023-10-26
+        label:
+          type: string
+          example: Analysis Results Standard Package Effective 2023-10-26
+        effectiveDate:
+          type: string
+          example: '2023-10-26'
+        version:
+          type: string
+          example: '2023-10-26'
+        _links:
+          $ref: '#/components/schemas/arsReportingEventsLinks'
+    arsOutputLinks:
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/arsOutputRef'
+        parentReportingEvent:
+          $ref: '#/components/schemas/arsReportingEventRef'
+    arsOperationResult:
+      type: object
+      description: Analysis Results Standard Operation Result
+      properties:
+        operation:
+          $ref: '#/components/schemas/arsOperationRef'
+        resultGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsResultGroup'
+        rawValue:
+          type: string
+          example: 16.2790697674419
+        formattedValue:
+          type: string
+          example: ( 16.3)
+    arsOperationLinks:
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/arsOperationRef'
+        parentMethod:
+          $ref: '#/components/schemas/arsAnalysisMethodRef'
+        parentReportingEvent:
+          $ref: '#/components/schemas/arsReportingEventRef'
     arsReportingEvent:
       type: object
       properties:
@@ -1085,44 +949,28 @@ components:
       - id
       - name
       - listOfPlannedAnalyses
-    defaultErrorResponse:
-      properties:
-        statusCode:
-          description: HTTP Status Code
-          type: string
-        detail:
-          description: Detail
-          type: string
-        message:
-          description: Message
-          type: string
-    arsReportingEventRef:
-      type: object
-      description: Analysis Results Standard Reporting Event Reference
-      properties:
-        href:
-          type: string
-          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1
-        title:
-          type: string
-          example: Common Safety Displays Version 1
-        type:
-          type: string
-          example: Analysis Results Standard Example Reporting Event
-    arsAnalysisGroupLinks:
+    arsDataGroupingFactorLinks:
       type: object
       properties:
         self:
-          $ref: '#/components/schemas/arsAnalysisGroupRef'
-        parentAnalysisGroupingFactor:
+          $ref: '#/components/schemas/arsDataGroupingFactorRef'
+        parentAnalysis:
           $ref: '#/components/schemas/arsAnalysisRef'
         parentReportingEvent:
           $ref: '#/components/schemas/arsReportingEventRef'
-    arsPackages:
+    arsAnalysisCategorizationRef:
       type: object
+      description: Analysis Results Standard Categorization Reference
       properties:
-        _links:
-          $ref: '#/components/schemas/arsPackagesLinks'
+        href:
+          type: string
+          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/categorizations/AnCat1_Group
+        title:
+          type: string
+          example: Group of Analyses
+        type:
+          type: string
+          example: Analysis Results Standards Categorization
     arsSubjectGroupingFactor:
       type: object
       description: Analysis Results Standard Subject Grouping Factor
@@ -1145,6 +993,394 @@ components:
             $ref: '#/components/schemas/arsAnalysisGroupRef'
         _links:
           $ref: '#/components/schemas/arsSubjectGroupingFactorLinks'
+    arsAnalysisMethod:
+      type: object
+      description: Analysis Results Standard Analysis Method
+      properties:
+        id:
+          type: string
+          example: Mth01_CatVar_ByGrp
+        name:
+          type: string
+          example: Summary by group of a categorical variable
+        label:
+          type: string
+          example: Grouped summary of categorical variable
+        description:
+          type: string
+          example: Descriptive summary statistics across groups for a categorical variable, based on subject occurrence
+        operations:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsOperationRef'
+        _links:
+          $ref: '#/components/schemas/arsAnalysisMethodLinks'
+    arsCondition:
+      type: object
+      description: Analysis Results Standard Condition
+      properties:
+        dataset:
+          type: string
+        variable:
+          type: string
+        comparator:
+          type: string
+          enum:
+          - EQ
+          - NE
+          - GT
+          - GE
+          - LT
+          - LE
+          - IN
+          - NOTIN
+        value:
+          type: array
+          items:
+            type: string
+    arsAnalysis:
+      type: object
+      description: Analysis Results Standard Analysis
+      properties:
+        id:
+          type: string
+          example: An03.02_AgeGrp_ByTrt
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsAnalysisCategoryRef'
+        analsysisSet:
+          $ref: '#/components/schemas/arsAnalysisSetRef'
+        orderedGroupings:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsOrderedGrouping'
+        dataSubset:
+          $ref: '#/components/schemas/arsDataSubsetRef'
+        dataset:
+          type: string
+          example: ADSL
+        variable:
+          type: string
+          example: USUBJID
+        method:
+          $ref: '#/components/schemas/arsAnalysisMethodRef'
+        referenceAnalysisOperations:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsReferencedAnalysisOperation'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsOperationResult'
+        _links:
+          $ref: '#/components/schemas/arsAnalysisLinks'
+      required:
+      - id
+      - name
+      - dataset
+      - variable
+      - method
+    arsDataGroupingFactorRef:
+      type: object
+      description: Analysis Results Standard Data Grouping Factor Reference
+      properties:
+        href:
+          type: string
+          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/analyses/An07.09_Soc_ByTrt/datagroupings/AnlsGrouping_06_Soc
+        title:
+          type: string
+          example: Treatment
+        type:
+          type: string
+          example: Analysis Results Standards Data Grouping Factor
+    defaultErrorResponse:
+      properties:
+        statusCode:
+          description: HTTP Status Code
+          type: string
+        detail:
+          description: Detail
+          type: string
+        message:
+          description: Message
+          type: string
+    arsDataSubsetRef:
+      type: object
+      description: Analysis Results Standard Data Subset Reference
+      properties:
+        href:
+          type: string
+          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/datasubsets/Dss01_TEAE
+        title:
+          type: string
+          example: Treatment-Emergent Adverse Events
+        type:
+          type: string
+          example: Analysis Results Standards Data Subset
+    arsAnalysisGroup:
+      allOf:
+      - type: object
+        description: Analysis Results Standard Analysis Group
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+        required:
+        - id
+        - name
+      - $ref: '#/components/schemas/arsWhereClause'
+      - type: object
+        properties:
+          _links:
+            $ref: '#/components/schemas/arsAnalysisGroupLinks'
+    arsListOfPlannedAnalyses:
+      allOf:
+      - type: object
+        description: Analysis Results Standard List of Planned Analyses
+      - $ref: '#/components/schemas/arsNestedList'
+    arsReferencedOperationRelationshipRef:
+      type: object
+      description: Analysis Results Standard Referenced Operation Relationship Reference
+      properties:
+        href:
+          type: string
+          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/methods/Mth01_CatVar_ByGrp/operations/Mth01_CatVar_ByGrp_1_n/refoprels/Mth01_CatVar_ByGrp_2_pct_NUM
+        title:
+          type: string
+          example: Percent of subjects Numerator
+        type:
+          type: string
+          example: Analysis Results Standards Referenced Operation Relationship
+    arsOrderedGrouping:
+      type: object
+      description: Analysis Results Standard Ordered Grouping
+      properties:
+        order:
+          type: integer
+          example: 1
+        grouping:
+          anyOf:
+          - $ref: '#/components/schemas/arsSubjectGroupingFactorRef'
+          - $ref: '#/components/schemas/arsDataGroupingFactorRef'
+        dataGrouping:
+          $ref: '#/components/schemas/arsDataGroupingFactor'
+    arsAnalysisCategorization:
+      type: object
+      description: Analysis Results Standard Categorization
+      properties:
+        id:
+          type: string
+          example: AnCat1_Group
+        label:
+          type: string
+          example: Group of Analyses
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsAnalysisCategoryRef'
+        _links:
+          $ref: '#/components/schemas/arsAnalysisCategorizationLinks'
+      required:
+      - id
+      - label
+    arsFile:
+      type: object
+      properties:
+        fileType:
+          type: string
+          enum:
+          - pdf
+          - rtf
+          - txt
+        location:
+          type: string
+        style:
+          type: string
+    arsPackagesRef:
+      type: object
+      properties:
+        href:
+          type: string
+          example: /mdr/ars/packages
+        title:
+          type: string
+          example: Product Group Analysis Results Standards
+        type:
+          type: string
+          example: Analysis Results Standard Package List
+    arsDataSubsetLinks:
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/arsDataSubsetRef'
+        parentReportingEvent:
+          $ref: '#/components/schemas/arsReportingEventRef'
+    arsWhereClause:
+      type: object
+      description: Analysis Results Standard Where Clause
+      properties:
+        level:
+          type: integer
+        order:
+          type: integer
+        condition:
+          $ref: '#/components/schemas/arsCondition'
+        compoundExpression:
+          $ref: '#/components/schemas/arsCompoundExpression'
+    arsDisplayRef:
+      type: object
+      description: Analysis Results Standard Display Reference
+      properties:
+        href:
+          type: string
+          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/outputs/Out14.1.1/displays/Disp14.1.1
+        title:
+          type: string
+          example: Summary of Demographics
+        type:
+          type: string
+          example: Analysis Results Standard Display
+    arsReferencedOperationRelationshipLinks:
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/arsReferencedOperationRelationshipRef'
+        parentOperation:
+          $ref: '#/components/schemas/arsOperationRef'
+        parentMethod:
+          $ref: '#/components/schemas/arsAnalysisMethodRef'
+        parentReportingEvent:
+          $ref: '#/components/schemas/arsReportingEventRef'
+    arsAnalysisGroupLinks:
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/arsAnalysisGroupRef'
+        parentAnalysisGroupingFactor:
+          $ref: '#/components/schemas/arsAnalysisRef'
+        parentReportingEvent:
+          $ref: '#/components/schemas/arsReportingEventRef'
+    arsOrderedListItem:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Summary of Demographics
+        level:
+          type: integer
+          example: 1
+        order:
+          type: integer
+          example: 1
+        sublist:
+          $ref: '#/components/schemas/arsNestedList'
+        analysis:
+          $ref: '#/components/schemas/arsAnalysisRef'
+        output:
+          $ref: '#/components/schemas/arsOutputRef'
+      required:
+      - name
+      - level
+      - order
+    arsAnalysisSetLinks:
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/arsAnalysisSetRef'
+        parentReportingEvent:
+          $ref: '#/components/schemas/arsReportingEventRef'
+    arsAnalysisCategory:
+      type: object
+      properties:
+        id:
+          type: string
+          example: AnCat1_Group_Safety
+        label:
+          type: string
+          example: Safety Analyses
+        subCategorizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsAnalysisCategorizationRef'
+        _links:
+          $ref: '#/components/schemas/arsAnalysisCategoryLinks'
+      required:
+      - id
+      - label
+    arsAnalysisSet:
+      allOf:
+      - type: object
+        description: Analysis Results Standard Analysis Set
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+        required:
+        - id
+        - name
+      - $ref: '#/components/schemas/arsWhereClause'
+      - type: object
+        properties:
+          _links:
+            $ref: '#/components/schemas/arsAnalysisSetLinks'
+    arsResultGroup:
+      type: object
+      properties:
+        grouping:
+          anyOf:
+          - $ref: '#/components/schemas/arsSubjectGroupingFactorRef'
+          - $ref: '#/components/schemas/arsDataGroupingFactorRef'
+        group:
+          anyOf:
+          - $ref: '#/components/schemas/arsAnalysisGroupRef'
+          - $ref: '#/components/schemas/arsDataGroupRef'
+        groupValue:
+          type: string
+          example: CARDIAC DISORDERS
+    arsDataGroup:
+      allOf:
+      - type: object
+        description: Analysis Results Standard Analysis Group
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+        required:
+        - id
+        - name
+      - $ref: '#/components/schemas/arsWhereClause'
+      - type: object
+        properties:
+          _links:
+            $ref: '#/components/schemas/arsDataGroupLinks'
+    arsReferencedAnalysisOperation:
+      type: object
+      description: Analysis Results Standard Referenced Analysis Operation
+      properties:
+        referencedOperationRelationship:
+          $ref: '#/components/schemas/arsReferencedOperationRelationshipRef'
+        analysis:
+          $ref: '#/components/schemas/arsAnalysisRef'
+      required:
+      - referencedOperationRelationship
+      - analysis
+    arsAnalysisGroupRef:
+      type: object
+      description: Analysis Results Standard Analysis Group Reference
+      properties:
+        href:
+          type: string
+          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/analysisgroupings/AnlsGrouping_02_Trt/analysisgroups/AnlsGrouping_02_Trt_1
+        title:
+          type: string
+          example: Placebo
+        type:
+          type: string
+          example: Analysis Results Standards Analysis Group
     arsDisplay:
       type: object
       description: Analysis Results Standard Display
@@ -1164,47 +1400,45 @@ components:
             $ref: '#/components/schemas/arsDisplaySection'
         _links:
           $ref: '#/components/schemas/arsDisplayLinks'
-    arsDisplaySection:
+    arsAnalysisCategoryLinks:
       type: object
       properties:
-        sectionType:
-          type: string
-          enum:
-          - Title
-          - Footnote
-          - Abbreviation
-          - Legend
-          - Rowlabel Header
-        subSections:
+        self:
+          $ref: '#/components/schemas/arsAnalysisCategoryRef'
+        parentCategorization:
+          $ref: '#/components/schemas/arsAnalysisCategorizationRef'
+        parentReportingEvent:
+          $ref: '#/components/schemas/arsReportingEventRef'
+        analyses:
           type: array
           items:
-            $ref: '#/components/schemas/arsDisplaySubSection'
-    arsAnalysisCategorizationRef:
+            $ref: '#/components/schemas/arsAnalysisRef'
+        outputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsOutputRef'
+    arsDataGroupLinks:
       type: object
-      description: Analysis Results Standard Categorization Reference
+      properties:
+        self:
+          $ref: '#/components/schemas/arsDataGroupRef'
+        parentDataGroupingFactor:
+          $ref: '#/components/schemas/arsAnalysisRef'
+        parentReportingEvent:
+          $ref: '#/components/schemas/arsReportingEventRef'
+    arsReportingEventRef:
+      type: object
+      description: Analysis Results Standard Reporting Event Reference
       properties:
         href:
           type: string
-          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/categorizations/AnCat1_Group
+          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1
         title:
           type: string
-          example: Group of Analyses
+          example: Common Safety Displays Version 1
         type:
           type: string
-          example: Analysis Results Standards Categorization
-    arsSubjectGroupingFactorRef:
-      type: object
-      description: Analysis Results Standard Subject Grouping Factor Reference
-      properties:
-        href:
-          type: string
-          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/analysisgroupings/AnlsGrouping_02_Trt
-        title:
-          type: string
-          example: Treatment
-        type:
-          type: string
-          example: Analysis Results Standards Analysis Grouping
+          example: Analysis Results Standard Example Reporting Event
     arsReportingEventsRef:
       type: object
       description: Analysis Results Standards Reference
@@ -1218,13 +1452,47 @@ components:
         type:
           type: string
           example: Analysis Results Standard List
-    arsAnalysisMethodLinks:
+    arsOutput:
+      type: object
+      description: Analysis Results Standard Output
+      properties:
+        id:
+          type: string
+          example: Out14.1.1
+        version:
+          type: integer
+          example: 1
+        fileSpecifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsFile'
+        outputDisplays:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsOutputDisplay'
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsAnalysisCategoryRef'
+        _links:
+          $ref: '#/components/schemas/arsOutputLinks'
+    arsPackagesLinks:
       type: object
       properties:
         self:
-          $ref: '#/components/schemas/arsAnalysisMethodRef'
-        parentReportingEvent:
-          $ref: '#/components/schemas/arsReportingEventRef'
+          $ref: '#/components/schemas/arsPackagesRef'
+        packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsPackageRef'
+    arsOutputDisplay:
+      type: object
+      properties:
+        order:
+          type: integer
+          example: 1
+        display:
+          $ref: '#/components/schemas/arsDisplayRef'
     arsAnalysisSetRef:
       type: object
       description: Analysis Results Standard Analysis Set Reference
@@ -1251,283 +1519,63 @@ components:
         type:
           type: string
           example: Analysis Results Standards Category
-    arsAnalysisSetLinks:
+    arsPackages:
       type: object
       properties:
-        self:
-          $ref: '#/components/schemas/arsAnalysisSetRef'
-        parentReportingEvent:
-          $ref: '#/components/schemas/arsReportingEventRef'
-    arsReferencedAnalysisOperation:
-      type: object
-      description: Analysis Results Standard Referenced Analysis Operation
-      properties:
-        referencedOperationRelationship:
-          $ref: '#/components/schemas/arsReferencedOperationRelationshipRef'
-        analysis:
-          $ref: '#/components/schemas/arsAnalysisRef'
-      required:
-      - referencedOperationRelationship
-      - analysis
-    arsAnalysisRef:
-      type: object
-      description: Analysis Results Standard Analysis Reference
-      properties:
-        href:
-          type: string
-          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/analyses/An01.05_SAF_ByTrt
-        title:
-          type: string
-          example: Summary of Subjects by Treatment
-        type:
-          type: string
-          example: Analysis Results Standards Analysis
-    arsAnalysisLinks:
-      type: object
-      properties:
-        self:
-          $ref: '#/components/schemas/arsAnalysisRef'
-        parentReportingEvent:
-          $ref: '#/components/schemas/arsReportingEventRef'
-    arsDataGroupingFactor:
-      type: object
-      description: Analysis Results Standard Data Grouping Factor
-      properties:
-        id:
-          type: string
-          example: AnlsGrouping_06_Soc
-        label:
-          type: string
-          example: System Organ Class
-        groupingVariable:
-          type: string
-          example: AESOC
-        dataDriven:
-          type: boolean
-          example: true
-        groupings:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsDataGroupRef'
-          example: null
         _links:
-          $ref: '#/components/schemas/arsDataGroupingFactorLinks'
-    arsSubjectGroupingFactorLinks:
-      type: object
-      properties:
-        self:
-          $ref: '#/components/schemas/arsSubjectGroupingFactorRef'
-        parentReportingEvent:
-          $ref: '#/components/schemas/arsReportingEventRef'
-    arsDataGroup:
+          $ref: '#/components/schemas/arsPackagesLinks'
+    arsListOfPlannedOutputs:
       allOf:
       - type: object
-        description: Analysis Results Standard Analysis Group
-        properties:
-          id:
-            type: string
-          name:
-            type: string
-        required:
-        - id
-        - name
-      - $ref: '#/components/schemas/arsWhereClause'
-      - type: object
-        properties:
-          _links:
-            $ref: '#/components/schemas/arsDataGroupLinks'
-    arsReferencedOperationRelationshipLinks:
+        description: Analysis Results Standard List of Planned Outputs
+      - $ref: '#/components/schemas/arsNestedList'
+    arsAnalysisMethodLinks:
       type: object
       properties:
         self:
-          $ref: '#/components/schemas/arsReferencedOperationRelationshipRef'
-        parentOperation:
-          $ref: '#/components/schemas/arsOperationRef'
-        parentMethod:
           $ref: '#/components/schemas/arsAnalysisMethodRef'
         parentReportingEvent:
           $ref: '#/components/schemas/arsReportingEventRef'
-    arsOrderedGrouping:
+    arsDataGroupRef:
       type: object
-      description: Analysis Results Standard Ordered Grouping
-      properties:
-        order:
-          type: integer
-          example: 1
-        grouping:
-          anyOf:
-          - $ref: '#/components/schemas/arsSubjectGroupingFactorRef'
-          - $ref: '#/components/schemas/arsDataGroupingFactorRef'
-        dataGrouping:
-          $ref: '#/components/schemas/arsDataGroupingFactor'
-    arsResultGroup:
-      type: object
-      properties:
-        grouping:
-          anyOf:
-          - $ref: '#/components/schemas/arsSubjectGroupingFactorRef'
-          - $ref: '#/components/schemas/arsDataGroupingFactorRef'
-        group:
-          anyOf:
-          - $ref: '#/components/schemas/arsAnalysisGroupRef'
-          - $ref: '#/components/schemas/arsDataGroupRef'
-        groupValue:
-          type: string
-          example: CARDIAC DISORDERS
-    arsPackagesRef:
-      type: object
+      description: Analysis Results Standard Data Group Reference
       properties:
         href:
           type: string
-          example: /mdr/ars/packages
+          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/analyses/An07.09_Soc_ByTrt/datagroupings/AnlsGrouping_09_Visit/datagroups/AnlsGrouping_09_Visit_01
         title:
           type: string
-          example: Product Group Analysis Results Standards
+          example: Baseline
         type:
           type: string
-          example: Analysis Results Standard Package List
-    arsDataGroupingFactorRef:
+          example: Analysis Results Standards Data Group
+    arsSubjectGroupingFactorRef:
       type: object
-      description: Analysis Results Standard Data Grouping Factor Reference
+      description: Analysis Results Standard Subject Grouping Factor Reference
       properties:
         href:
           type: string
-          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/analyses/An07.09_Soc_ByTrt/datagroupings/AnlsGrouping_06_Soc
+          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/analysisgroupings/AnlsGrouping_02_Trt
         title:
           type: string
           example: Treatment
         type:
           type: string
-          example: Analysis Results Standards Data Grouping Factor
-    arsAnalysisGroupRef:
+          example: Analysis Results Standards Analysis Grouping
+    arsCompoundExpression:
       type: object
-      description: Analysis Results Standard Analysis Group Reference
+      description: Analysis Results Standard Compound Expression
       properties:
-        href:
-          type: string
-          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/analysisgroupings/AnlsGrouping_02_Trt/analysisgroups/AnlsGrouping_02_Trt_1
-        title:
-          type: string
-          example: Placebo
-        type:
-          type: string
-          example: Analysis Results Standards Analysis Group
-    arsListOfPlannedAnalyses:
-      allOf:
-      - type: object
-        description: Analysis Results Standard List of Planned Analyses
-      - $ref: '#/components/schemas/arsNestedList'
-    arsDisplayRef:
-      type: object
-      description: Analysis Results Standard Display Reference
-      properties:
-        href:
-          type: string
-          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/outputs/Out14.1.1/displays/Disp14.1.1
-        title:
-          type: string
-          example: Summary of Demographics
-        type:
-          type: string
-          example: Analysis Results Standard Display
-    arsAnalysisMethod:
-      type: object
-      description: Analysis Results Standard Analysis Method
-      properties:
-        id:
-          type: string
-          example: Mth01_CatVar_ByGrp
-        name:
-          type: string
-          example: Summary by group of a categorical variable
-        label:
-          type: string
-          example: Grouped summary of categorical variable
-        description:
-          type: string
-          example: Descriptive summary statistics across groups for a categorical variable, based on subject occurrence
-        operations:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsOperationRef'
-        _links:
-          $ref: '#/components/schemas/arsAnalysisMethodLinks'
-    arsReportingEventLinks:
-      type: object
-      properties:
-        self:
-          $ref: '#/components/schemas/arsReportingEventRef'
-        parentPackage:
-          $ref: '#/components/schemas/arsPackageRef'
-    arsAnalysisMethodRef:
-      type: object
-      description: Analysis Results Standard Analysis Method Reference
-      properties:
-        href:
-          type: string
-          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/methods/Mth01_CatVar_ByGrp
-        title:
-          type: string
-          example: Summary by group of a categorical variable
-        type:
-          type: string
-          example: Analysis Results Standards Analysis Method
-    arsOrderedListItem:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Summary of Demographics
-        level:
-          type: integer
-          example: 1
-        order:
-          type: integer
-          example: 1
-        sublist:
-          $ref: '#/components/schemas/arsNestedList'
-        analysis:
-          $ref: '#/components/schemas/arsAnalysisRef'
-        output:
-          $ref: '#/components/schemas/arsOutputRef'
-      required:
-      - name
-      - level
-      - order
-    arsDataGroupLinks:
-      type: object
-      properties:
-        self:
-          $ref: '#/components/schemas/arsDataGroupRef'
-        parentDataGroupingFactor:
-          $ref: '#/components/schemas/arsAnalysisRef'
-        parentReportingEvent:
-          $ref: '#/components/schemas/arsReportingEventRef'
-    arsReferencedOperationRelationship:
-      type: object
-      description: Analysis Results Standard Referenced Operation Relationship
-      properties:
-        id:
-          type: string
-          example: Mth01_CatVar_ByGrp_2_pct_NUM
-        referencedOperationRole:
+        logicalOperator:
           type: string
           enum:
-          - NUMERATOR
-          - DEMONIATOR
-        operation:
-          $ref: '#/components/schemas/arsOperationRef'
-        analysis:
-          $ref: '#/components/schemas/arsAnalysisRef'
-        description:
-          type: string
-          example: The count operation whose result provides the numerator for calculation of the percentage. The referenced analysis should be the analysis that contains this percent operation.
-        _links:
-          $ref: '#/components/schemas/arsReferencedOperationRelationshipLinks'
-      required:
-      - id
-      - referencedOperationRole
-      - operation
+          - AND
+          - OR
+          - NOT
+        whereClauses:
+          type: array
+          items:
+            $ref: '#/components/schemas/arsWhereClause'
     arsDisplaySubSection:
       type: object
       description: Analysis Results Standard Display Subsection
@@ -1541,144 +1589,61 @@ components:
         text:
           type: string
           example: Table 14.1.1
-    arsPackagesLinks:
+    arsDisplayLinks:
       type: object
       properties:
         self:
-          $ref: '#/components/schemas/arsPackagesRef'
-        packages:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsPackageRef'
-    arsOperationRef:
+          $ref: '#/components/schemas/arsDisplayRef'
+        parentOutput:
+          $ref: '#/components/schemas/arsOutputRef'
+        parentReportingEvent:
+          $ref: '#/components/schemas/arsReportingEventRef'
+    arsAnalysisRef:
       type: object
-      description: Analysis Results Standard Analysis Method Operation Reference
+      description: Analysis Results Standard Analysis Reference
       properties:
         href:
           type: string
-          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/methods/Mth01_CatVar_ByGrp/operations/Mth01_CatVar_ByGrp_1_n
+          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/analyses/An01.05_SAF_ByTrt
         title:
           type: string
-          example: Count of subjects
+          example: Summary of Subjects by Treatment
         type:
           type: string
-          example: Analysis Results Standards Analysis Method Operation
-    arsOperation:
-      type: object
-      description: Analysis Results Standard Analysis Method Operation
-      properties:
-        id:
-          type: string
-          example: Mth01_CatVar_ByGrp_2_pct
-        name:
-          type: string
-          example: Percent of subjects
-        label:
-          type: string
-          example: '%'
-        referencedOperationRelationships:
-          type: array
-          items:
-            $ref: '#/components/schemas/arsReferencedOperationRelationshipRef'
-        resultPattern:
-          type: string
-          example: ( XX.X)
-        _links:
-          $ref: '#/components/schemas/arsOperationLinks'
-    arsOutputRef:
-      type: object
-      description: Analysis Results Standard Reference
-      properties:
-        href:
-          type: string
-          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/outputs/Out14.1.1
-        title:
-          type: string
-          example: Summary of Demographics
-        type:
-          type: string
-          example: Analysis Results Standards Output
-    arsDataSubsetRef:
-      type: object
-      description: Analysis Results Standard Data Subset Reference
-      properties:
-        href:
-          type: string
-          example: /mdr/ars/packages/2023-10-26/reportingevents/ARS-CSD-v1/datasubsets/Dss01_TEAE
-        title:
-          type: string
-          example: Treatment-Emergent Adverse Events
-        type:
-          type: string
-          example: Analysis Results Standards Data Subset
-  responses:
-    statusBadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/defaultErrorResponse'
-    statusInternalError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/defaultErrorResponse'
-    statusNotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/defaultErrorResponse'
-    statusUnauthorized:
-      description: Unauthorized
-      headers:
-        WWW_Authenticate:
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/defaultErrorResponse'
-    statusNotAcceptable:
-      description: Not Acceptable
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/defaultErrorResponse'
-    statusForbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/defaultErrorResponse'
-    statusServiceUnavailable:
-      description: Service Unavailable
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/defaultErrorResponse'
-    statusGatewayTimeout:
-      description: Gateway Timeout Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/defaultErrorResponse'
-    statusNotAllowed:
-      description: Method Not Allowed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/defaultErrorResponse'
+          example: Analysis Results Standards Analysis
   parameters:
-    arsSubjectGroupingFactor:
+    arsDataGrouping:
       in: path
-      name: analysisgrouping
+      name: datagrouping
       required: true
-      description: Analysis Grouping Identifier
+      description: Data Grouping Identifier
       schema:
         type: string
-        example: AnlsGrouping_02_Trt
+        example: AnlsGrouping_06_Soc
+    arsPackage:
+      in: path
+      name: package
+      required: true
+      description: Analysis Results Standard Package Identifier
+      schema:
+        type: string
+        example: 2023-10-26
+    arsAnalysisGroup:
+      in: path
+      name: analysisgroup
+      required: true
+      description: Analysis Group Identifier
+      schema:
+        type: string
+        example: AnlsGrouping_02_Trt_1
+    arsAnalysisSet:
+      in: path
+      name: analysisset
+      required: true
+      description: Analysis Set Identifier
+      schema:
+        type: string
+        example: AnalysisSet_01_ITT
     arsOutput:
       in: path
       name: output
@@ -1695,46 +1660,6 @@ components:
       schema:
         type: string
         example: Mth01_CatVar_ByGrp_2_pct_NUM
-    arsReportingEvent:
-      in: path
-      name: reportingevent
-      required: true
-      description: Reporting Event Identifier
-      schema:
-        type: string
-        example: ARS-CSD-v1
-    arsPackage:
-      in: path
-      name: package
-      required: true
-      description: Analysis Results Standard Package Identifier
-      schema:
-        type: string
-        example: 2023-10-26
-    arsAnalysisMethod:
-      in: path
-      name: method
-      required: true
-      description: Analysis Method Identifier
-      schema:
-        type: string
-        example: Mth01_CatVar_ByGrp
-    arsAnalysisGroup:
-      in: path
-      name: analysisgroup
-      required: true
-      description: Analysis Group Identifier
-      schema:
-        type: string
-        example: AnlsGrouping_02_Trt_1
-    arsDisplay:
-      in: path
-      name: display
-      required: true
-      description: Display Identifier
-      schema:
-        type: string
-        example: Out14.1.1
     arsOperation:
       in: path
       name: operation
@@ -1743,14 +1668,14 @@ components:
       schema:
         type: string
         example: Mth01_CatVar_ByGrp_1_n
-    arsAnalysisCategorization:
+    arsSubjectGroupingFactor:
       in: path
-      name: categorization
+      name: analysisgrouping
       required: true
-      description: Categorization Identifier
+      description: Analysis Grouping Identifier
       schema:
         type: string
-        example: AnCat1_Group
+        example: AnlsGrouping_02_Trt
     arsAnalysis:
       in: path
       name: analysis
@@ -1759,21 +1684,22 @@ components:
       schema:
         type: string
         example: An01.05_SAF_ByTrt
-    arsIncludeResults:
-      in: query
-      name: includeresults
-      description: Include Analysis Results
-      schema:
-        type: boolean
-        example: false
-    arsDataGrouping:
+    arsDisplay:
       in: path
-      name: datagrouping
+      name: display
       required: true
-      description: Data Grouping Identifier
+      description: Display Identifier
       schema:
         type: string
-        example: AnlsGrouping_06_Soc
+        example: Out14.1.1
+    arsAnalysisMethod:
+      in: path
+      name: method
+      required: true
+      description: Analysis Method Identifier
+      schema:
+        type: string
+        example: Mth01_CatVar_ByGrp
     arsAnalysisCategory:
       in: path
       name: category
@@ -1782,6 +1708,13 @@ components:
       schema:
         type: string
         example: AnCat1_Group_Safety
+    arsIncludeResults:
+      in: query
+      name: includeresults
+      description: Include Analysis Results
+      schema:
+        type: boolean
+        example: false
     arsDataSubset:
       in: path
       name: datasubset
@@ -1790,14 +1723,22 @@ components:
       schema:
         type: string
         example: Dss01_TEAE
-    arsAnalysisSet:
+    arsReportingEvent:
       in: path
-      name: analysisset
+      name: reportingevent
       required: true
-      description: Analysis Set Identifier
+      description: Reporting Event Identifier
       schema:
         type: string
-        example: AnalysisSet_01_ITT
+        example: ARS-CSD-v1
+    arsAnalysisCategorization:
+      in: path
+      name: categorization
+      required: true
+      description: Categorization Identifier
+      schema:
+        type: string
+        example: AnCat1_Group
     arsDataGroup:
       in: path
       name: datagroup
@@ -1806,6 +1747,65 @@ components:
       schema:
         type: string
         example: AnlsGrouping_09_Visit_01
+  responses:
+    statusGatewayTimeout:
+      description: Gateway Timeout Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/defaultErrorResponse'
+    statusNotAllowed:
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/defaultErrorResponse'
+    statusInternalError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/defaultErrorResponse'
+    statusForbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/defaultErrorResponse'
+    statusNotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/defaultErrorResponse'
+    statusNotAcceptable:
+      description: Not Acceptable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/defaultErrorResponse'
+    statusServiceUnavailable:
+      description: Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/defaultErrorResponse'
+    statusUnauthorized:
+      description: Unauthorized
+      headers:
+        WWW_Authenticate:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/defaultErrorResponse'
+    statusBadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/defaultErrorResponse'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

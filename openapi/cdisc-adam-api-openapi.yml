@@ -57,27 +57,6 @@ paths:
                 $ref: '#/components/schemas/Standard'
 components:
   schemas:
-    VersionList:
-      type: object
-      properties:
-        _links:
-          type: object
-        _embedded:
-          type: object
-          properties:
-            versions:
-              type: array
-              items:
-                type: object
-                properties:
-                  version:
-                    type: string
-                  href:
-                    type: string
-                    format: uri
-                  effectiveDate:
-                    type: string
-                    format: date
     Standard:
       type: object
       properties:
@@ -100,6 +79,27 @@ components:
           - Draft
         _links:
           type: object
+    VersionList:
+      type: object
+      properties:
+        _links:
+          type: object
+        _embedded:
+          type: object
+          properties:
+            versions:
+              type: array
+              items:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  href:
+                    type: string
+                    format: uri
+                  effectiveDate:
+                    type: string
+                    format: date
   securitySchemes:
     apiKey:
       type: apiKey

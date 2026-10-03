@@ -136,36 +136,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    DatasetList:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            datasets:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: AE
-                  label:
-                    type: string
-                    example: Adverse Events
-                  href:
-                    type: string
-                    format: uri
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        statusCode:
-          type: integer
-        timestamp:
-          type: string
-          format: date-time
     Standard:
       type: object
       properties:
@@ -188,64 +158,6 @@ components:
           - Draft
         _links:
           type: object
-    ClassList:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            classes:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Events
-                  label:
-                    type: string
-                  href:
-                    type: string
-                    format: uri
-    Dataset:
-      type: object
-      properties:
-        name:
-          type: string
-          example: AE
-        label:
-          type: string
-          example: Adverse Events
-        description:
-          type: string
-        datasetClass:
-          type: string
-          example: Events
-        variables:
-          type: array
-          items:
-            $ref: '#/components/schemas/Variable'
-    VersionList:
-      type: object
-      properties:
-        _links:
-          type: object
-        _embedded:
-          type: object
-          properties:
-            versions:
-              type: array
-              items:
-                type: object
-                properties:
-                  version:
-                    type: string
-                  href:
-                    type: string
-                    format: uri
-                  effectiveDate:
-                    type: string
-                    format: date
     Variable:
       type: object
       properties:
@@ -288,15 +200,103 @@ components:
           - Expected
           - Permissible
           - Conditionally Required
+    DatasetList:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            datasets:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: AE
+                  label:
+                    type: string
+                    example: Adverse Events
+                  href:
+                    type: string
+                    format: uri
+    Dataset:
+      type: object
+      properties:
+        name:
+          type: string
+          example: AE
+        label:
+          type: string
+          example: Adverse Events
+        description:
+          type: string
+        datasetClass:
+          type: string
+          example: Events
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/Variable'
+    ClassList:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            classes:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Events
+                  label:
+                    type: string
+                  href:
+                    type: string
+                    format: uri
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        statusCode:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+    VersionList:
+      type: object
+      properties:
+        _links:
+          type: object
+        _embedded:
+          type: object
+          properties:
+            versions:
+              type: array
+              items:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  href:
+                    type: string
+                    format: uri
+                  effectiveDate:
+                    type: string
+                    format: date
   responses:
-    NotFound:
-      description: Requested resource not found
+    Unauthorized:
+      description: Missing or invalid API key
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key
+    NotFound:
+      description: Requested resource not found
       content:
         application/json:
           schema:

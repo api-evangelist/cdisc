@@ -47,16 +47,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        statusCode:
-          type: integer
-        timestamp:
-          type: string
-          format: date-time
     ProductCatalog:
       type: object
       properties:
@@ -86,15 +76,25 @@ components:
         type:
           type: string
           example: Foundational
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        statusCode:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
   responses:
-    Forbidden:
-      description: API key does not have access to the requested resource
+    Unauthorized:
+      description: Missing or invalid API key
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key
+    Forbidden:
+      description: API key does not have access to the requested resource
       content:
         application/json:
           schema:
