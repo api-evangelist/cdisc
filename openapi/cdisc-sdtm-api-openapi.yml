@@ -136,28 +136,47 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Standard:
+    DatasetList:
       type: object
       properties:
-        name:
-          type: string
-        label:
-          type: string
-        description:
-          type: string
-        version:
-          type: string
-        effectiveDate:
-          type: string
-          format: date
-        registrationStatus:
-          type: string
-          enum:
-          - Final
-          - Provisional
-          - Draft
+        _embedded:
+          type: object
+          properties:
+            datasets:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: AE
+                  label:
+                    type: string
+                    example: Adverse Events
+                  href:
+                    type: string
+                    format: uri
+    VersionList:
+      type: object
+      properties:
         _links:
           type: object
+        _embedded:
+          type: object
+          properties:
+            versions:
+              type: array
+              items:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  href:
+                    type: string
+                    format: uri
+                  effectiveDate:
+                    type: string
+                    format: date
     Variable:
       type: object
       properties:
@@ -200,44 +219,28 @@ components:
           - Expected
           - Permissible
           - Conditionally Required
-    DatasetList:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            datasets:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: AE
-                  label:
-                    type: string
-                    example: Adverse Events
-                  href:
-                    type: string
-                    format: uri
-    Dataset:
+    Standard:
       type: object
       properties:
         name:
           type: string
-          example: AE
         label:
           type: string
-          example: Adverse Events
         description:
           type: string
-        datasetClass:
+        version:
           type: string
-          example: Events
-        variables:
-          type: array
-          items:
-            $ref: '#/components/schemas/Variable'
+        effectiveDate:
+          type: string
+          format: date
+        registrationStatus:
+          type: string
+          enum:
+          - Final
+          - Provisional
+          - Draft
+        _links:
+          type: object
     ClassList:
       type: object
       properties:
@@ -267,27 +270,24 @@ components:
         timestamp:
           type: string
           format: date-time
-    VersionList:
+    Dataset:
       type: object
       properties:
-        _links:
-          type: object
-        _embedded:
-          type: object
-          properties:
-            versions:
-              type: array
-              items:
-                type: object
-                properties:
-                  version:
-                    type: string
-                  href:
-                    type: string
-                    format: uri
-                  effectiveDate:
-                    type: string
-                    format: date
+        name:
+          type: string
+          example: AE
+        label:
+          type: string
+          example: Adverse Events
+        description:
+          type: string
+        datasetClass:
+          type: string
+          example: Events
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/Variable'
   responses:
     Unauthorized:
       description: Missing or invalid API key

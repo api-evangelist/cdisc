@@ -77,33 +77,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    BiomedicalConceptList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/BiomedicalConceptSummary'
-        meta:
-          type: object
-          properties:
-            total:
-              type: integer
-            page:
-              type: integer
-            pageSize:
-              type: integer
-    BiomedicalConceptSummary:
-      type: object
-      properties:
-        conceptId:
-          type: string
-          example: C49488
-        name:
-          type: string
-        definition:
-          type: string
     BiomedicalConcept:
       type: object
       properties:
@@ -124,6 +105,32 @@ components:
                 type: string
               codeList:
                 type: string
+    BiomedicalConceptSummary:
+      type: object
+      properties:
+        conceptId:
+          type: string
+          example: C49488
+        name:
+          type: string
+        definition:
+          type: string
+    BiomedicalConceptList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BiomedicalConceptSummary'
+        meta:
+          type: object
+          properties:
+            total:
+              type: integer
+            page:
+              type: integer
+            pageSize:
+              type: integer
     Error:
       type: object
       properties:
@@ -134,13 +141,6 @@ components:
         timestamp:
           type: string
           format: date-time
-  responses:
-    NotFound:
-      description: Requested resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiKey:
       type: apiKey
