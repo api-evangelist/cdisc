@@ -58,23 +58,6 @@ paths:
                 $ref: '#/components/schemas/CodelistSummaryList'
 components:
   schemas:
-    CodelistSummaryList:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            codelists:
-              type: array
-              items:
-                type: object
-                properties:
-                  conceptId:
-                    type: string
-                  name:
-                    type: string
-                  href:
-                    type: string
     TerminologyPackageList:
       type: object
       properties:
@@ -91,6 +74,23 @@ components:
                   effectiveDate:
                     type: string
                     format: date
+                  href:
+                    type: string
+    CodelistSummaryList:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            codelists:
+              type: array
+              items:
+                type: object
+                properties:
+                  conceptId:
+                    type: string
+                  name:
+                    type: string
                   href:
                     type: string
   securitySchemes:

@@ -135,27 +135,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    DatasetList:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            datasets:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: AE
-                  label:
-                    type: string
-                    example: Adverse Events
-                  href:
-                    type: string
-                    format: uri
     VersionList:
       type: object
       properties:
@@ -177,6 +170,53 @@ components:
                   effectiveDate:
                     type: string
                     format: date
+    Dataset:
+      type: object
+      properties:
+        name:
+          type: string
+          example: AE
+        label:
+          type: string
+          example: Adverse Events
+        description:
+          type: string
+        datasetClass:
+          type: string
+          example: Events
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/Variable'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        statusCode:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+    ClassList:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            classes:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Events
+                  label:
+                    type: string
+                  href:
+                    type: string
+                    format: uri
     Variable:
       type: object
       properties:
@@ -241,66 +281,26 @@ components:
           - Draft
         _links:
           type: object
-    ClassList:
+    DatasetList:
       type: object
       properties:
         _embedded:
           type: object
           properties:
-            classes:
+            datasets:
               type: array
               items:
                 type: object
                 properties:
                   name:
                     type: string
-                    example: Events
+                    example: AE
                   label:
                     type: string
+                    example: Adverse Events
                   href:
                     type: string
                     format: uri
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        statusCode:
-          type: integer
-        timestamp:
-          type: string
-          format: date-time
-    Dataset:
-      type: object
-      properties:
-        name:
-          type: string
-          example: AE
-        label:
-          type: string
-          example: Adverse Events
-        description:
-          type: string
-        datasetClass:
-          type: string
-          example: Events
-        variables:
-          type: array
-          items:
-            $ref: '#/components/schemas/Variable'
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Requested resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiKey:
       type: apiKey

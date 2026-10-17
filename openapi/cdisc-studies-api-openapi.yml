@@ -993,65 +993,20 @@ paths:
       - Studies
 components:
   schemas:
-    Snapshot:
+    MetaDataRef:
       properties:
         label:
-          anyOf:
-          - type: string
-          - type: 'null'
+          type: string
           title: Label
-        snapshotID:
-          type: string
-          title: Snapshotid
-        snapshotCreationDateTime:
-          type: string
-          format: date-time
-          title: Snapshotcreationdatetime
         href:
           type: string
           title: Href
       type: object
       required:
       - label
-      - snapshotID
-      - snapshotCreationDateTime
       - href
-      title: Snapshot
+      title: MetaDataRef
       description: 'Metadata reference for a study Define-XML file '
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    SourceSystem:
-      properties:
-        name:
-          type: string
-          title: Name
-        version:
-          type: string
-          title: Version
-      type: object
-      required:
-      - name
-      - version
-      title: SourceSystem
     DefinePayload:
       properties:
         label:
@@ -1122,6 +1077,107 @@ components:
       - dataType
       title: Column
       description: 'Dataset column, or variable, metadata - one Item per column in the dataset '
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    RowData:
+      properties:
+        rows:
+          type: array
+          items:
+            type: array
+            items: {}
+          title: Rows
+      type: object
+      title: RowData
+      description: 'Dataset-JSON records to append to an existing dataset '
+    Snapshot:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        snapshotID:
+          type: string
+          title: Snapshotid
+        snapshotCreationDateTime:
+          type: string
+          format: date-time
+          title: Snapshotcreationdatetime
+        href:
+          type: string
+          title: Href
+      type: object
+      required:
+      - label
+      - snapshotID
+      - snapshotCreationDateTime
+      - href
+      title: Snapshot
+      description: 'Metadata reference for a study Define-XML file '
+    StudyDataset:
+      properties:
+        itemGroupOID:
+          type: string
+          title: Itemgroupoid
+        name:
+          type: string
+          title: Name
+        label:
+          type: string
+          title: Label
+        standard:
+          anyOf:
+          - type: string
+            enum:
+            - sdtmig
+            - sendig
+            - adamig
+            - other
+            - ''
+          - type: 'null'
+          title: Standard
+        records:
+          type: integer
+          title: Records
+        href:
+          type: string
+          title: Href
+        datasetJSONCreationDateTime:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Datasetjsoncreationdatetime
+          default: '2025-11-17T20:09:33.993457Z'
+      type: object
+      required:
+      - itemGroupOID
+      - name
+      - label
+      - records
+      - href
+      title: StudyDataset
+      description: 'Dataset metadata maintained for each dataset associated with a study '
     Studies:
       properties:
         studyOID:
@@ -1170,17 +1226,95 @@ components:
       - href
       title: Study
       description: 'Study metadata for each study with associated Dataset-JSON datasets '
-    RowData:
+    Study:
       properties:
-        rows:
-          type: array
-          items:
+        studyOID:
+          type: string
+          title: Studyoid
+        name:
+          type: string
+          title: Name
+        label:
+          type: string
+          title: Label
+        standards:
+          anyOf:
+          - items:
+              type: string
+              enum:
+              - sdtmig
+              - sendig
+              - adamig
+              - other
             type: array
-            items: {}
-          title: Rows
+          - type: 'null'
+          title: Standards
+        href:
+          type: string
+          title: Href
+        metaDataRef:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/MetaDataRef'
+            type: array
+          - type: 'null'
+          title: Metadataref
+        snapshots:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Snapshot'
+            type: array
+          - type: 'null'
+          title: Snapshots
+        studyCreationDateTime:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Studycreationdatetime
+          default: '2025-11-17T20:09:33.995555Z'
+        datasets:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/StudyDataset'
+            type: array
+          - type: 'null'
+          title: Datasets
       type: object
-      title: RowData
-      description: 'Dataset-JSON records to append to an existing dataset '
+      required:
+      - studyOID
+      - name
+      - label
+      - href
+      title: Study
+      description: 'Study metadata for each study with associated Dataset-JSON datasets '
+    OneRowData:
+      type: array
+      items: {}
+      title: NDJSON RowData
+      description: 'Dataset-NDJSON records to append to an existing dataset '
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    SourceSystem:
+      properties:
+        name:
+          type: string
+          title: Name
+        version:
+          type: string
+          title: Version
+      type: object
+      required:
+      - name
+      - version
+      title: SourceSystem
     DatasetJson:
       properties:
         datasetJSONCreationDateTime:
@@ -1270,7 +1404,7 @@ components:
       - columns
       title: DatasetJson
       description: 'Dataset-JSON dataset model, including metadata and data '
-    Study:
+    StudyRequest:
       properties:
         studyOID:
           type: string
@@ -1293,68 +1427,14 @@ components:
             type: array
           - type: 'null'
           title: Standards
-        href:
-          type: string
-          title: Href
-        metaDataRef:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/MetaDataRef'
-            type: array
-          - type: 'null'
-          title: Metadataref
-        snapshots:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Snapshot'
-            type: array
-          - type: 'null'
-          title: Snapshots
-        studyCreationDateTime:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Studycreationdatetime
-          default: '2025-11-17T20:09:33.995555Z'
-        datasets:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/StudyDataset'
-            type: array
-          - type: 'null'
-          title: Datasets
       type: object
       required:
       - studyOID
       - name
       - label
       - href
-      title: Study
-      description: 'Study metadata for each study with associated Dataset-JSON datasets '
-    MetaDataRef:
-      properties:
-        label:
-          type: string
-          title: Label
-        href:
-          type: string
-          title: Href
-      type: object
-      required:
-      - label
-      - href
-      title: MetaDataRef
-      description: 'Metadata reference for a study Define-XML file '
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+      title: StudyRequest
+      description: 'Study metadata submitted when posting a new study '
     Link:
       properties:
         name:
@@ -1452,83 +1532,3 @@ components:
       - columns
       title: DatasetJson Metadata
       description: Dataset-JSON metadata model
-    StudyRequest:
-      properties:
-        studyOID:
-          type: string
-          title: Studyoid
-        name:
-          type: string
-          title: Name
-        label:
-          type: string
-          title: Label
-        standards:
-          anyOf:
-          - items:
-              type: string
-              enum:
-              - sdtmig
-              - sendig
-              - adamig
-              - other
-            type: array
-          - type: 'null'
-          title: Standards
-      type: object
-      required:
-      - studyOID
-      - name
-      - label
-      - href
-      title: StudyRequest
-      description: 'Study metadata submitted when posting a new study '
-    StudyDataset:
-      properties:
-        itemGroupOID:
-          type: string
-          title: Itemgroupoid
-        name:
-          type: string
-          title: Name
-        label:
-          type: string
-          title: Label
-        standard:
-          anyOf:
-          - type: string
-            enum:
-            - sdtmig
-            - sendig
-            - adamig
-            - other
-            - ''
-          - type: 'null'
-          title: Standard
-        records:
-          type: integer
-          title: Records
-        href:
-          type: string
-          title: Href
-        datasetJSONCreationDateTime:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Datasetjsoncreationdatetime
-          default: '2025-11-17T20:09:33.993457Z'
-      type: object
-      required:
-      - itemGroupOID
-      - name
-      - label
-      - records
-      - href
-      title: StudyDataset
-      description: 'Dataset metadata maintained for each dataset associated with a study '
-    OneRowData:
-      type: array
-      items: {}
-      title: NDJSON RowData
-      description: 'Dataset-NDJSON records to append to an existing dataset '

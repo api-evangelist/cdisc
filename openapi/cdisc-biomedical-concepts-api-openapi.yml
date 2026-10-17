@@ -85,36 +85,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    BiomedicalConcept:
-      type: object
-      properties:
-        conceptId:
-          type: string
-        name:
-          type: string
-        definition:
-          type: string
-        dataElements:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              dataType:
-                type: string
-              codeList:
-                type: string
-    BiomedicalConceptSummary:
-      type: object
-      properties:
-        conceptId:
-          type: string
-          example: C49488
-        name:
-          type: string
-        definition:
-          type: string
     BiomedicalConceptList:
       type: object
       properties:
@@ -141,6 +111,36 @@ components:
         timestamp:
           type: string
           format: date-time
+    BiomedicalConceptSummary:
+      type: object
+      properties:
+        conceptId:
+          type: string
+          example: C49488
+        name:
+          type: string
+        definition:
+          type: string
+    BiomedicalConcept:
+      type: object
+      properties:
+        conceptId:
+          type: string
+        name:
+          type: string
+        definition:
+          type: string
+        dataElements:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              dataType:
+                type: string
+              codeList:
+                type: string
   securitySchemes:
     apiKey:
       type: apiKey
