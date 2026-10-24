@@ -1,289 +1,299 @@
 {
+  "info": {
+    "_postman_id": "79974d59-ef18-48e0-a3fa-f2742e78eae2",
+    "name": "CDISC Library Biomedical Concepts API",
+    "description": "The CDISC Library API is a REST API that delivers CDISC standards metadata to software applications that automate standards-based processes. It uses linked data to provide access to SDTM, ADaM, and other clinical data standards. Responses are available in JSON, XML, ODM, CSV, and Excel formats. Access requires a CDISC Library account and an API key obtained from the CDISC Library API Management (APIM) Developer Portal.\n\nContact Support:\n Name: CDISC Library Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:46:24.000Z",
+    "updatedAt": "2026-10-21T20:46:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-79974d59-ef18-48e0-a3fa-f2742e78eae2"
+  },
   "item": [
     {
-      "id": "b5635fd6-664c-46eb-b829-47f3f79141db",
-      "name": "Biomedical Concepts",
-      "description": {
-        "content": "CDISC Biomedical Concepts (COSMOS)",
-        "type": "text/plain"
-      },
+      "name": "cosmos",
       "item": [
         {
-          "id": "03ee737a-04a8-4e80-a57f-350c01c85750",
-          "name": "List CDISC Biomedical Concepts",
-          "request": {
-            "name": "List CDISC Biomedical Concepts",
-            "description": {
-              "content": "Returns the CDISC COSMOS Biomedical Concept catalog. Supports pagination and filtering.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "cosmos",
-                "v2",
-                "bc"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "packageDate",
-                  "value": "<date>",
-                  "description": "Filter BCs by package release date (YYYY-MM-DD)"
-                },
-                {
-                  "disabled": false,
-                  "key": "page",
-                  "value": "1"
-                },
-                {
-                  "disabled": false,
-                  "key": "pageSize",
-                  "value": "100"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "8ecac5b5-429d-4f11-9cd6-889b09588a47",
-              "name": "List of Biomedical Concepts",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "cosmos",
-                    "v2",
-                    "bc"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "bc",
+              "item": [
+                {
+                  "name": "{conceptId}",
+                  "item": [
                     {
-                      "key": "packageDate",
-                      "value": "<date>"
-                    },
-                    {
-                      "key": "page",
-                      "value": "1"
-                    },
-                    {
-                      "key": "pageSize",
-                      "value": "100"
+                      "name": "Get a specific Biomedical Concept",
+                      "id": "242a3c6d-3323-4389-8902-8e8fce7fdeaf",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cosmos/v2/bc/:conceptId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cosmos",
+                            "v2",
+                            "bc",
+                            ":conceptId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6a29ee98-9dc1-45dd-8167-15c85af8979e",
+                              "key": "conceptId",
+                              "value": "<string>",
+                              "description": "(Required) Biomedical Concept identifier"
+                            }
+                          ]
+                        },
+                        "description": "Returns the full definition of a CDISC COSMOS Biomedical Concept including data elements and value sets."
+                      },
+                      "response": [
+                        {
+                          "id": "931c14d2-673b-441e-a32f-c2c038731323",
+                          "name": "Biomedical Concept definition",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/cosmos/v2/bc/:conceptId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "cosmos",
+                                "v2",
+                                "bc",
+                                ":conceptId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "conceptId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"conceptId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"definition\": \"<string>\",\n  \"dataElements\": [\n    {\n      \"name\": \"<string>\",\n      \"dataType\": \"<string>\",\n      \"codeList\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"dataType\": \"<string>\",\n      \"codeList\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:46:24.000Z",
+                          "updatedAt": "2026-10-21T20:46:24.000Z",
+                          "uid": "35240-931c14d2-673b-441e-a32f-c2c038731323"
+                        },
+                        {
+                          "id": "6fe16678-1cf1-422f-9997-d39ae2c67ff5",
+                          "name": "Requested resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/cosmos/v2/bc/:conceptId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "cosmos",
+                                "v2",
+                                "bc",
+                                ":conceptId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "conceptId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-10-21T20:46:24.000Z",
+                          "updatedAt": "2026-10-21T20:46:24.000Z",
+                          "uid": "35240-6fe16678-1cf1-422f-9997-d39ae2c67ff5"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:46:24.000Z",
+                      "updatedAt": "2026-10-21T20:46:24.000Z",
+                      "uid": "35240-242a3c6d-3323-4389-8902-8e8fce7fdeaf"
                     }
                   ],
-                  "variable": []
+                  "id": "d8efb4be-dc31-405b-b8a6-395a8659bf63",
+                  "createdAt": "2026-10-21T20:46:24.000Z",
+                  "updatedAt": "2026-10-21T20:46:24.000Z",
+                  "uid": "35240-d8efb4be-dc31-405b-b8a6-395a8659bf63"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "List CDISC Biomedical Concepts",
+                  "id": "5635e94b-28fb-4a83-b3c4-a403a42fa843",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cosmos/v2/bc?packageDate=<date>&page=1&pageSize=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cosmos",
+                        "v2",
+                        "bc"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter BCs by package release date (YYYY-MM-DD)",
+                          "key": "packageDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "pageSize",
+                          "value": "100"
+                        }
+                      ]
+                    },
+                    "description": "Returns the CDISC COSMOS Biomedical Concept catalog. Supports pagination and filtering."
+                  },
+                  "response": [
+                    {
+                      "id": "1a561143-911b-4f56-8cde-24ce32f93ef4",
+                      "name": "List of Biomedical Concepts",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cosmos/v2/bc?packageDate=<date>&page=1&pageSize=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cosmos",
+                            "v2",
+                            "bc"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter BCs by package release date (YYYY-MM-DD)",
+                              "key": "packageDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "key": "pageSize",
+                              "value": "100"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"conceptId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"definition\": \"<string>\"\n    },\n    {\n      \"conceptId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"definition\": \"<string>\"\n    }\n  ],\n  \"meta\": {\n    \"total\": \"<integer>\",\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:46:24.000Z",
+                      "updatedAt": "2026-10-21T20:46:24.000Z",
+                      "uid": "35240-1a561143-911b-4f56-8cde-24ce32f93ef4"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:46:24.000Z",
+                  "updatedAt": "2026-10-21T20:46:24.000Z",
+                  "uid": "35240-5635e94b-28fb-4a83-b3c4-a403a42fa843"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"conceptId\": \"C49488\",\n      \"name\": \"string\",\n      \"definition\": \"string\"\n    },\n    {\n      \"conceptId\": \"C49488\",\n      \"name\": \"string\",\n      \"definition\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 4620,\n    \"page\": 9254,\n    \"pageSize\": 2342\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "17a42234-7fee-409a-81d4-a32345d32d90",
+              "createdAt": "2026-10-21T20:46:24.000Z",
+              "updatedAt": "2026-10-21T20:46:24.000Z",
+              "uid": "35240-17a42234-7fee-409a-81d4-a32345d32d90"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e027654e-baa1-4778-bfc2-26b3035791a6",
-          "name": "Get a specific Biomedical Concept",
-          "request": {
-            "name": "Get a specific Biomedical Concept",
-            "description": {
-              "content": "Returns the full definition of a CDISC COSMOS Biomedical Concept including data elements and value sets.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "cosmos",
-                "v2",
-                "bc",
-                ":conceptId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "conceptId",
-                  "description": "(Required) Biomedical Concept identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "0691db28-988f-44c7-87a1-3fcd84962d30",
-              "name": "Biomedical Concept definition",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "cosmos",
-                    "v2",
-                    "bc",
-                    ":conceptId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "conceptId",
-                      "description": "(Required) Biomedical Concept identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"conceptId\": \"string\",\n  \"name\": \"string\",\n  \"definition\": \"string\",\n  \"dataElements\": [\n    {\n      \"name\": \"string\",\n      \"dataType\": \"string\",\n      \"codeList\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"dataType\": \"string\",\n      \"codeList\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b6058b7d-ed1b-4c3f-8b50-41144111126d",
-              "name": "Requested resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "cosmos",
-                    "v2",
-                    "bc",
-                    ":conceptId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "conceptId",
-                      "description": "(Required) Biomedical Concept identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 4140,\n  \"timestamp\": \"1990-10-09T04:32:24.952Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "eab57af9-5b56-49bd-8909-856efda1968f",
+          "createdAt": "2026-10-21T20:46:24.000Z",
+          "updatedAt": "2026-10-21T20:46:24.000Z",
+          "uid": "35240-eab57af9-5b56-49bd-8909-856efda1968f"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://library.cdisc.org/api",
-      "key": "baseUrl"
+      "id": "646e57c7-2be2-43c0-ba07-78bb2c57ab3d",
+      "createdAt": "2026-10-21T20:46:24.000Z",
+      "updatedAt": "2026-10-21T20:46:24.000Z",
+      "uid": "35240-646e57c7-2be2-43c0-ba07-78bb2c57ab3d"
     }
   ],
   "auth": {
@@ -291,25 +301,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "api-key"
+        "value": "api-key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "6a8c20be-557c-4571-81df-d7d71b23a730",
-    "name": "CDISC Library ADaM Biomedical Concepts API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The CDISC Library API is a REST API that delivers CDISC standards metadata to software applications that automate standards-based processes. It uses linked data to provide access to SDTM, ADaM, and other clinical data standards. Responses are available in JSON, XML, ODM, CSV, and Excel formats. Access requires a CDISC Library account and an API key obtained from the CDISC Library API Management (APIM) Developer Portal.\n\nContact Support:\n Name: CDISC Library Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://library.cdisc.org/api"
     }
-  }
+  ]
 }

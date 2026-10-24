@@ -1,0 +1,96 @@
+{
+  "info": {
+    "_postman_id": "d99e367a-a623-430d-8ac3-13b83a036d90",
+    "name": "Dataset-JSON About API",
+    "description": "CDISC Dataset-JSON Standard API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:46:58.000Z",
+    "updatedAt": "2026-10-21T20:46:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d99e367a-a623-430d-8ac3-13b83a036d90"
+  },
+  "item": [
+    {
+      "name": "about",
+      "item": [
+        {
+          "name": "Get About the API",
+          "id": "0e91d30d-67fb-40fe-a1f6-be3c2fc34c1c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/about",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "about"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "874074ed-948b-41b2-b6fd-ff12cbcc5314",
+              "name": "About the API",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/about",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "about"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"lastUpdated\": \"<dateTime>\",\n  \"author\": \"<uri>\",\n  \"repo\": \"<uri>\",\n  \"links\": [\n    {\n      \"name\": \"<string>\",\n      \"href\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"href\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-21T20:46:58.000Z",
+              "updatedAt": "2026-10-21T20:46:58.000Z",
+              "uid": "35240-874074ed-948b-41b2-b6fd-ff12cbcc5314"
+            }
+          ],
+          "createdAt": "2026-10-21T20:46:58.000Z",
+          "updatedAt": "2026-10-21T20:46:58.000Z",
+          "uid": "35240-0e91d30d-67fb-40fe-a1f6-be3c2fc34c1c"
+        }
+      ],
+      "id": "123fbef4-e41b-4831-81b2-4101e71a76bd",
+      "createdAt": "2026-10-21T20:46:58.000Z",
+      "updatedAt": "2026-10-21T20:46:58.000Z",
+      "uid": "35240-123fbef4-e41b-4831-81b2-4101e71a76bd"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

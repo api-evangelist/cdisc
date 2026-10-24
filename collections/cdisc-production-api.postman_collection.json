@@ -1,0 +1,1168 @@
+{
+  "info": {
+    "_postman_id": "87307e57-a776-476e-82f1-ab2a7bd3acba",
+    "name": "DDF USDM Production API",
+    "description": "A simple TransCelerate Digital Data Flow (DDF) Study Definitions Repository API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:47:14.000Z",
+    "updatedAt": "2026-10-21T20:47:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-87307e57-a776-476e-82f1-ab2a7bd3acba"
+  },
+  "item": [
+    {
+      "name": "v3",
+      "item": [
+        {
+          "name": "studyDefinitions",
+          "item": [
+            {
+              "name": "{studyId}",
+              "item": [
+                {
+                  "name": "history",
+                  "item": [
+                    {
+                      "name": "Returns the study history",
+                      "id": "29b5fba7-fd4a-4c25-ac9d-d378101e9061",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/studyDefinitions/:studyId/history",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "studyDefinitions",
+                            ":studyId",
+                            "history"
+                          ],
+                          "variable": [
+                            {
+                              "id": "13105fe9-cf34-400d-9717-f79c1e98b22e",
+                              "key": "studyId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns the history for the specified study"
+                      },
+                      "response": [
+                        {
+                          "id": "bb78a5f0-5e5c-4d60-a906-abab815f2a7d",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/studyDefinitions/:studyId/history",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "studyDefinitions",
+                                ":studyId",
+                                "history"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "studyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"study\": {\n      \"name\": \"<string>\",\n      \"instanceType\": \"Study\",\n      \"id\": \"<uuid>\",\n      \"description\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    \"usdmVersion\": \"<string>\",\n    \"systemName\": \"<string>\",\n    \"systemVersion\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-10-21T20:47:15.000Z",
+                          "updatedAt": "2026-10-21T20:47:15.000Z",
+                          "uid": "35240-bb78a5f0-5e5c-4d60-a906-abab815f2a7d"
+                        },
+                        {
+                          "id": "9c6fc58a-beb1-444e-aacb-9bc9b8613832",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/studyDefinitions/:studyId/history",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "studyDefinitions",
+                                ":studyId",
+                                "history"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "studyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:47:15.000Z",
+                          "updatedAt": "2026-10-21T20:47:15.000Z",
+                          "uid": "35240-9c6fc58a-beb1-444e-aacb-9bc9b8613832"
+                        },
+                        {
+                          "id": "b88d9df0-ecf7-4289-aecb-ff939a49b6e6",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/studyDefinitions/:studyId/history",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "studyDefinitions",
+                                ":studyId",
+                                "history"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "studyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:47:15.000Z",
+                          "updatedAt": "2026-10-21T20:47:15.000Z",
+                          "uid": "35240-b88d9df0-ecf7-4289-aecb-ff939a49b6e6"
+                        },
+                        {
+                          "id": "16cd0002-bb57-4170-8982-85d6d5855f1b",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/studyDefinitions/:studyId/history",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "studyDefinitions",
+                                ":studyId",
+                                "history"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "studyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:47:15.000Z",
+                          "updatedAt": "2026-10-21T20:47:15.000Z",
+                          "uid": "35240-16cd0002-bb57-4170-8982-85d6d5855f1b"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:47:15.000Z",
+                      "updatedAt": "2026-10-21T20:47:15.000Z",
+                      "uid": "35240-29b5fba7-fd4a-4c25-ac9d-d378101e9061"
+                    }
+                  ],
+                  "id": "5e764629-5c23-4e42-b380-657b4c67bf8a",
+                  "createdAt": "2026-10-21T20:47:15.000Z",
+                  "updatedAt": "2026-10-21T20:47:15.000Z",
+                  "uid": "35240-5e764629-5c23-4e42-b380-657b4c67bf8a"
+                },
+                {
+                  "name": "Update a study",
+                  "id": "15d77df3-9b93-474f-9fe0-e051c2ee817e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"study\": {\n    \"name\": \"<string>\",\n    \"instanceType\": \"Study\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"label\": \"<string>\"\n  },\n  \"usdmVersion\": \"<string>\",\n  \"systemName\": \"<string>\",\n  \"systemVersion\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/studyDefinitions/:studyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "studyDefinitions",
+                        ":studyId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7c24ed83-49a1-4557-91c1-7e7f5fdc504c",
+                          "key": "studyId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update an entire study including all child element with a single put"
+                  },
+                  "response": [
+                    {
+                      "id": "3526dbab-ff2c-4113-83ab-742ab3496424",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"study\": {\n    \"name\": \"<string>\",\n    \"instanceType\": \"Study\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"label\": \"<string>\"\n  },\n  \"usdmVersion\": \"<string>\",\n  \"systemName\": \"<string>\",\n  \"systemVersion\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/studyDefinitions/:studyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "studyDefinitions",
+                            ":studyId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "studyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<uuid>",
+                      "createdAt": "2026-10-21T20:47:15.000Z",
+                      "updatedAt": "2026-10-21T20:47:15.000Z",
+                      "uid": "35240-3526dbab-ff2c-4113-83ab-742ab3496424"
+                    },
+                    {
+                      "id": "f3b71ab7-0d5e-49f8-b133-fd2bf2f226dd",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"study\": {\n    \"name\": \"<string>\",\n    \"instanceType\": \"Study\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"label\": \"<string>\"\n  },\n  \"usdmVersion\": \"<string>\",\n  \"systemName\": \"<string>\",\n  \"systemVersion\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/studyDefinitions/:studyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "studyDefinitions",
+                            ":studyId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "studyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:47:15.000Z",
+                      "updatedAt": "2026-10-21T20:47:15.000Z",
+                      "uid": "35240-f3b71ab7-0d5e-49f8-b133-fd2bf2f226dd"
+                    },
+                    {
+                      "id": "960f3ac7-ed46-454d-94ed-16326b335a05",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"study\": {\n    \"name\": \"<string>\",\n    \"instanceType\": \"Study\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"label\": \"<string>\"\n  },\n  \"usdmVersion\": \"<string>\",\n  \"systemName\": \"<string>\",\n  \"systemVersion\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/studyDefinitions/:studyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "studyDefinitions",
+                            ":studyId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "studyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:47:15.000Z",
+                      "updatedAt": "2026-10-21T20:47:15.000Z",
+                      "uid": "35240-960f3ac7-ed46-454d-94ed-16326b335a05"
+                    },
+                    {
+                      "id": "a5649b45-812f-4fef-a94e-6416556ca238",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"study\": {\n    \"name\": \"<string>\",\n    \"instanceType\": \"Study\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"label\": \"<string>\"\n  },\n  \"usdmVersion\": \"<string>\",\n  \"systemName\": \"<string>\",\n  \"systemVersion\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/studyDefinitions/:studyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "studyDefinitions",
+                            ":studyId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "studyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:47:15.000Z",
+                      "updatedAt": "2026-10-21T20:47:15.000Z",
+                      "uid": "35240-a5649b45-812f-4fef-a94e-6416556ca238"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:47:15.000Z",
+                  "updatedAt": "2026-10-21T20:47:15.000Z",
+                  "uid": "35240-15d77df3-9b93-474f-9fe0-e051c2ee817e"
+                },
+                {
+                  "name": "Return a study",
+                  "id": "584f4222-5605-4065-a5bd-7da4b6be385e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/studyDefinitions/:studyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "studyDefinitions",
+                        ":studyId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "06fbd987-3c22-449a-8f73-3ca6d85abf2d",
+                          "key": "studyId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Return an entire study including all child elements"
+                  },
+                  "response": [
+                    {
+                      "id": "8f89f5b9-461c-49f5-9185-c83736039310",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/studyDefinitions/:studyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "studyDefinitions",
+                            ":studyId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "studyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"study\": {\n    \"name\": \"<string>\",\n    \"instanceType\": \"Study\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"label\": \"<string>\"\n  },\n  \"usdmVersion\": \"<string>\",\n  \"systemName\": \"<string>\",\n  \"systemVersion\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:47:15.000Z",
+                      "updatedAt": "2026-10-21T20:47:15.000Z",
+                      "uid": "35240-8f89f5b9-461c-49f5-9185-c83736039310"
+                    },
+                    {
+                      "id": "aad81365-d10c-4d02-aa26-c1612acc99bf",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/studyDefinitions/:studyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "studyDefinitions",
+                            ":studyId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "studyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:47:15.000Z",
+                      "updatedAt": "2026-10-21T20:47:15.000Z",
+                      "uid": "35240-aad81365-d10c-4d02-aa26-c1612acc99bf"
+                    },
+                    {
+                      "id": "a6910e65-9dcb-402f-88a9-a4514eb02c6b",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/studyDefinitions/:studyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "studyDefinitions",
+                            ":studyId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "studyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:47:15.000Z",
+                      "updatedAt": "2026-10-21T20:47:15.000Z",
+                      "uid": "35240-a6910e65-9dcb-402f-88a9-a4514eb02c6b"
+                    },
+                    {
+                      "id": "17c6e112-c4e7-4905-8ae9-ed2be3d34e7f",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/studyDefinitions/:studyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "studyDefinitions",
+                            ":studyId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "studyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:47:15.000Z",
+                      "updatedAt": "2026-10-21T20:47:15.000Z",
+                      "uid": "35240-17c6e112-c4e7-4905-8ae9-ed2be3d34e7f"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:47:15.000Z",
+                  "updatedAt": "2026-10-21T20:47:15.000Z",
+                  "uid": "35240-584f4222-5605-4065-a5bd-7da4b6be385e"
+                }
+              ],
+              "id": "e6213954-4a5b-4602-9357-637dc11a1d17",
+              "createdAt": "2026-10-21T20:47:15.000Z",
+              "updatedAt": "2026-10-21T20:47:15.000Z",
+              "uid": "35240-e6213954-4a5b-4602-9357-637dc11a1d17"
+            },
+            {
+              "name": "Create a study",
+              "id": "259f774e-dc2c-48db-bbae-0b4348ae6ece",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"study\": {\n    \"name\": \"<string>\",\n    \"instanceType\": \"Study\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"label\": \"<string>\"\n  },\n  \"usdmVersion\": \"<string>\",\n  \"systemName\": \"<string>\",\n  \"systemVersion\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v3/studyDefinitions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v3",
+                    "studyDefinitions"
+                  ]
+                },
+                "description": "Create an entire study including all child element with a single post"
+              },
+              "response": [
+                {
+                  "id": "a6bce927-9848-487a-9958-a0d1c19a1714",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"study\": {\n    \"name\": \"<string>\",\n    \"instanceType\": \"Study\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"label\": \"<string>\"\n  },\n  \"usdmVersion\": \"<string>\",\n  \"systemName\": \"<string>\",\n  \"systemVersion\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/studyDefinitions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "studyDefinitions"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<uuid>",
+                  "createdAt": "2026-10-21T20:47:15.000Z",
+                  "updatedAt": "2026-10-21T20:47:15.000Z",
+                  "uid": "35240-a6bce927-9848-487a-9958-a0d1c19a1714"
+                },
+                {
+                  "id": "95a24133-2bfe-482d-825f-dc69bffcea57",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"study\": {\n    \"name\": \"<string>\",\n    \"instanceType\": \"Study\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"label\": \"<string>\"\n  },\n  \"usdmVersion\": \"<string>\",\n  \"systemName\": \"<string>\",\n  \"systemVersion\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/studyDefinitions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "studyDefinitions"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T20:47:15.000Z",
+                  "updatedAt": "2026-10-21T20:47:15.000Z",
+                  "uid": "35240-95a24133-2bfe-482d-825f-dc69bffcea57"
+                },
+                {
+                  "id": "8a4173b7-5086-49b2-82a1-6760f23b7820",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"study\": {\n    \"name\": \"<string>\",\n    \"instanceType\": \"Study\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"label\": \"<string>\"\n  },\n  \"usdmVersion\": \"<string>\",\n  \"systemName\": \"<string>\",\n  \"systemVersion\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/studyDefinitions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "studyDefinitions"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T20:47:15.000Z",
+                  "updatedAt": "2026-10-21T20:47:15.000Z",
+                  "uid": "35240-8a4173b7-5086-49b2-82a1-6760f23b7820"
+                },
+                {
+                  "id": "f64a708c-db36-4fe2-be8b-657683773d80",
+                  "name": "Validation Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"study\": {\n    \"name\": \"<string>\",\n    \"instanceType\": \"Study\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"label\": \"<string>\"\n  },\n  \"usdmVersion\": \"<string>\",\n  \"systemName\": \"<string>\",\n  \"systemVersion\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/studyDefinitions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "studyDefinitions"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:47:15.000Z",
+                  "updatedAt": "2026-10-21T20:47:15.000Z",
+                  "uid": "35240-f64a708c-db36-4fe2-be8b-657683773d80"
+                }
+              ],
+              "createdAt": "2026-10-21T20:47:15.000Z",
+              "updatedAt": "2026-10-21T20:47:15.000Z",
+              "uid": "35240-259f774e-dc2c-48db-bbae-0b4348ae6ece"
+            }
+          ],
+          "id": "46811051-fa50-4b10-9b28-6c68ff36f6b6",
+          "createdAt": "2026-10-21T20:47:15.000Z",
+          "updatedAt": "2026-10-21T20:47:15.000Z",
+          "uid": "35240-46811051-fa50-4b10-9b28-6c68ff36f6b6"
+        },
+        {
+          "name": "studyDesigns",
+          "item": [
+            {
+              "name": "Study designs for a study",
+              "id": "e9c1d070-ba80-4ce7-ac37-d757c3122d73",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v3/studyDesigns?studyId=<uuid>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v3",
+                    "studyDesigns"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "studyId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                },
+                "description": "Returns all the study designs for a specified study."
+              },
+              "response": [
+                {
+                  "id": "c513706e-8e89-429b-90a8-ff9861582d5e",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/studyDesigns?studyId=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "studyDesigns"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "studyId",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"arms\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": {\n          \"id\": \"<string>\",\n          \"code\": \"<string>\",\n          \"codeSystem\": \"<string>\",\n          \"codeSystemVersion\": \"<string>\",\n          \"decode\": \"<string>\",\n          \"instanceType\": \"Code\"\n        },\n        \"dataOriginDescription\": \"<string>\",\n        \"dataOriginType\": {\n          \"id\": \"<string>\",\n          \"code\": \"<string>\",\n          \"codeSystem\": \"<string>\",\n          \"codeSystemVersion\": \"<string>\",\n          \"decode\": \"<string>\",\n          \"instanceType\": \"Code\"\n        },\n        \"instanceType\": \"StudyArm\",\n        \"label\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"studyCells\": [\n      {\n        \"id\": \"<string>\",\n        \"armId\": \"<string>\",\n        \"epochId\": \"<string>\",\n        \"elementIds\": [\n          \"<string>\"\n        ],\n        \"instanceType\": \"StudyCell\"\n      }\n    ],\n    \"rationale\": \"<string>\",\n    \"epochs\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": {\n          \"id\": \"<string>\",\n          \"code\": \"<string>\",\n          \"codeSystem\": \"<string>\",\n          \"codeSystemVersion\": \"<string>\",\n          \"decode\": \"<string>\",\n          \"instanceType\": \"Code\"\n        },\n        \"instanceType\": \"StudyEpoch\",\n        \"label\": \"<string>\",\n        \"description\": \"<string>\",\n        \"previousId\": \"<string>\",\n        \"nextId\": \"<string>\"\n      }\n    ],\n    \"population\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"includesHealthySubjects\": \"<boolean>\",\n      \"instanceType\": \"StudyDesignPopulation\",\n      \"label\": \"<string>\",\n      \"description\": \"<string>\",\n      \"plannedEnrollmentNumber\": {\n        \"id\": \"<string>\",\n        \"value\": \"<number>\",\n        \"instanceType\": \"Quantity\",\n        \"unit\": {\n          \"id\": \"<string>\",\n          \"standardCode\": {\n            \"id\": \"<string>\",\n            \"code\": \"<string>\",\n            \"codeSystem\": \"<string>\",\n            \"codeSystemVersion\": \"<string>\",\n            \"decode\": \"<string>\",\n            \"instanceType\": \"Code\"\n          },\n          \"instanceType\": \"AliasCode\"\n        }\n      },\n      \"plannedCompletionNumber\": {\n        \"id\": \"<string>\",\n        \"value\": \"<number>\",\n        \"instanceType\": \"Quantity\",\n        \"unit\": {\n          \"id\": \"<string>\",\n          \"standardCode\": {\n            \"id\": \"<string>\",\n            \"code\": \"<string>\",\n            \"codeSystem\": \"<string>\",\n            \"codeSystemVersion\": \"<string>\",\n            \"decode\": \"<string>\",\n            \"instanceType\": \"Code\"\n          },\n          \"instanceType\": \"AliasCode\"\n        }\n      },\n      \"plannedAge\": {\n        \"id\": \"<string>\",\n        \"minValue\": {\n          \"id\": \"<string>\",\n          \"value\": \"<number>\",\n          \"instanceType\": \"Quantity\",\n          \"unit\": {\n            \"id\": \"<string>\",\n            \"standardCode\": {\n              \"id\": \"<string>\",\n              \"code\": \"<string>\",\n              \"codeSystem\": \"<string>\",\n              \"codeSystemVersion\": \"<string>\",\n              \"decode\": \"<string>\",\n              \"instanceType\": \"Code\"\n            },\n            \"instanceType\": \"AliasCode\"\n          }\n        },\n        \"maxValue\": {\n          \"id\": \"<string>\",\n          \"value\": \"<number>\",\n          \"instanceType\": \"Quantity\",\n          \"unit\": {\n            \"id\": \"<string>\",\n            \"standardCode\": {\n              \"id\": \"<string>\",\n              \"code\": \"<string>\",\n              \"codeSystem\": \"<string>\",\n              \"codeSystemVersion\": \"<string>\",\n              \"decode\": \"<string>\",\n              \"instanceType\": \"Code\"\n            },\n            \"instanceType\": \"AliasCode\"\n          }\n        },\n        \"isApproximate\": \"<boolean>\",\n        \"instanceType\": \"Range\"\n      }\n    },\n    \"eligibilityCriteria\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"category\": {\n          \"id\": \"<string>\",\n          \"code\": \"<string>\",\n          \"codeSystem\": \"<string>\",\n          \"codeSystemVersion\": \"<string>\",\n          \"decode\": \"<string>\",\n          \"instanceType\": \"Code\"\n        },\n        \"identifier\": \"<string>\",\n        \"criterionItemId\": \"<string>\",\n        \"instanceType\": \"EligibilityCriterion\",\n        \"label\": \"<string>\",\n        \"description\": \"<string>\",\n        \"nextId\": \"<string>\",\n        \"previousId\": \"<string>\"\n      }\n    ],\n    \"model\": {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"codeSystem\": \"<string>\",\n      \"codeSystemVersion\": \"<string>\",\n      \"decode\": \"<string>\",\n      \"instanceType\": \"Code\"\n    },\n    \"instanceType\": \"InterventionalStudyDesign\",\n    \"label\": \"<string>\",\n    \"description\": \"<string>\",\n    \"studyType\": {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"codeSystem\": \"<string>\",\n      \"codeSystemVersion\": \"<string>\",\n      \"decode\": \"<string>\",\n      \"instanceType\": \"Code\"\n    },\n    \"studyPhase\": {\n      \"id\": \"<string>\",\n      \"standardCode\": {\n        \"id\": \"<string>\",\n        \"code\": \"<string>\",\n        \"codeSystem\": \"<string>\",\n        \"codeSystemVersion\": \"<string>\",\n        \"decode\": \"<string>\",\n        \"instanceType\": \"Code\"\n      },\n      \"instanceType\": \"AliasCode\"\n    },\n    \"blindingSchema\": {\n      \"id\": \"<string>\",\n      \"standardCode\": {\n        \"id\": \"<string>\",\n        \"code\": \"<string>\",\n        \"codeSystem\": \"<string>\",\n        \"codeSystemVersion\": \"<string>\",\n        \"decode\": \"<string>\",\n        \"instanceType\": \"Code\"\n      },\n      \"instanceType\": \"AliasCode\"\n    }\n  }\n]",
+                  "createdAt": "2026-10-21T20:47:15.000Z",
+                  "updatedAt": "2026-10-21T20:47:15.000Z",
+                  "uid": "35240-c513706e-8e89-429b-90a8-ff9861582d5e"
+                },
+                {
+                  "id": "759985dd-3065-47c9-a8ac-48ae544de92c",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/studyDesigns?studyId=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "studyDesigns"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "studyId",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T20:47:15.000Z",
+                  "updatedAt": "2026-10-21T20:47:15.000Z",
+                  "uid": "35240-759985dd-3065-47c9-a8ac-48ae544de92c"
+                },
+                {
+                  "id": "f8371483-174b-4002-8fd3-13856ff35a42",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/studyDesigns?studyId=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "studyDesigns"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "studyId",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T20:47:15.000Z",
+                  "updatedAt": "2026-10-21T20:47:15.000Z",
+                  "uid": "35240-f8371483-174b-4002-8fd3-13856ff35a42"
+                },
+                {
+                  "id": "e4123a74-8b3b-4725-82e0-bfd180f39a27",
+                  "name": "Validation Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/studyDesigns?studyId=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "studyDesigns"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "studyId",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:47:15.000Z",
+                  "updatedAt": "2026-10-21T20:47:15.000Z",
+                  "uid": "35240-e4123a74-8b3b-4725-82e0-bfd180f39a27"
+                }
+              ],
+              "createdAt": "2026-10-21T20:47:15.000Z",
+              "updatedAt": "2026-10-21T20:47:15.000Z",
+              "uid": "35240-e9c1d070-ba80-4ce7-ac37-d757c3122d73"
+            }
+          ],
+          "id": "c55ff6ff-a3fc-456d-a32a-cbac12b1db58",
+          "createdAt": "2026-10-21T20:47:15.000Z",
+          "updatedAt": "2026-10-21T20:47:15.000Z",
+          "uid": "35240-c55ff6ff-a3fc-456d-a32a-cbac12b1db58"
+        }
+      ],
+      "id": "62b8bdd9-516b-4966-b05a-38db93e8f687",
+      "createdAt": "2026-10-21T20:47:15.000Z",
+      "updatedAt": "2026-10-21T20:47:15.000Z",
+      "uid": "35240-62b8bdd9-516b-4966-b05a-38db93e8f687"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

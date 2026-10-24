@@ -1,103 +1,107 @@
 {
+  "info": {
+    "_postman_id": "570dc188-10e7-4c07-a8ea-d9a619f9923d",
+    "name": "CDISC Library CDASH API",
+    "description": "The CDISC Library API is a REST API that delivers CDISC standards metadata to software applications that automate standards-based processes. It uses linked data to provide access to SDTM, ADaM, and other clinical data standards. Responses are available in JSON, XML, ODM, CSV, and Excel formats. Access requires a CDISC Library account and an API key obtained from the CDISC Library API Management (APIM) Developer Portal.\n\nContact Support:\n Name: CDISC Library Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:46:29.000Z",
+    "updatedAt": "2026-10-21T20:46:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-570dc188-10e7-4c07-a8ea-d9a619f9923d"
+  },
   "item": [
     {
-      "id": "9ad9a10f-1f47-47f8-9d72-62bde3f0d375",
-      "name": "CDASH",
-      "description": {
-        "content": "Clinical Data Acquisition Standards Harmonization",
-        "type": "text/plain"
-      },
+      "name": "mdr",
       "item": [
         {
-          "id": "8919b6c8-254c-4c59-aa40-2cb52fa1f863",
-          "name": "List all CDASH standard versions",
-          "request": {
-            "name": "List all CDASH standard versions",
-            "description": {
-              "content": "Returns all published versions of the CDASH standard.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "mdr",
-                "cdash"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "cdash",
+          "item": [
             {
-              "id": "9cc5d3c4-452b-4043-a5f0-8dfd354e255f",
-              "name": "List of CDASH versions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "mdr",
-                    "cdash"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "List all CDASH standard versions",
+              "id": "3d8b74e4-824f-480b-a328-123551aa4806",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/mdr/cdash",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "mdr",
+                    "cdash"
+                  ]
+                },
+                "description": "Returns all published versions of the CDASH standard."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "53941ca0-e927-4bf7-a0e0-1237bdf7e434",
+                  "name": "List of CDASH versions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/mdr/cdash",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "mdr",
+                        "cdash"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {},\n  \"_embedded\": {\n    \"versions\": [\n      {\n        \"version\": \"<string>\",\n        \"href\": \"<uri>\",\n        \"effectiveDate\": \"<date>\"\n      },\n      {\n        \"version\": \"<string>\",\n        \"href\": \"<uri>\",\n        \"effectiveDate\": \"<date>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-21T20:46:29.000Z",
+                  "updatedAt": "2026-10-21T20:46:29.000Z",
+                  "uid": "35240-53941ca0-e927-4bf7-a0e0-1237bdf7e434"
                 }
               ],
-              "body": "{\n  \"_links\": {},\n  \"_embedded\": {\n    \"versions\": [\n      {\n        \"version\": \"string\",\n        \"href\": \"https://dgCAnRWWjTFYyD.hzhrcIxn7ivuUkssXmvS.uJ57.sp8VvS7C7owKbenVxeJQTozS.x9BrivCZ4t\",\n        \"effectiveDate\": \"2013-05-16\"\n      },\n      {\n        \"version\": \"string\",\n        \"href\": \"http://nWjLPviWvqzJByZOYjQScTvlpUXOPrs.mksuKJe7bqiha\",\n        \"effectiveDate\": \"1962-09-09\"\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:46:29.000Z",
+              "updatedAt": "2026-10-21T20:46:29.000Z",
+              "uid": "35240-3d8b74e4-824f-480b-a328-123551aa4806"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "cf244e19-4147-4e6e-9628-c30f29b3af97",
+          "createdAt": "2026-10-21T20:46:29.000Z",
+          "updatedAt": "2026-10-21T20:46:29.000Z",
+          "uid": "35240-cf244e19-4147-4e6e-9628-c30f29b3af97"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://library.cdisc.org/api",
-      "key": "baseUrl"
+      "id": "9a105b3e-d91e-4e0c-8ec7-ec3d10171601",
+      "createdAt": "2026-10-21T20:46:29.000Z",
+      "updatedAt": "2026-10-21T20:46:29.000Z",
+      "uid": "35240-9a105b3e-d91e-4e0c-8ec7-ec3d10171601"
     }
   ],
   "auth": {
@@ -105,25 +109,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "api-key"
+        "value": "api-key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "b6dd223d-50f4-42b7-80b3-0b526293a505",
-    "name": "CDISC Library ADaM CDASH API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The CDISC Library API is a REST API that delivers CDISC standards metadata to software applications that automate standards-based processes. It uses linked data to provide access to SDTM, ADaM, and other clinical data standards. Responses are available in JSON, XML, ODM, CSV, and Excel formats. Access requires a CDISC Library account and an API key obtained from the CDISC Library API Management (APIM) Developer Portal.\n\nContact Support:\n Name: CDISC Library Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://library.cdisc.org/api"
     }
-  }
+  ]
 }
