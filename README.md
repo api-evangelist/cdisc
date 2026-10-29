@@ -1,4 +1,4 @@
-# cdisc (cdisc)
+# Cdisc
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,83 +66,177 @@
 
 CDISC Library uses linked data and a REST API to deliver CDISC standards metadata to software applications that automate standards-based processes. CDISC Library provides access to new relationships between standards as well as a substantially increased number of versioned CDISC standards and controlled terminology packages.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/apis.yml)
+**Areas:** Clinical Trials · Standards · Life Sciences · Pharma · Healthcare · Metadata · Controlled Terminology · Data Exchange · Non-Profit · Clinical Research
 
-## Timestamps
+## Cdisc on APIs.io
 
-- **Modified:** 2026-05-19
+Everything profiled for Cdisc is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cdisc/](https://apis.io/providers/cdisc/)** — or go straight to one of the APIs or properties below.
 
-## APIs
+### APIs (11)
 
-### CDISC Library API
+- [CDISC CORE (Checks and Rules Engine) API](https://apis.io/apis/cdisc/cdisc-core-api/) — CDISC CORE (Checks and Rules Engine) is an open-source rules engine for validating clinical data against CDISC conformance rules. It enables automated…
+- [cdisc ADaM API](https://apis.io/apis/cdisc/cdisc-adam-api/) — Analysis Data Model standards
+- [cdisc Biomedical Concepts API](https://apis.io/apis/cdisc/cdisc-biomedical-concepts-api/) — CDISC Biomedical Concepts (COSMOS)
+- [cdisc CDASH API](https://apis.io/apis/cdisc/cdisc-cdash-api/) — Clinical Data Acquisition Standards Harmonization
+- [cdisc Products API](https://apis.io/apis/cdisc/cdisc-products-api/) — CDISC standards product catalog
+- [cdisc SDTM API](https://apis.io/apis/cdisc/cdisc-sdtm-api/) — Study Data Tabulation Model standards
+- [cdisc Terminology API](https://apis.io/apis/cdisc/cdisc-terminology-api/) — CDISC controlled terminology
+- [Cdisc About API](https://apis.io/apis/cdisc/cdisc-about-api/) — The About API from Cdisc — 1 operation(s) for about.
+- [Cdisc Analysis Results Standards (ARS) API](https://apis.io/apis/cdisc/cdisc-analysis-results-standards-ars-api/) — The Analysis Results Standards (ARS) API from Cdisc — 17 operation(s) for analysis results standards (ars).
+- [Cdisc Production API](https://apis.io/apis/cdisc/cdisc-production-api/) — Routes that form the production specification.
+- [Cdisc Studies API](https://apis.io/apis/cdisc/cdisc-studies-api/) — The Studies API from Cdisc — 11 operation(s) for studies.
 
-The CDISC Library API is a REST API that delivers CDISC standards metadata to software applications that automate standards-based processes. It uses linked data to provide access to SDTM, ADaM, and other clinical data standards. Responses are available in JSON, XML, ODM, CSV, and Excel formats. Access requires a CDISC Library account and an API key obtained from the CDISC Library API Management (APIM) Developer Portal.
+### Published properties
 
-- **Human URL:** [https://www.cdisc.org/cdisc-library](https://www.cdisc.org/cdisc-library)
-- **Base URL:** `https://library.cdisc.org/api`
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-#### Tags
+#### MCP servers (1)
 
-- ADaM
-- Clinical Trials
-- Metadata
-- ODM
-- Pharma
-- SDTM
-- Standards
+Model Context Protocol servers that expose the API to agents.
 
-#### Properties
+- [cdisc-mcp.yml](https://apis.io/servers/cdisc/cdisc-mcp-yml/)
 
-- [Documentation](https://www.cdisc.org/cdisc-library/api-documentation)
-- [Reference](https://api.developer.library.cdisc.org/api-details)
-- [Getting Started](https://www.cdisc.org/cdisc-library/getting-started)
-- [Portal](https://api.developer.library.cdisc.org/)
-- [Knowledge Base](https://wiki.cdisc.org/display/LIBSUPRT/How-to+articles)
-- [Changelog](https://wiki.cdisc.org/display/LIBSUPRT/Release+Notes)
-- [Support](https://jira.cdisc.org/servicedesk/customer/portal/2)
-- [Explorer](https://library.cdisc.org/browser)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/openapi/cdisc-library-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cdisc-library.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cdisc-library.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Agentic access (1)
 
-### CDISC CORE (Checks and Rules Engine) API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-CDISC CORE (Checks and Rules Engine) is an open-source rules engine for validating clinical data against CDISC conformance rules. It enables automated validation of SDTM, ADaM, and other study data artifacts against published CDISC standards.
+- [Cdisc Agentic Access](https://apis.io/agentic-access/cdisc/cdisc-agentic-access/)
 
-- **Human URL:** [https://www.cdisc.org/core](https://www.cdisc.org/core)
-- **Base URL:** `https://library.cdisc.org/api`
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- Clinical Trials
-- Conformance
-- Pharma
-- Rules
-- Validation
+- [CDISC Dataset (Domain)](https://apis.io/schemas/cdisc/cdisc-dataset/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://www.cdisc.org/core)
-- [Postman Collection](collections/cdisc-library.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cdisc-library.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Linked-data contexts for the provider's vocabulary.
 
-## Common Properties
+- [Cdisc Context](https://apis.io/jsonld/cdisc/cdisc-context/)
 
-- [GitHub Organization](https://github.com/cdisc-org)
-- [LinkedIn](https://www.linkedin.com/company/cdisc)
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [CDISC Library ADaM API](https://apis.io/collections/cdisc/open-cdisc-adam-api/)
+- [CDISC Library ADaM Biomedical Concepts API](https://apis.io/collections/cdisc/open-cdisc-biomedical-concepts-api/)
+- [CDISC Library ADaM CDASH API](https://apis.io/collections/cdisc/open-cdisc-cdash-api/)
+- [CDISC Library API](https://apis.io/collections/cdisc/open-cdisc-library/)
+- [CDISC Library ADaM Products API](https://apis.io/collections/cdisc/open-cdisc-products-api/)
+- [CDISC Library ADaM SDTM API](https://apis.io/collections/cdisc/open-cdisc-sdtm-api/)
+- [CDISC Library ADaM Terminology API](https://apis.io/collections/cdisc/open-cdisc-terminology-api/)
+
+#### Overlays (9)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Cdisc Adam Api Overlay](https://apis.io/overlays/cdisc/cdisc-adam-api-overlay/)
+- [Cdisc Ars Api Overlay](https://apis.io/overlays/cdisc/cdisc-ars-api-overlay/)
+- [Cdisc Biomedical Concepts Api Overlay](https://apis.io/overlays/cdisc/cdisc-biomedical-concepts-api-overlay/)
+- [Cdisc Cdash Api Overlay](https://apis.io/overlays/cdisc/cdisc-cdash-api-overlay/)
+- [Cdisc Dataset Json Api Overlay](https://apis.io/overlays/cdisc/cdisc-dataset-json-api-overlay/)
+- [Cdisc Products Api Overlay](https://apis.io/overlays/cdisc/cdisc-products-api-overlay/)
+- [Cdisc Sdtm Api Overlay](https://apis.io/overlays/cdisc/cdisc-sdtm-api-overlay/)
+- [Cdisc Terminology Api Overlay](https://apis.io/overlays/cdisc/cdisc-terminology-api-overlay/)
+- [Cdisc Usdm Api Overlay](https://apis.io/overlays/cdisc/cdisc-usdm-api-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Cdisc — jsonschema rules](https://apis.io/rules/cdisc/cdisc-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Cdisc Authentication](https://apis.io/security/cdisc/cdisc-authentication/)
+- [Cdisc Domain Security](https://apis.io/security/cdisc/cdisc-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Cdisc Plans Pricing](https://apis.io/plans/cdisc/cdisc-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Cdisc Rate Limits](https://apis.io/rate-limits/cdisc/cdisc-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Cdisc Finops](https://apis.io/finops/cdisc/cdisc-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.cdisc.org/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/openapi/cdisc-library-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/json-schema/cdisc-dataset-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/cdisc/refs/heads/main/json-ld/cdisc-context.jsonld)
-- [Portal](https://www.cdisc.org/cdisc-library)
-- [Getting Started](https://www.cdisc.org/cdisc-library/getting-started)
 - [Documentation](https://www.cdisc.org/cdisc-library/api-documentation)
-- [Authentication](https://api.developer.library.cdisc.org/)
+- [Getting started](https://www.cdisc.org/cdisc-library/getting-started)
 - [Support](https://jira.cdisc.org/servicedesk/customer/portal/2)
 - [Changelog](https://wiki.cdisc.org/display/LIBSUPRT/Release+Notes)
-- [Sign Up](https://www.cdisc.org/cdisc-library/api-account-request)
-- [Integrations](https://www.cdisc.org/partners)
+- [Blog](https://www.cdisc.org/news/whats-new)
+- [Terms of service](https://www.cdisc.org/terms-and-conditions)
+- [Privacy policy](https://www.cdisc.org/privacy-policy)
+- [GitHub](https://github.com/cdisc-org)
+- [Status](https://cdisc.statuspage.io)
 
-## Maintainers
+## API Evangelist rating
 
-**Email:** kin@apievangelist.com
+**Kin Score 49.6** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 57.6 |
+| Contract governance | 14.4 |
+| Operational transparency | 39.5 |
+| Developer ergonomics | 69.6 |
+| Access clarity | 34.2 |
+
+**Agent readiness 27.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 23.4** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cdisc/](https://apis.io/providers/cdisc/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Cdisc: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cdisc/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
